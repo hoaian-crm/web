@@ -1,8 +1,12 @@
+import LoginWallpaper from "assets/images/login-wallpaper.png";
+import UserIcon from "assets/icons/user.png";
+import PasswordIcon from "assets/icons/password.png";
+
 export const PublicImages = {
-    LoginWallpaper: "/images/login-wallpaper.png"
-}
+  LoginWallpaper,
+};
 
 export const Icons = {
-    UserIcon: "/icons/user.png",
-    PasswordIcon: "/icons/password.png"
-}
+  UserIcon,
+  PasswordIcon,
+};
