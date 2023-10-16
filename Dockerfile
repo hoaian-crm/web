@@ -2,7 +2,7 @@ FROM node:16 as builder
 
 WORKDIR /frontend
 
-COPY package*.json .
+COPY package.json .
 RUN npm install # Install nodejs dependencies
 
 COPY . .
