@@ -3,7 +3,7 @@ FROM node:16 as builder
 WORKDIR /frontend
 
 COPY package.json .
-RUN npm install # Install nodejs dependencies
+RUN npm install --force # Install nodejs dependencies
 
 COPY . .
 RUN npm run build # Build source
