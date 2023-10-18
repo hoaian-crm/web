@@ -25,16 +25,18 @@ export const AuthSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     // login
-    builder.addCase(login.fulfilled, (state, _) => {
+    builder.addCase(login.fulfilled, (state, action) => {
+      console.log("login success", action);
       state.status = AuthStatus.Success;
     });
     builder.addCase(login.pending, (state, _) => {
       state.status = AuthStatus.Loading;
     });
-    builder.addCase(login.rejected, (state, _) => {
+    builder.addCase(login.rejected, (state, action) => {
+      console.log("login rejected", action);
       state.status = AuthStatus.Failed;
     });
   },
 });
 
-export default AuthSlice.reducer;
+export const authReducer = AuthSlice.reducer;

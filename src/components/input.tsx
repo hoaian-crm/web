@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { InputTheme, Theme } from "theme";
 
@@ -8,8 +8,8 @@ export type InputProps = {
   validators?: Array<Function>;
   onClick?: Function;
   onClickHeaderIcon?: Function;
-  onChange: Function;
-  value: any;
+  onChange: ChangeEventHandler;
+  value?: any;
   type: string;
   name?: string;
   className?: string;
@@ -27,6 +27,7 @@ export const Input: React.FC<InputProps> = (props) => {
           value={props.value}
           placeholder={props.placeHolder}
           name={props.name}
+          onChange={props.onChange}
         />
       </ThemeProvider>
     </InputContainer>

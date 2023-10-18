@@ -1,5 +1,5 @@
 import { Icons, PublicImages } from "common";
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "./components/container";
 import {
   Header,
@@ -14,8 +14,30 @@ import {
 import { CoverImage, Right } from "./components/right";
 import { LightTheme } from "theme";
 import { ThemeProvider } from "styled-components";
+import { LoginBody } from "service/auth";
+import { useAppDispatch } from "store";
+import { login } from "store/auth/actions";
 
 const Login: React.FC = () => {
+  const [input, setInput] = useState<LoginBody>({
+    username: "",
+    password: "",
+  });
+
+  const dispatch = useAppDispatch();
+
+  const onChange = (e: any) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    dispatch(login(input));
+  };
+
   return (
     <ThemeProvider theme={LightTheme}>
       <Container>
@@ -25,22 +47,22 @@ const Login: React.FC = () => {
             <Subtitle>We are glad to see you back with us</Subtitle>
           </Header>
 
-          <LoginForm className="form">
+          <LoginForm className="form" onSubmit={onSubmit}>
             <LoginInput
               placeHolder="Username"
               name="username"
               type="text"
-              value=""
-              onChange={() => {}}
+              onChange={onChange}
               headIcon={Icons.UserIcon}
+              value={input.username}
             />
             <LoginInput
               placeHolder="Password"
               name="password"
               type="password"
-              value=""
-              onChange={() => {}}
+              onChange={onChange}
               headIcon={Icons.PasswordIcon}
+              value={input.password}
             />
             <SubmitButton>
               <SubmitButtonLabel>Login</SubmitButtonLabel>
