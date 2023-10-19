@@ -2,9 +2,11 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 
 export const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "",
-  headers: {
-    Authorization: "Bearer " + localStorage["access_token"],
-  },
+});
+
+api.interceptors.request.use((config) => {
+  config.headers.Authorization = "Bearer " + localStorage["accessToken"];
+  return config;
 });
 
 export type Message = {
@@ -31,7 +33,6 @@ export const responseParser = <T extends any>(
 };
 
 export const errorParser = (error: AxiosError): Response<any> => {
-  console.log("error when parser is:", error);
   return error.response?.data as Response<any>;
 };
 
@@ -47,4 +48,11 @@ export const apiPromiseHandler = <T>(
         reject(errorParser(err));
       });
   });
+};
+
+export const UnknownMessage: Message = {
+  code: 0,
+  description: "Unexpected error !",
+  field: "",
+  meta_data: {},
 };

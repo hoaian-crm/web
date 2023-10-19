@@ -1,13 +1,9 @@
 import { ThemeProps } from "common/type";
-import React, { MouseEventHandler } from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { ButtonTheme, Theme } from "theme";
 
-export type ButtonProps = {
-  onClick?: MouseEventHandler;
-  className?: string;
-  children?: React.ReactNode;
-};
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {};
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const theme = useTheme() as ButtonTheme;
@@ -28,6 +24,10 @@ const ButtonContainer = styled.div<ThemeProps<ButtonTheme>>`
   padding: 0px;
   margin: 0px;
   background-color: ${(props) => props.theme.backgroundColor};
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const ButtonCore = styled.button`

@@ -1,15 +1,22 @@
-import { Response, api, apiPromiseHandler } from "service";
+import { api, apiPromiseHandler } from "service";
+import { IUser } from "type/user";
 
 export type LoginBody = {
-  username: string;
+  email: string;
   password: string;
 };
 export type LoginResponse = {
-  access_token: string;
+  accessToken: string;
 };
 
+export type GetProfileResponse = IUser;
+
 export default class AuthService {
-  static login = async (data: LoginBody) => {
+  static login = (data: LoginBody) => {
     return apiPromiseHandler<LoginResponse>(api.post("/users/login", data));
+  };
+
+  static getProfile = () => {
+    return apiPromiseHandler<GetProfileResponse>(api.get("/users/profile"));
   };
 }

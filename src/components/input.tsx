@@ -1,8 +1,12 @@
-import React, { ChangeEventHandler } from "react";
+import React, {
+  ChangeEventHandler,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+} from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { InputTheme, Theme } from "theme";
 
-export type InputProps = {
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   headIcon?: string;
   placeHolder: string;
   validators?: Array<Function>;
@@ -23,6 +27,7 @@ export const Input: React.FC<InputProps> = (props) => {
       <InputHeadIcon src={props.headIcon} className="head_icon"></InputHeadIcon>
       <ThemeProvider theme={theme.text}>
         <InputCore
+          required={props.required}
           type={props.type}
           value={props.value}
           placeholder={props.placeHolder}

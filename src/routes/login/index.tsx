@@ -1,5 +1,5 @@
 import { Icons, PublicImages } from "common";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "./components/container";
 import {
   Header,
@@ -15,14 +15,22 @@ import { CoverImage, Right } from "./components/right";
 import { LightTheme } from "theme";
 import { ThemeProvider } from "styled-components";
 import { LoginBody } from "service/auth";
-import { useAppDispatch } from "store";
-import { login } from "store/auth/actions";
+import { useAppDispatch, useAppSelector } from "store";
+import { getProfile, login } from "store/auth/actions";
+import { ToastContainer } from "react-toastify";
+import { AuthStatus, ProfileStatus } from "store/auth/state";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const isAuthenticated = useLoaderData();
   const [input, setInput] = useState<LoginBody>({
-    username: "",
+    email: "",
     password: "",
   });
+  const { status, getProfileStatus } = useAppSelector(
+    (state) => state.authReducer
+  );
 
   const dispatch = useAppDispatch();
 
@@ -38,6 +46,20 @@ const Login: React.FC = () => {
     dispatch(login(input));
   };
 
+  useEffect(() => {
+    if (status === AuthStatus.Failed) {
+      setInput({
+        ...input,
+        password: "",
+      });
+    }
+    if (status === AuthStatus.Success) {
+      navigate("/");
+    }
+  }, [status]); // Refresh password input after login failed
+
+  if (isAuthenticated) return null;
+
   return (
     <ThemeProvider theme={LightTheme}>
       <Container>
@@ -47,14 +69,15 @@ const Login: React.FC = () => {
             <Subtitle>We are glad to see you back with us</Subtitle>
           </Header>
 
-          <LoginForm className="form" onSubmit={onSubmit}>
+          <LoginForm onSubmit={onSubmit}>
             <LoginInput
-              placeHolder="Username"
-              name="username"
-              type="text"
+              placeHolder="Email address"
+              name="email"
+              type="email"
               onChange={onChange}
               headIcon={Icons.UserIcon}
-              value={input.username}
+              value={input.email}
+              required
             />
             <LoginInput
               placeHolder="Password"
@@ -63,6 +86,8 @@ const Login: React.FC = () => {
               onChange={onChange}
               headIcon={Icons.PasswordIcon}
               value={input.password}
+              minLength={8}
+              required
             />
             <SubmitButton>
               <SubmitButtonLabel>Login</SubmitButtonLabel>

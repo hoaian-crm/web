@@ -1,18 +1,32 @@
-import { PrivateRoute } from 'components/private_route';
-import React from 'react';
-import { createBrowserRouter } from "react-router-dom";
+import { PrivateRoute } from "components/private_route";
+import React from "react";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Home from "./home";
 import Login from "./login";
+import AuthService from "service/auth";
+import { Layout } from "./layout";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <PrivateRoute><Home /></PrivateRoute>
+  {
+    path: "/",
+    element: (
+      <PrivateRoute>
+        <Home />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    loader: async () => {
+      try {
+        await AuthService.getProfile();
+        return redirect("/");
+      } catch (error) {
+        return false;
+      }
     },
-    {
-        path: "/login",
-        element: <Login />
-    }
-])
+  },
+]);
 
 export default router;

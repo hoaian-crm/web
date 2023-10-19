@@ -1,12 +1,25 @@
 import React, { useEffect } from "react";
-import { redirect } from "react-router";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Layout } from "routes/layout";
+import { useAppDispatch, useAppSelector } from "store";
+import { getProfile } from "store/auth/actions";
+import { ProfileStatus } from "store/auth/state";
 
 export const PrivateRoute: React.FC<any> = (props) => {
+  const navigate = useNavigate();
+  const { getProfileStatus } = useAppSelector((state) => state.authReducer);
+  const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        redirect('/login');
-    }, [])
+  useEffect(() => {
+    if (getProfileStatus === ProfileStatus.Failed) {
+      navigate("/login");
+    }
+    if (!localStorage["accessToken"]) navigate("/login");
+    if (getProfileStatus === ProfileStatus.NoAction) {
+      dispatch(getProfile());
+    }
+  }, [getProfileStatus]);
 
-
-    return props.children;
-}
+  return <Layout>{props.children}</Layout>;
+};
