@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { LightTheme } from "theme";
+import { Navbar } from "./components/nav_bar";
 
 export type LayoutProps = {
   children?: React.ReactNode;
@@ -10,8 +11,10 @@ export const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <ThemeProvider theme={LightTheme}>
       <LayoutContainer>
+        <Navbar />
         {props.children}
-        </LayoutContainer>
+      </LayoutContainer>
+      0
     </ThemeProvider>
   );
 };

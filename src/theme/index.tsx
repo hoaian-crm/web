@@ -18,10 +18,14 @@ export type InputTheme = {
 export type NavbarTheme = {
   backgroundColor: string;
   headerColor: string;
-  defaultItemColor: string;
-  activeItemColor: string;
-  activeItemBackgroundColor: string;
-}
+  activeItemTheme: NavItemTheme;
+  defaultItemTheme: NavItemTheme;
+};
+
+export type NavItemTheme = {
+  backgroundColor: string;
+  contentColor: string;
+};
 
 export type Theme = {
   primaryButton: ButtonTheme;
@@ -29,4 +33,5 @@ export type Theme = {
   inputTheme: InputTheme;
   backgroundColor: string;
   navbarTheme: NavbarTheme;
+  primaryTextColor: string;
 };

@@ -22,8 +22,14 @@ export const LightTheme: Theme = {
   navbarTheme: {
     backgroundColor: Colors.white01,
     headerColor: Colors.black00,
-    defaultItemColor: Colors.white03,
-    activeItemColor: Colors.white01,
-    activeItemBackgroundColor: Colors.purple01,
+    activeItemTheme: {
+      backgroundColor: Colors.purple01,
+      contentColor: Colors.white01,
+    },
+    defaultItemTheme: {
+      backgroundColor: Colors.transparent,
+      contentColor: Colors.white03,
+    },
   },
+  primaryTextColor: Colors.black00,
 };

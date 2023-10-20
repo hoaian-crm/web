@@ -12,5 +12,6 @@ export const Text: React.FC<TextProps> = (props) => {
 };
 
 const TextStyle = styled.p<{ theme: TextTheme }>`
-  color: ${(props) => props.theme.color};
+  color: ${(props) => props.theme.color || props.theme.primaryTextColor};
+  margin: 0;
 `;

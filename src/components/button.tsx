@@ -21,9 +21,10 @@ export const Button: React.FC<ButtonProps> = (props) => {
 const ButtonContainer = styled.div<ThemeProps<ButtonTheme>>`
   width: 100%;
   border-radius: 10px;
-  padding: 0px;
+  padding: 10px;
   margin: 0px;
   background-color: ${(props) => props.theme.backgroundColor};
+  box-sizing: border-box;
 
   :hover {
     cursor: pointer;
