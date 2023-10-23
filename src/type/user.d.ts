@@ -4,4 +4,5 @@ export interface IUser {
   displayName: string;
   avatar: string;
   referralCode: string;
+  active: boolean;
 };

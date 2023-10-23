@@ -13,6 +13,7 @@ export type TextTheme = {
 export type InputTheme = {
   backgroundColor: string;
   text: TextTheme;
+  placeHolder: TextTheme;
 };
 
 export type NavbarTheme = {
@@ -27,6 +28,22 @@ export type NavItemTheme = {
   contentColor: string;
 };
 
+export type TableTheme = {
+  backgroundColor: string;
+  primaryText: TextTheme;
+  secondaryText: TextTheme;
+  foregroundColor: string;
+  borderColor: string;
+  trueTheme: BooleanTheme;
+  falseTheme: BooleanTheme;
+  searchBar: InputTheme;
+};
+
+export type BooleanTheme = {
+  backgroundColor: string;
+  foregroundColor: string;
+};
+
 export type Theme = {
   primaryButton: ButtonTheme;
   primaryTextTheme: TextTheme;
@@ -34,4 +51,5 @@ export type Theme = {
   backgroundColor: string;
   navbarTheme: NavbarTheme;
   primaryTextColor: string;
+  tableTheme: TableTheme;
 };

@@ -17,6 +17,9 @@ export const LightTheme: Theme = {
     text: {
       color: Colors.black01,
     },
+    placeHolder: {
+      color: Colors.grey02,
+    },
   },
   backgroundColor: Colors.white02,
   navbarTheme: {
@@ -32,4 +35,32 @@ export const LightTheme: Theme = {
     },
   },
   primaryTextColor: Colors.black00,
+  tableTheme: {
+    backgroundColor: Colors.white01,
+    primaryText: {
+      color: Colors.black00,
+    },
+    secondaryText: {
+      color: Colors.grey03,
+    },
+    foregroundColor: Colors.purple01,
+    borderColor: Colors.grey04,
+    trueTheme: {
+      backgroundColor: Colors.green01,
+      foregroundColor: Colors.green02,
+    },
+    falseTheme: {
+      backgroundColor: Colors.red01,
+      foregroundColor: Colors.red02,
+    },
+    searchBar: {
+      backgroundColor: Colors.grey05,
+      text: {
+        color: Colors.black00,
+      },
+      placeHolder: {
+        color: Colors.grey03,
+      },
+    },
+  },
 };

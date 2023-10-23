@@ -1,13 +1,11 @@
-import React, {
-  ChangeEventHandler,
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-} from "react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { ChangeEventHandler, InputHTMLAttributes } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { InputTheme, Theme } from "theme";
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  headIcon?: string;
+  headIcon?: IconProp;
   placeHolder: string;
   validators?: Array<Function>;
   onClick?: Function;
@@ -24,7 +22,11 @@ export const Input: React.FC<InputProps> = (props) => {
 
   return (
     <InputContainer className={props.className}>
-      <InputHeadIcon src={props.headIcon} className="head_icon"></InputHeadIcon>
+      {props.headIcon ? (
+        <ThemeProvider theme={theme.placeHolder}>
+          <InputHeadIcon icon={props.headIcon}></InputHeadIcon>
+        </ThemeProvider>
+      ) : null}
       <ThemeProvider theme={theme.text}>
         <InputCore
           required={props.required}
@@ -56,13 +58,13 @@ const InputCore = styled.input`
   font-size: 1rem;
   margin-left: 10px;
   background: none;
-  color: ${(props) => props.theme.color};
   width: 100%;
+  color: ${(props) => props.theme.color};
 `;
 
-const InputHeadIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+const InputHeadIcon = styled(FontAwesomeIcon)`
+  font-size: 18px;
+  color: ${(props) => props.theme.color};
 `;
 
 export const PrimaryInput: React.FC<InputProps> = (props) => {

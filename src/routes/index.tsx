@@ -5,6 +5,7 @@ import Home from "./home";
 import Login from "./login";
 import AuthService from "service/auth";
 import { Layout } from "./layout";
+import { Users } from "./users";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Home />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/users",
+    element: (
+      <PrivateRoute>
+        <Users />
       </PrivateRoute>
     ),
   },
