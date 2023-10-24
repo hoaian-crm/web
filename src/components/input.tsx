@@ -30,11 +30,10 @@ export const Input: React.FC<InputProps> = (props) => {
       <ThemeProvider theme={theme.text}>
         <InputCore
           required={props.required}
-          type={props.type}
           value={props.value}
           placeholder={props.placeHolder}
           name={props.name}
-          onChange={props.onChange}
+          {...props}
         />
       </ThemeProvider>
     </InputContainer>

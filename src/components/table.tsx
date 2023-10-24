@@ -18,6 +18,7 @@ export type TableProps<T extends TableRecord> = {
       metadata?: any;
     };
   };
+  tools?: React.ReactNode;
 };
 
 export const Table = <T extends TableRecord>(props: TableProps<T>) => {
@@ -26,7 +27,7 @@ export const Table = <T extends TableRecord>(props: TableProps<T>) => {
   return (
     <ThemeProvider theme={theme.tableTheme}>
       <Container>
-        <TableTools tableName={props.name} />
+        {props.tools}
         <TableCore>
           <ThemeProvider theme={theme.tableTheme.secondaryText}>
             <Row>

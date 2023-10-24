@@ -2,6 +2,7 @@ import { Icons } from "common";
 import { Header } from "components/header";
 import { Table } from "components/table";
 import { CellTypes } from "components/table_cell";
+import { TableTools } from "components/table_tools";
 import React from "react";
 import styled from "styled-components";
 import { IUser } from "type/user";
@@ -15,6 +16,7 @@ export const Users: React.FC = (props) => {
         records={fakeDataUsers}
         limit={10}
         name="Users in system"
+        tools={<TableTools<any> tableName="User data" />}
         columns={{
           id: {
             type: CellTypes.Text,
@@ -36,12 +38,12 @@ export const Users: React.FC = (props) => {
             metadata: {
               false: {
                 value: false,
-                content: "Inactive"
+                content: "Inactive",
               },
               true: {
                 value: true,
-                content: "Active"
-              }
+                content: "Active",
+              },
             },
           },
         }}

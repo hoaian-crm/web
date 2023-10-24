@@ -1,4 +1,4 @@
-import { api, apiPromiseHandler } from "service";
+import { ApiCaller, api, apiPromiseHandler } from "service";
 import { IUser } from "type/user";
 
 export type LoginBody = {
@@ -12,11 +12,13 @@ export type LoginResponse = {
 export type GetProfileResponse = IUser;
 
 export default class AuthService {
-  static login = (data: LoginBody) => {
-    return apiPromiseHandler<LoginResponse>(api.post("/users/login", data));
+
+  static login: ApiCaller<LoginResponse> = (data: LoginBody) => {
+    return apiPromiseHandler(api.post("/users/login", data));
   };
 
-  static getProfile = () => {
-    return apiPromiseHandler<GetProfileResponse>(api.get("/users/profile"));
+  static getProfile: ApiCaller<GetProfileResponse> = () => {
+    return apiPromiseHandler(api.get("/users/profile"));
   };
+
 }

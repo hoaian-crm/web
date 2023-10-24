@@ -50,6 +50,8 @@ export const apiPromiseHandler = <T>(
   });
 };
 
+export type ApiCaller<T> = (...params: any[]) => Promise<Response<T>>;
+
 export const UnknownMessage: Message = {
   code: 0,
   description: "Unexpected error !",
