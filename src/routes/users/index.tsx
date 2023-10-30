@@ -1,4 +1,3 @@
-import { Icons } from "common";
 import { Header } from "components/header";
 import { Table } from "components/table";
 import { CellTypes } from "components/table_cell";
@@ -135,46 +134,3 @@ const Container = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
-
-const fakeDataUsers: Array<IUser> = [
-  {
-    id: "0",
-    email: "hoaian412003@gmail.com",
-    displayName: "Tran Hoai An",
-    avatar: Icons.UserIcon,
-    referralCode: "123456",
-    active: false,
-  },
-  {
-    id: "0",
-    email: "hoaian412003@gmail.com",
-    displayName: "Tran Hoai An",
-    avatar: Icons.UserIcon,
-    referralCode: "123456",
-    active: true,
-  },
-  {
-    id: "0",
-    email: "hoaian412003@gmail.com",
-    displayName: "Tran Hoai An",
-    avatar: Icons.UserIcon,
-    referralCode: "123456",
-    active: false,
-  },
-  {
-    id: "0",
-    email: "hoaian412003@gmail.com",
-    displayName: "Tran Hoai An",
-    avatar: Icons.UserIcon,
-    referralCode: "123456",
-    active: true,
-  },
-  {
-    id: "0",
-    email: "hoaian412003@gmail.com",
-    displayName: "Tran Hoai An",
-    avatar: Icons.UserIcon,
-    referralCode: "123456",
-    active: false,
-  },
-];
