@@ -1,7 +1,3 @@
-import LoginWallpaper from "assets/images/login-wallpaper.png";
-import UserIcon from "assets/icons/user.png";
-import PasswordIcon from "assets/icons/password.png";
-import MainLogo from "assets/images/main-logo.png";
 import {
   faBox,
   faGauge,
@@ -9,8 +5,14 @@ import {
   faMoneyBillTransfer,
   faPuzzlePiece,
   faRightFromBracket,
-  faUser,
+  faSort,
+  faUpLong,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
+import PasswordIcon from "assets/icons/password.png";
+import UserIcon from "assets/icons/user.png";
+import LoginWallpaper from "assets/images/login-wallpaper.png";
+import MainLogo from "assets/images/main-logo.png";
 
 export const PublicImages = {
   LoginWallpaper,
@@ -27,4 +29,6 @@ export const Icons = {
   PluginIcon: faPuzzlePiece,
   LogoutIcon: faRightFromBracket,
   SearchIcon: faMagnifyingGlass,
+  SortIcon: faSort,
+  UpIcon: faUpLong
 };

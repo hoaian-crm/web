@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { TableTheme, Theme } from "theme";
-import { Text } from "./text";
 import Cells, { CellTypes } from "./table_cell";
-import { TableTools } from "./table_tools";
+import { Text } from "./text";
 
 type TableRecord = Record<string, any>;
 

@@ -7,11 +7,10 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "store";
 import { listUsers, searchUsers } from "store/users/action";
+import { resetSearchResult } from "store/users/user";
 import styled from "styled-components";
 import { IUser } from "type/user";
 import { UserRow } from "./components/user_row";
-import { FetchUserStatus, resetSearchResult } from "store/users/user";
-import { useDebounce } from "common/utils";
 
 export const Users: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams({
@@ -57,17 +56,38 @@ export const Users: React.FC = () => {
             tableName="User data"
             results={userState.searchResult}
             ResultComponent={UserRow}
-            onSearch={(e) => {
+            onSearch={(e: any) => {
               setKeyword(e.target.value);
             }}
             search={keyword}
-            onResultClick={(result) => {
+            onResultClick={(result: IUser) => {
               setSearchParams({ keyword: result.displayName });
             }}
             onSubmit={() => {
-              setSearchParams({
-                keyword,
-              });
+              searchParams.set("keyword", keyword)
+              setSearchParams(searchParams)
+            }}
+            columnOptions={[
+              {
+                label: "Id",
+                value: "id"
+              },
+              {
+                label: "Name",
+                value: "displayName"
+              },
+              {
+                label: "Email",
+                value: "email"
+              },
+              {
+                label: "Created At",
+                value: "createdAt"
+              }
+            ]}
+            onChangeSelectedChange={(option) => {
+              searchParams.set("order", option.value)
+              setSearchParams(searchParams)
             }}
           />
         }

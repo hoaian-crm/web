@@ -4,13 +4,15 @@ import React, { ChangeEventHandler, InputHTMLAttributes } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { InputTheme, Theme } from "theme";
 
+export type OnChange = ChangeEventHandler<HTMLInputElement>;
+
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   headIcon?: IconProp;
   placeHolder: string;
   validators?: Array<Function>;
   onClick?: Function;
   onClickHeaderIcon?: Function;
-  onChange: ChangeEventHandler<HTMLInputElement>;
+  onChange: OnChange;
   value?: any;
   type: string;
   name?: string;
