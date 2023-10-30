@@ -13,3 +13,19 @@ body {
   height: 100%;
   width: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--lightestgrey);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: linear-gradient(108deg, #abdef0 7.37%, #2344e9 95.19%);
+}

@@ -10,7 +10,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   validators?: Array<Function>;
   onClick?: Function;
   onClickHeaderIcon?: Function;
-  onChange: ChangeEventHandler;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   value?: any;
   type: string;
   name?: string;

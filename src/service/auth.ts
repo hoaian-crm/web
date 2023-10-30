@@ -11,14 +11,14 @@ export type LoginResponse = {
 
 export type GetProfileResponse = IUser;
 
-export default class AuthService {
-
-  static login: ApiCaller<LoginResponse> = (data: LoginBody) => {
+namespace AuthService {
+  export const login: ApiCaller<LoginResponse> = (data: LoginBody) => {
     return apiPromiseHandler(api.post("/users/login", data));
   };
 
-  static getProfile: ApiCaller<GetProfileResponse> = () => {
+  export const getProfile: ApiCaller<GetProfileResponse> = () => {
     return apiPromiseHandler(api.get("/users/profile"));
   };
-
 }
+
+export default AuthService;

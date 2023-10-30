@@ -68,11 +68,12 @@ const Container = styled.div<{ theme: TableTheme }>`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  overflow: scroll;
+  height: 100%;
 `;
 
 const TableCore = styled.table`
   width: 100%;
-  height: 100%;
   text-align: center;
   box-sizing: border-box;
   border-collapse: collapse;

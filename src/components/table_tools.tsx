@@ -1,36 +1,59 @@
-import React, { useState } from "react";
+import React, { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { Text } from "./text";
 import { Input } from "./input";
 import { Icons } from "common";
-import { ApiCaller } from "service";
 
 type TableToolsProps<T> = {
   tableName: string;
-  api?: ApiCaller<T>;
+  results: Array<T>;
+  ResultComponent: React.FC<
+    {
+      data: T;
+    } & any
+  >;
+  search: string;
+  onSearch: ChangeEventHandler<HTMLInputElement>;
+  onResultClick?: (result: T) => void;
+  onSubmit?: () => void;
 };
 
 export function TableTools<T>(props: TableToolsProps<T>) {
   const theme = useTheme();
-  const [hidden, setHidden] = useState(true);
+  const [focus, setFocus] = useState(false);
+
   return (
     <Container>
       <TableName>{props.tableName}</TableName>
       <ThemeProvider theme={theme.searchBar}>
-        <Search>
+        <Search id="123">
           <SearchInput
-            onFocus={() => {
-              setHidden(false);
-            }}
-            onBlur={() => {
-              setHidden(true);
-            }}
-            onChange={() => {}}
             placeHolder="Search"
             type="text"
             headIcon={Icons.SearchIcon}
+            onChange={props.onSearch}
+            value={props.search}
+            onFocus={() => setFocus(true)}
+            onBlur={() => setFocus(false)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                props.onSubmit && props.onSubmit();
+              }
+            }}
           />
-          <SearchResult hidden={hidden} />
+          <ResultContainer focus={focus}>
+            {props.results?.map((result, index) => {
+              return (
+                <props.ResultComponent
+                  key={index}
+                  data={result}
+                  onClick={() => {
+                    props?.onResultClick && props.onResultClick(result);
+                  }}
+                />
+              );
+            })}
+          </ResultContainer>
         </Search>
       </ThemeProvider>
     </Container>
@@ -57,13 +80,22 @@ const Search = styled.div`
 const SearchInput = styled(Input)`
   top: 100%;
   left: 100%;
+  min-width: 200px;
 `;
 
-const SearchResult = styled.div`
-  height: 100px;
-  width: 100%;
-  background-color: black;
+const ResultContainer = styled.div<{ focus: boolean }>`
   position: absolute;
-  z-index: 100;
-  display: ${(props) => (props.hidden ? "hidden" : "block")};
+  width: 100%;
+  display: ${(props) => (props.focus ? "flex" : "none")};
+  flex-direction: column;
+  background-color: ${(props) => props.theme.backgroundColor};
+  box-sizing: border-box;
+  margin-top: 20px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  border-radius: 10px;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;

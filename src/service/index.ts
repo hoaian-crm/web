@@ -16,6 +16,14 @@ export type Message = {
   meta_data: any;
 };
 
+export type Query<T> =
+  | ({
+      limit?: string;
+      offset?: string;
+      sort?: string;
+    } & T)
+  | URLSearchParams;
+
 export type Response<T> = {
   messages: Array<Message>;
   data: {
@@ -24,6 +32,14 @@ export type Response<T> = {
   total: number;
   limit: number;
   offset: number;
+};
+
+export const serializeQuery = (search: URLSearchParams) => {
+  return {
+    limit: search.get("limit") || "10",
+    offset: search.get("offset") || "0",
+    sort: search.get("sort") || "",
+  };
 };
 
 export const responseParser = <T extends any>(

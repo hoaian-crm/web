@@ -43,8 +43,8 @@ const ImageCell: React.FC<CellProps> = ({ children }) => {
 
 const ImageStyle = styled.img`
   border-radius: 100px;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
 `;
 
 const BooleanCell: React.FC<CellProps> = ({ children, ...props }) => {
@@ -59,7 +59,9 @@ const BooleanCell: React.FC<CellProps> = ({ children, ...props }) => {
     >
       <CellContainer>
         <BooleanStyle>
-          <BooleanText>{props.metadata[children?.toString() || "false"].content}</BooleanText>
+          <BooleanText>
+            {props.metadata[children?.toString() || "false"].content}
+          </BooleanText>
         </BooleanStyle>
       </CellContainer>
     </ThemeProvider>
