@@ -3,10 +3,13 @@ import styled, { ThemeProvider, useTheme } from "styled-components";
 import { Search, SearchProps } from "./search";
 import { Sort, SortProps } from "./sort";
 import { Text } from "./text";
+import { Pagination, PaginationProps } from "./pagination";
 
 type TableToolsProps<T> = {
   tableName: string;
-} & SearchProps<T> & SortProps;
+} & SearchProps<T> &
+  SortProps &
+  PaginationProps;
 
 export function TableTools<T>(props: TableToolsProps<T>) {
   const theme = useTheme();

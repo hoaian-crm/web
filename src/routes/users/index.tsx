@@ -10,14 +10,13 @@ import { resetSearchResult } from "store/users/user";
 import styled from "styled-components";
 import { IUser } from "type/user";
 import { UserRow } from "./components/user_row";
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 export const Users: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams({
     limit: "20",
     offset: "0",
     keyword: "",
-    sort: "",
+    order: "",
   });
 
   const [keyword, setKeyword] = useState(searchParams.get("keyword") || "");
@@ -51,6 +50,15 @@ export const Users: React.FC = () => {
         records={userState.users}
         limit={Number(searchParams.get("limit"))}
         name="Users in system"
+        pagination={{
+          total: userState.total,
+          offset: userState.offset,
+          limit: userState.limit,
+          onChange: (e) => {
+            searchParams.set("offset", (e * userState.limit).toString());
+            setSearchParams(searchParams);
+          },
+        }}
         tools={
           <TableTools<IUser>
             tableName="User data"
@@ -98,6 +106,7 @@ export const Users: React.FC = () => {
                 setSearchParams(searchParams);
               }
             }}
+            initValue={searchParams.get("order") || undefined}
           />
         }
         columns={{

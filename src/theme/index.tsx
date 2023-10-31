@@ -37,11 +37,18 @@ export type TableTheme = {
   trueTheme: BooleanTheme;
   falseTheme: BooleanTheme;
   searchBar: InputTheme;
+  pagination: PaginationTheme;
 };
 
 export type BooleanTheme = {
   backgroundColor: string;
   foregroundColor: string;
+};
+
+export type PaginationTheme = {
+  active: BooleanTheme;
+  inActive: BooleanTheme;
+  placeHolder: TextTheme;
 };
 
 export type Theme = {

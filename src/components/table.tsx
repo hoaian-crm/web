@@ -3,6 +3,7 @@ import styled, { ThemeProvider, useTheme } from "styled-components";
 import { TableTheme, Theme } from "theme";
 import Cells, { CellTypes } from "./table_cell";
 import { Text } from "./text";
+import { Pagination, PaginationProps } from "./pagination";
 
 type TableRecord = Record<string, any>;
 
@@ -18,6 +19,7 @@ export type TableProps<T extends TableRecord> = {
     };
   };
   tools?: React.ReactNode;
+  pagination?: PaginationProps;
 };
 
 export const Table = <T extends TableRecord>(props: TableProps<T>) => {
@@ -53,6 +55,9 @@ export const Table = <T extends TableRecord>(props: TableProps<T>) => {
             ))}
           </ThemeProvider>
         </TableCore>
+        <ThemeProvider theme={theme.tableTheme.pagination}>
+          <Pagination {...props.pagination} />
+        </ThemeProvider>
       </Container>
     </ThemeProvider>
   );

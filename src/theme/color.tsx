@@ -3,6 +3,7 @@ export const Colors = {
 
   black00: "#000",
   black01: "#1C1C1C",
+  black03: "#404B52",
 
   white01: "white",
   white02: "#FAFBFF",
@@ -13,6 +14,7 @@ export const Colors = {
   grey03: "#B5B7C0",
   grey04: "#EEEEEE",
   grey05: "#F9FBFF",
+  grey06: "#F5F5F5",
 
   purple01: "#5932EA",
 

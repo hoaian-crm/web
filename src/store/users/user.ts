@@ -52,7 +52,9 @@ const slice = createSlice({
       listUsers.fulfilled,
       (state, action: PayloadAction<Response<ListUserResponse>>) => {
         state.users = action.payload.data.result;
-        state.total = action.payload.total;
+        state.total = action.payload.data.total;
+        state.offset = action.payload.data.offset;
+        state.limit = action.payload.data.limit;
         state.fetchUsersStatus = FetchUserStatus.Success;
       }
     );

@@ -28,10 +28,10 @@ export type Response<T> = {
   messages: Array<Message>;
   data: {
     result: T;
+    total: number;
+    limit: number;
+    offset: number;
   };
-  total: number;
-  limit: number;
-  offset: number;
 };
 
 export const serializeQuery = (search: URLSearchParams) => {

@@ -11,36 +11,38 @@ type ColumnOptions = {
 
 export type SortProps = {
   columnOptions?: Array<ColumnOptions>;
-  placeHodler?: string;
+  placeHolder?: string;
   onChangeSelectedChange?: (options: ColumnOptions) => void;
   onChangeDirection?: (desc: boolean) => void;
-  initValue?: ColumnOptions;
+  initValue?: string;
 };
 
 export const Sort: React.FC<SortProps> = ({
   columnOptions = [],
-  placeHodler = "Select field to sort",
+  placeHolder = "Select field",
   ...props
 }) => {
   const [focus, setFocus] = useState(false);
   const [desc, setDesc] = useState(false);
   const [selectedColumn, setSelectedColumn] = useState<
     ColumnOptions | undefined
-  >(props.initValue);
+  >(columnOptions.find((option) => option.value === props.initValue));
 
   return (
     <Container>
-      <SortButton
-        onBlur={() => setFocus(false)}
-        onClick={() => setFocus(true)}
-        tabIndex={2}
-      >
-        <FontAwesomeIcon fontSize={25} icon={Icons.SortIcon} />
-        {selectedColumn ? (
-          <ColumnLabel>{selectedColumn.label}</ColumnLabel>
-        ) : (
-          <PlaceHodler>{placeHodler}</PlaceHodler>
-        )}
+      <Controller>
+        <SelectButton
+          onBlur={() => setFocus(false)}
+          onClick={() => setFocus(true)}
+          tabIndex={2}
+        >
+          <FontAwesomeIcon fontSize={25} icon={Icons.SortIcon} />
+          {selectedColumn ? (
+            <ColumnLabel>{selectedColumn.label}</ColumnLabel>
+          ) : (
+            <PlaceHodler>{placeHolder}</PlaceHodler>
+          )}
+        </SelectButton>
         <DirectionButton
           icon={Icons.UpIcon}
           onClick={() => {
@@ -50,7 +52,7 @@ export const Sort: React.FC<SortProps> = ({
           }}
           desc={desc}
         />
-      </SortButton>
+      </Controller>
       <ColumnMenu focus={focus} id="sort">
         {columnOptions.map((col) => (
           <ColumnOption
@@ -79,7 +81,7 @@ const Container = styled.div`
   min-width: 150px;
 `;
 
-const SortButton = styled.div`
+const Controller = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -88,6 +90,14 @@ const SortButton = styled.div`
   box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
   background-color: ${(props) => props.theme.backgroundColor};
   border-radius: 10px;
+`;
+
+const SelectButton = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: auto;
+  flex: 1;
   :hover {
     cursor: pointer;
   }

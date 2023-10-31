@@ -62,5 +62,18 @@ export const LightTheme: Theme = {
         color: Colors.grey03,
       },
     },
+    pagination: {
+      active: {
+        backgroundColor: Colors.purple01,
+        foregroundColor: Colors.white01,
+      },
+      inActive: {
+        backgroundColor: Colors.grey06,
+        foregroundColor: Colors.black03,
+      },
+      placeHolder: {
+        color: Colors.grey03,
+      },
+    },
   },
 };
