@@ -10,6 +10,7 @@ import { resetSearchResult } from "store/users/user";
 import styled from "styled-components";
 import { IUser } from "type/user";
 import { UserRow } from "./components/user_row";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 export const Users: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams({
@@ -63,30 +64,39 @@ export const Users: React.FC = () => {
               setSearchParams({ keyword: result.displayName });
             }}
             onSubmit={() => {
-              searchParams.set("keyword", keyword)
-              setSearchParams(searchParams)
+              searchParams.set("keyword", keyword);
+              setSearchParams(searchParams);
             }}
             columnOptions={[
               {
                 label: "Id",
-                value: "id"
+                value: "id",
               },
               {
                 label: "Name",
-                value: "displayName"
+                value: "displayName",
               },
               {
                 label: "Email",
-                value: "email"
+                value: "email",
               },
               {
                 label: "Created At",
-                value: "createdAt"
-              }
+                value: "createdAt",
+              },
             ]}
             onChangeSelectedChange={(option) => {
-              searchParams.set("order", option.value)
-              setSearchParams(searchParams)
+              searchParams.set("order", option.value);
+              setSearchParams(searchParams);
+            }}
+            onChangeDirection={(value) => {
+              if (value) {
+                searchParams.set("direction", "desc");
+                setSearchParams(searchParams);
+              } else {
+                searchParams.delete("direction");
+                setSearchParams(searchParams);
+              }
             }}
           />
         }

@@ -9,6 +9,7 @@ export const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 `;
 
 export const Header = styled.div`
@@ -36,11 +37,13 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 `;
 
 export const LoginInput = styled(PrimaryInput)`
-  margin-top: 20px;
   width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
 `;
 
 export const SubmitButton = styled(PrimaryButton)`
