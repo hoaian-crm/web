@@ -143,6 +143,6 @@ const PlaceHodler = styled(Text)`
 
 const DirectionButton = styled(FontAwesomeIcon)<{ desc: boolean }>`
   rotate: ${(props) => (props.desc ? "180deg" : 0)};
-  transition: rotate 1s;
+  transition: rotate 0.5s;
   margin-left: auto;
 `;
