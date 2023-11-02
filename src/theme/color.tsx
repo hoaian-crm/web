@@ -15,8 +15,10 @@ export const Colors = {
   grey04: "#EEEEEE",
   grey05: "#F9FBFF",
   grey06: "#F5F5F5",
+  grey07: "#5C5960",
 
   purple01: "#5932EA",
+  purple02: "#8A38F5",
 
   green01: "rgba(22, 192, 152, 0.38)",
   green02: "#008767",

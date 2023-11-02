@@ -19,7 +19,6 @@ export const Profile: React.FC = () => {
       </InformationContainer>
       <LogoutButton
         onClick={() => {
-          console.log("voday")
           localStorage["accessToken"] = "";
           navigate("/login");
         }}

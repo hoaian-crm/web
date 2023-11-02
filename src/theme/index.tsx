@@ -51,6 +51,18 @@ export type PaginationTheme = {
   placeHolder: TextTheme;
 };
 
+export type WidgetTheme = {
+  background: {
+    color: string;
+    text: TextTheme;
+  };
+  foreground: {
+    color: string;
+    text: TextTheme;
+  };
+  primaryText: TextTheme;
+};
+
 export type Theme = {
   primaryButton: ButtonTheme;
   primaryTextTheme: TextTheme;
@@ -59,4 +71,5 @@ export type Theme = {
   navbarTheme: NavbarTheme;
   primaryTextColor: string;
   tableTheme: TableTheme;
+  widgetTheme: WidgetTheme;
 };

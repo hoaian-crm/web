@@ -19,6 +19,11 @@ const navItems: Array<INavItem> = [
     icon: Icons.ProfileIcon,
   },
   {
+    href: "/roles",
+    name: "Roles",
+    icon: Icons.RoleIcon
+  },
+  {
     href: "/product",
     name: "Products",
     icon: Icons.ProductIcon,

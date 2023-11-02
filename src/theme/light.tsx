@@ -76,4 +76,21 @@ export const LightTheme: Theme = {
       },
     },
   },
+  widgetTheme: {
+    background: {
+      color: Colors.grey01,
+      text: {
+        color: Colors.black01,
+      },
+    },
+    foreground: {
+      color: Colors.grey07,
+      text: {
+        color: Colors.white01,
+      },
+    },
+    primaryText: {
+      color: Colors.purple02,
+    },
+  },
 };

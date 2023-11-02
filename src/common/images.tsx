@@ -5,6 +5,7 @@ import {
   faMoneyBillTransfer,
   faPuzzlePiece,
   faRightFromBracket,
+  faShieldHalved,
   faSort,
   faUpLong,
   faUser
@@ -25,6 +26,7 @@ export const Icons = {
   DashBoardIcon: faGauge,
   ProductIcon: faBox,
   ProfileIcon: faUser,
+  RoleIcon: faShieldHalved,
   IncomeIcon: faMoneyBillTransfer,
   PluginIcon: faPuzzlePiece,
   LogoutIcon: faRightFromBracket,

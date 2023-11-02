@@ -4,8 +4,8 @@ import { createBrowserRouter, redirect } from "react-router-dom";
 import Home from "./home";
 import Login from "./login";
 import AuthService from "service/auth";
-import { Layout } from "./layout";
 import { Users } from "./users";
+import { Roles } from "./roles";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Users />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/roles",
+    element: (
+      <PrivateRoute>
+        <Roles />
       </PrivateRoute>
     ),
   },

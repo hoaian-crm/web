@@ -10,6 +10,7 @@ import { resetSearchResult } from "store/users/user";
 import styled from "styled-components";
 import { IUser } from "type/user";
 import { UserRow } from "./components/user_row";
+import { PageContainer } from "components/container";
 
 export const Users: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams({
@@ -43,7 +44,7 @@ export const Users: React.FC = () => {
   }, [keyword]);
 
   return (
-    <Container>
+    <PageContainer>
       <Header title="User Management"></Header>
       <Table<IUser>
         total={userState.total}
@@ -140,16 +141,6 @@ export const Users: React.FC = () => {
           },
         }}
       />
-    </Container>
+    </PageContainer>
   );
 };
-
-const Container = styled.div`
-  padding: 30px 30px;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;

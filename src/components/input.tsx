@@ -36,6 +36,7 @@ export const Input: React.FC<InputProps> = (props) => {
           placeholder={props.placeHolder}
           name={props.name}
           {...props}
+          className="input-core"
         />
       </ThemeProvider>
     </InputContainer>
@@ -57,9 +58,8 @@ const InputCore = styled.input`
   outline: none;
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
-  margin-left: 10px;
   background: none;
-  width: 100%;
+  width: 90%;
   color: ${(props) => props.theme.color};
 `;
 
