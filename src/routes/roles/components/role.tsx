@@ -22,7 +22,7 @@ export const Role: React.FC<RoleProps> = (props) => {
       }}
     >
       <ThemeProvider theme={theme.foreground.text}>
-        <Header expanded={props.expanded}>
+        <Header expanded={true}>
           <div>
             <RoleName>{props.data.name}</RoleName>
             <RoleDescription>{props.data.description}</RoleDescription>
