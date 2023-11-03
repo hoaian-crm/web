@@ -42,28 +42,24 @@ export const Permissions: React.FC = () => {
           permissionState.fetchPermissionStatus ===
           FetchPermissionStatus.NoAction
         }
-        size="40px"
+        size="20px"
+        containerSize="200px"
       >
         <ThemeProvider theme={theme.widgetTheme}>
           <SearchPermission
             onChange={(e) => {
-              console.log(e.target.value);
               setQuery({
                 ...query,
                 keyword: e.target.value,
               });
             }}
           />
-          {permissionState.result.map((permission) => (
+          {permissionState.result.map((permission, index) => (
             <Permission
+              key={index}
               data={permission}
               onMouseDown={() => {
-                dispatch(selectPermissions([permission.id]));
-              }}
-              onMouseUp={() => {
-                if (holdShift === false) {
-                  dispatch(resetSelectPermission());
-                }
+                dispatch(resetSelectPermission());
                 dispatch(selectPermissions([permission.id]));
               }}
               isSelected={permissionState.selectedPermission[permission.id]}
@@ -87,5 +83,7 @@ const Container = styled.div`
   user-select: none;
   overflow-y: scroll;
   box-sizing: border-box;
-  max-height: 40%;
+  height: 20%;
+  align-items: flex-start;
+  align-content: flex-start;
 `;

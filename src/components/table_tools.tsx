@@ -7,19 +7,25 @@ import { Pagination, PaginationProps } from "./pagination";
 
 type TableToolsProps<T> = {
   tableName: string;
+  showSort?: boolean;
+  showSearch?: boolean;
 } & SearchProps<T> &
   SortProps &
   PaginationProps;
 
-export function TableTools<T>(props: TableToolsProps<T>) {
+export function TableTools<T>({
+  showSearch = true,
+  showSort = true,
+  ...props
+}: TableToolsProps<T>) {
   const theme = useTheme();
 
   return (
     <Container>
       <TableName>{props.tableName}</TableName>
       <ThemeProvider theme={theme.searchBar}>
-        <Search<T> {...props} />
-        <Sort {...props} />
+        {showSearch && <Search<T> {...props} />}
+        {showSort && <Sort {...props} />}
       </ThemeProvider>
     </Container>
   );

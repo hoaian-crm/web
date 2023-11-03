@@ -5,7 +5,7 @@ import Home from "./home";
 import Login from "./login";
 import AuthService from "service/auth";
 import { Users } from "./users";
-import { Roles } from "./roles";
+import Roles from "./roles";
 
 const router = createBrowserRouter([
   {

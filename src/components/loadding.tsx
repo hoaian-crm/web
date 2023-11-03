@@ -1,17 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { Colors } from "theme/color";
 
 export type LoadingProps = {
   loading: boolean;
   children?: React.ReactNode;
   size?: string;
+  containerSize?: string;
 };
 
 export const Loading: React.FC<LoadingProps> = (props) => {
   if (!props.loading) return props.children;
 
   return (
-    <Container size={props.size}>
+    <Container size={props.size} containerSize={props.containerSize}>
       <div className="lds-hourglass"></div>
     </Container>
   );
@@ -19,6 +21,7 @@ export const Loading: React.FC<LoadingProps> = (props) => {
 
 const Container = styled.div<{
   size?: string;
+  containerSize?: string;
 }>`
   width: 100%;
   height: 100%;
@@ -27,10 +30,12 @@ const Container = styled.div<{
   align-items: center;
 
   .lds-hourglass {
-    display: inline-block;
+    display: flex;
     position: relative;
-    width: ${(props) => props.size || "80px"};
-    height: ${(props) => props.size || "80px"};
+    width: ${(props) => props.containerSize || "80px"};
+    height: ${(props) => props.containerSize || "80px"};
+    justify-content: center;
+    align-items: center;
   }
   .lds-hourglass:after {
     content: " ";
@@ -40,8 +45,8 @@ const Container = styled.div<{
     height: 0;
     margin: 8px;
     box-sizing: border-box;
-    border: 32px solid black;
-    border-color: black transparent black transparent;
+    border: ${(props) => props.size} solid ${Colors.grey03};
+    border-color: ${Colors.grey03} transparent ${Colors.grey03} transparent;
     animation: lds-hourglass 1.2s infinite;
   }
   @keyframes lds-hourglass {

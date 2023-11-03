@@ -1,6 +1,12 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Icons } from "common";
 import { Text } from "components/text";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Tooltip } from "react-tooltip";
+import { useAppDispatch, useAppSelector } from "store";
+import { setDragToRole } from "store/roles";
+import { attachPermission } from "store/roles/action";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { WidgetTheme } from "theme";
 import { IPermission } from "type/permission";
@@ -14,16 +20,35 @@ export type PermissionProps = {
 
 export const Permission: React.FC<PermissionProps> = (props) => {
   const theme = useTheme() as WidgetTheme;
+  const roleState = useAppSelector((state) => state.roleReducer);
+  const permissionState = useAppSelector((state) => state.permissionReducer);
+  const dispatch = useAppDispatch();
   return (
-    <Container onMouseDown={props.onMouseDown} draggable={props.isSelected} onMouseUp={props.onMouseUp}>
+    <Container
+      onClick={props.onMouseDown}
+      onDragEnd={() => {
+        dispatch(
+          attachPermission({
+            roleId: roleState.dragToRole,
+            permissions: Object.keys(permissionState.selectedPermission).map(
+              (permission) => +permission
+            ),
+          })
+        );
+        dispatch(setDragToRole(""));
+      }}
+      draggable={true}
+      onDragStart={props.onMouseDown}
+    >
       <ThemeProvider theme={theme.foreground.text}>
         <Selection isSelected={!!props.isSelected} />
+        <Name>{props.data.name}</Name>
         <a
           data-tooltip-content={props.data.description}
           data-tooltip-id="description"
-          data-tooltip-place="bottom-start"
+          data-tooltip-place="bottom"
         >
-          <Name>{props.data.name}</Name>
+          <FontAwesomeIcon icon={Icons.InformationIcon} color="white" />
         </a>
         <Tooltip
           id="description"
@@ -64,4 +89,5 @@ export const Selection = styled.div<{ isSelected: boolean }>`
 export const Name = styled(Text)`
   font-size: 12px;
   display: inline;
+  margin-right: auto;
 `;

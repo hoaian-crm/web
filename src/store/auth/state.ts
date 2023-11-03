@@ -2,7 +2,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "type/user";
 import { getProfile, login } from "./actions";
 import { showToastMessage } from "common/toast";
-import { UnknownMessage } from "service";
 
 export enum AuthStatus {
   Loading,

@@ -1,7 +1,7 @@
 import { IPermission } from "./permission";
 
 export type IRole = {
-  id: string | number;
+  id: string;
   description: string;
   name: string;
   permissions: Array<IPermission>;

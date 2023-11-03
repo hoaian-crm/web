@@ -1,4 +1,5 @@
-import { permissionReducer } from './permissions/index';
+import { roleReducer } from "./roles/index";
+import { permissionReducer } from "./permissions/index";
 import { userReducer } from "./users/user";
 import { authReducer } from "./auth/state";
 import { configureStore } from "@reduxjs/toolkit";
@@ -8,7 +9,8 @@ export const store = configureStore({
   reducer: {
     authReducer,
     userReducer,
-    permissionReducer
+    permissionReducer,
+    roleReducer,
   },
 });
 

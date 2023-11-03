@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icons } from "common";
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { Text } from "./text";
+import { InputTheme } from "theme";
+import { Colors } from "theme/color";
 
 type ColumnOptions = {
   label: string;
@@ -28,6 +30,8 @@ export const Sort: React.FC<SortProps> = ({
     ColumnOptions | undefined
   >(columnOptions.find((option) => option.value === props.initValue));
 
+  const theme = useTheme() as InputTheme;
+
   return (
     <Container>
       <Controller>
@@ -36,7 +40,11 @@ export const Sort: React.FC<SortProps> = ({
           onClick={() => setFocus(true)}
           tabIndex={2}
         >
-          <FontAwesomeIcon fontSize={25} icon={Icons.SortIcon} />
+          <FontAwesomeIcon
+            fontSize={25}
+            icon={Icons.SortIcon}
+            color={Colors.grey02}
+          />
           {selectedColumn ? (
             <ColumnLabel>{selectedColumn.label}</ColumnLabel>
           ) : (
@@ -44,6 +52,7 @@ export const Sort: React.FC<SortProps> = ({
           )}
         </SelectButton>
         <DirectionButton
+          color={Colors.green02}
           icon={Icons.UpIcon}
           onClick={() => {
             setFocus(false);
@@ -74,7 +83,6 @@ export const Sort: React.FC<SortProps> = ({
 const Container = styled.div`
   align-items: center;
   border-radius: 10px;
-  gap: 10px;
   cursor: pointer;
   position: relative;
   box-sizing: border-box;
@@ -85,9 +93,9 @@ const Controller = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
   padding: 10px;
-  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   background-color: ${(props) => props.theme.backgroundColor};
   border-radius: 10px;
 `;
@@ -145,4 +153,5 @@ const DirectionButton = styled(FontAwesomeIcon)<{ desc: boolean }>`
   rotate: ${(props) => (props.desc ? "180deg" : 0)};
   transition: rotate 0.5s;
   margin-left: auto;
+  /* color: ${(props) => props.theme.text.color}; */
 `;

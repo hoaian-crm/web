@@ -45,7 +45,6 @@ const SearchInput = styled(Input)`
   }
 
   .input-core {
-    font-size: 12px !important;
-    margin-left: 10px;
+    font-size: 13px !important;
   }
 `;

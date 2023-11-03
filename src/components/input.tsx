@@ -51,6 +51,7 @@ const InputContainer = styled.div`
   padding: 8px 10px;
   border-radius: 10px;
   box-sizing: border-box;
+  gap: 10px;
 `;
 
 const InputCore = styled.input`

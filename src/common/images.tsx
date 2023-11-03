@@ -1,5 +1,7 @@
 import {
   faBox,
+  faCircleInfo,
+  faExpand,
   faGauge,
   faMagnifyingGlass,
   faMoneyBillTransfer,
@@ -8,7 +10,7 @@ import {
   faShieldHalved,
   faSort,
   faUpLong,
-  faUser
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import PasswordIcon from "assets/icons/password.png";
 import UserIcon from "assets/icons/user.png";
@@ -32,5 +34,7 @@ export const Icons = {
   LogoutIcon: faRightFromBracket,
   SearchIcon: faMagnifyingGlass,
   SortIcon: faSort,
-  UpIcon: faUpLong
+  UpIcon: faUpLong,
+  InformationIcon: faCircleInfo,
+  ExpandIcon: faExpand
 };
