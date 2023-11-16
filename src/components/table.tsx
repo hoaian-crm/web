@@ -4,6 +4,7 @@ import { TableTheme, Theme } from "theme";
 import Cells, { CellTypes } from "./table_cell";
 import { Text } from "./text";
 import { Pagination, PaginationProps } from "./pagination";
+import _ from "lodash";
 
 type TableRecord = Record<string, any>;
 
@@ -13,9 +14,11 @@ export type TableProps<T extends TableRecord> = {
   records: Array<T>;
   name: string;
   columns: {
-    [key in keyof T]: {
+    [key in keyof T]?: {
       type: CellTypes;
       metadata?: any;
+      path?: string;
+      metaFunction?: (record: T) => Object;
     };
   };
   tools?: React.ReactNode;
@@ -41,13 +44,20 @@ export const Table = <T extends TableRecord>(props: TableProps<T>) => {
             {props.records.map((record, i) => (
               <Row>
                 {Object.keys(props.columns).map((name: string, j) => {
-                  const Cell = Cells[props.columns[name].type];
+                  const Cell = Cells[props.columns[name]!.type];
+                  const path = props.columns[name]?.path || name;
+                  const value = _.get(record, path);
+                  const metaFunction = props.columns[name]?.metaFunction;
+                  let metadata = props.columns[name]?.metadata || {};
+                  if (metaFunction) {
+                    metadata = { ...metadata, ...metaFunction(record) };
+                  }
                   return (
                     <Cell
                       key={i * j + j}
-                      metadata={props.columns[name].metadata}
+                      metadata={metadata}
                     >
-                      {record[name].toString()}
+                      {value}
                     </Cell>
                   );
                 })}

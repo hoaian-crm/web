@@ -5,6 +5,7 @@ import {
   faGauge,
   faMagnifyingGlass,
   faMoneyBillTransfer,
+  faPlus,
   faPuzzlePiece,
   faRightFromBracket,
   faShieldHalved,
@@ -36,5 +37,6 @@ export const Icons = {
   SortIcon: faSort,
   UpIcon: faUpLong,
   InformationIcon: faCircleInfo,
-  ExpandIcon: faExpand
+  ExpandIcon: faExpand,
+  AddIcon: faPlus,
 };

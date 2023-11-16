@@ -7,15 +7,11 @@ import { Pagination, PaginationProps } from "./pagination";
 
 type TableToolsProps<T> = {
   tableName: string;
-  showSort?: boolean;
-  showSearch?: boolean;
-} & SearchProps<T> &
-  SortProps &
-  PaginationProps;
+  children?: React.ReactNode;
+};
 
 export function TableTools<T>({
-  showSearch = true,
-  showSort = true,
+  children = [],
   ...props
 }: TableToolsProps<T>) {
   const theme = useTheme();
@@ -23,10 +19,7 @@ export function TableTools<T>({
   return (
     <Container>
       <TableName>{props.tableName}</TableName>
-      <ThemeProvider theme={theme.searchBar}>
-        {showSearch && <Search<T> {...props} />}
-        {showSort && <Sort {...props} />}
-      </ThemeProvider>
+      {children}
     </Container>
   );
 }

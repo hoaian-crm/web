@@ -20,7 +20,8 @@ export type Query<T> =
   | ({
       limit?: string;
       offset?: string;
-      sort?: string;
+      order?: string;
+      direction?: string;
     } & T)
   | URLSearchParams;
 

@@ -1,3 +1,5 @@
+import { IRole } from "./role";
+
 export interface IUser {
   id: string;
   email: string;
@@ -5,4 +7,7 @@ export interface IUser {
   avatar: string;
   referralCode: string;
   active: boolean;
+  role: IRole;
+  createdAt: Date;
+  updatedAt: Date;
 }

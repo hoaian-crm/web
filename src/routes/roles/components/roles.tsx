@@ -28,7 +28,7 @@ export const Roles = () => {
   return (
     <Container>
       <ThemeProvider theme={theme.tableTheme}>
-        <TableTools tableName={"Roles"} showSort={false} />
+        <TableTools tableName="Roles" />
       </ThemeProvider>
       <ThemeProvider theme={theme.widgetTheme}>
         <Loading

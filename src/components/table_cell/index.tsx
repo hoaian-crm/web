@@ -1,7 +1,13 @@
 import React, { ReactText } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
-import { Text } from "./text";
 import { TableTheme } from "theme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Icons } from "common";
+import { Colors } from "theme/color";
+import { Text } from "components/text";
+import { InformationCell } from "./information";
+import { DateCell } from "./date";
+import { TimeAgoCell } from "./time_ago";
 
 export type CellProps = {
   children?: React.ReactNode;
@@ -14,9 +20,12 @@ export enum CellTypes {
   Number,
   Document,
   Boolean,
+  Information,
+  Date,
+  TimeAgo
 }
 
-const CellContainer = styled.td`
+export const CellContainer = styled.td`
   padding: 10px;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
 `;
@@ -29,8 +38,9 @@ const TextCell: React.FC<CellProps> = ({ children }) => {
   );
 };
 
-const TextStyle = styled(Text)`
+export const TextStyle = styled(Text)`
   color: ${(props) => props.theme.primaryText.color};
+  font-size: 14px;
 `;
 
 const ImageCell: React.FC<CellProps> = ({ children }) => {
@@ -73,10 +83,12 @@ const BooleanStyle = styled.div`
   padding: 3px 0;
   border: 1px solid ${(props) => props.theme.foregroundColor};
 `;
+
 const BooleanText = styled(Text)`
   color: ${(props) => props.theme.foregroundColor};
   font-size: 14px;
 `;
+
 
 const Cells: {
   [key in CellTypes]: React.FC<CellProps>;
@@ -86,6 +98,9 @@ const Cells: {
   [CellTypes.Number]: TextCell,
   [CellTypes.Document]: TextCell,
   [CellTypes.Boolean]: BooleanCell,
+  [CellTypes.Information]: InformationCell,
+  [CellTypes.Date]: DateCell,
+  [CellTypes.TimeAgo]: TimeAgoCell
 };
 
 export default Cells;
