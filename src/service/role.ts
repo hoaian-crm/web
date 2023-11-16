@@ -10,7 +10,14 @@ export type AttachPermission = {
   permissions: Array<number>;
 };
 
+export type DetachPermission = {
+  roleId: string;
+  permissionId: string;
+};
+
 export type AttachPermissionResponse = IRole;
+
+export type DetachPermissionResponse = IRole;
 
 namespace RoleService {
   export const list: ApiCaller<ListRoleResponse> = (query: RoleQuery) => {
@@ -21,7 +28,15 @@ namespace RoleService {
     data: AttachPermission
   ) => {
     return apiPromiseHandler(
-      api.patch(`/roles/${data.roleId}/permisisons`, data)
+      api.patch(`/roles/${data.roleId}/permissions`, data)
+    );
+  };
+
+  export const detachPermission: ApiCaller<DetachPermissionResponse> = (
+    data: DetachPermission
+  ) => {
+    return apiPromiseHandler(
+      api.delete(`/roles/${data.roleId}/permissions/${data.permissionId}`)
     );
   };
 }

@@ -65,6 +65,7 @@ export type WidgetTheme = {
 
 export type Theme = {
   primaryButton: ButtonTheme;
+  foregroundButton: ButtonTheme;
   primaryTextTheme: TextTheme;
   inputTheme: InputTheme;
   backgroundColor: string;

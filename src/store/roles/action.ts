@@ -1,5 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import RoleService, { AttachPermission, RoleQuery } from "service/role";
+import RoleService, {
+  AttachPermission,
+  DetachPermission,
+  RoleQuery,
+} from "service/role";
 
 export const fetchRole = createAsyncThunk(
   "roles/fetch",
@@ -12,5 +16,12 @@ export const attachPermission = createAsyncThunk(
   "roles/attach",
   (data: AttachPermission, { rejectWithValue }) => {
     return RoleService.attachPermission(data).catch(rejectWithValue);
+  }
+);
+
+export const detachPermission = createAsyncThunk(
+  "roles/detach",
+  (data: DetachPermission, { rejectWithValue }) => {
+    return RoleService.detachPermission(data).catch(rejectWithValue);
   }
 );

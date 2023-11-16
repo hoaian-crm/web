@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Icons } from "common";
 import { ThemeProps } from "common/type";
 import React, { ButtonHTMLAttributes } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
@@ -44,17 +42,6 @@ export const PrimaryButton: React.FC<ButtonProps> = (props) => {
   return (
     <ThemeProvider theme={theme.primaryButton}>
       <Button {...props} />
-    </ThemeProvider>
-  );
-};
-
-export const AddButton: React.FC<ButtonProps> = (props) => {
-  const theme = useTheme() as Theme;
-  return (
-    <ThemeProvider theme={theme.primaryButton}>
-      <Button {...props}>
-        <FontAwesomeIcon icon={Icons.AddIcon} />
-      </Button>
     </ThemeProvider>
   );
 };

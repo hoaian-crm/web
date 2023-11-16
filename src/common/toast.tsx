@@ -72,4 +72,12 @@ export const ToastMessages: {
     content: "Wrong email or password?",
     type: ToastType.error,
   },
+  20: {
+    content: "Delete success",
+    type: ToastType.success
+  },
+  14: {
+    content: "Update success",
+    type: ToastType.success
+  }
 };

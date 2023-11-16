@@ -9,6 +9,13 @@ export const LightTheme: Theme = {
       color: Colors.white01,
     },
   },
+  foregroundButton: {
+    backgroundColor: Colors.purple02,
+    hoverColor: Colors.purple01,
+    childrenTheme: {
+      color: Colors.white01,
+    },
+  },
   primaryTextTheme: {
     color: Colors.black01,
   },

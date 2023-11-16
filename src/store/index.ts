@@ -1,9 +1,10 @@
-import { roleReducer } from "./roles/index";
-import { permissionReducer } from "./permissions/index";
-import { userReducer } from "./users/user";
-import { authReducer } from "./auth/state";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { authReducer } from "./auth/state";
+import { modalReducer } from './modal/index';
+import { permissionReducer } from "./permissions/index";
+import { roleReducer } from "./roles/index";
+import { userReducer } from "./users/user";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     userReducer,
     permissionReducer,
     roleReducer,
+    modalReducer
   },
 });
 

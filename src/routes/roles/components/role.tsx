@@ -1,9 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icons } from "common";
+import { Point, Rect } from "common/graph";
 import { Text } from "components/text";
-import React from "react";
+import React, { useRef } from "react";
 import { useAppDispatch, useAppSelector } from "store";
 import { setDragToRole, toggleExpandRole } from "store/roles";
+import { detachPermission } from "store/roles/action";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { WidgetTheme } from "theme";
 import { IRole } from "type/role";
@@ -16,15 +18,17 @@ export const Role: React.FC<RoleProps> = (props) => {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const expanded = useAppSelector(state => state.roleReducer.rolesExpand[props.data.id] == true)
+  const containerRef = useRef<HTMLDivElement>(null);
+
 
   const onExpand = () => {
     dispatch(toggleExpandRole(props.data.id))
   }
 
-
   return (
     <ThemeProvider theme={theme.widgetTheme}>
       <Container
+        ref={containerRef}
         onDragEnter={() => {
           dispatch(setDragToRole(props.data.id));
         }}
@@ -39,7 +43,16 @@ export const Role: React.FC<RoleProps> = (props) => {
           </Header>
         </ThemeProvider>
         {expanded && <Body>
-          {props.data.permissions.map(permission => <InnerPermission>
+          {props.data.permissions.map(permission => <InnerPermission draggable={true}
+            onDragEnd={(e) => {
+              if (!Point.fromDragEvent(e).isInsideRect(Rect.fromDivRef(containerRef))) {
+                dispatch(detachPermission({
+                  roleId: props.data.id,
+                  permissionId: permission.id
+                }))
+              }
+            }}
+          >
             <Text>{permission.name}</Text>
           </InnerPermission>)}
         </Body>}

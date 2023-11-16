@@ -1,8 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { showToastMessage } from "common/toast";
 import { Response } from "service";
-import { AttachPermissionResponse, ListRoleResponse } from "service/role";
+import {
+  AttachPermissionResponse,
+  DetachPermissionResponse,
+  ListRoleResponse,
+} from "service/role";
 import { IRole } from "type/role";
-import { attachPermission, fetchRole } from "./action";
+import { attachPermission, detachPermission, fetchRole } from "./action";
 
 export enum FetchRoleStatus {
   NoAction,
@@ -71,12 +76,11 @@ const slice = createSlice({
       state.fetchStatus = FetchRoleStatus.Failed;
     });
 
-    // ---------------------- Attach Role ------------------
+    // ---------------------- Attach Permission ------------------
     builder.addCase(
       attachPermission.fulfilled,
       (state, action: PayloadAction<Response<AttachPermissionResponse>>) => {
         const newRole = action.payload.data.result;
-        console.log("newRole is: ", newRole);
         state.roles = state.roles.map((role) => {
           if (role.id !== action.payload.data.result.id) {
             return role;
@@ -87,6 +91,22 @@ const slice = createSlice({
             ...newRole,
           };
         });
+        showToastMessage(action.payload.messages);
+      }
+    );
+
+    // ---------------------- Detach Permission
+    builder.addCase(
+      detachPermission.fulfilled,
+      (state, action: PayloadAction<Response<DetachPermissionResponse>>) => {
+        const data = action.payload.data.result;
+        state.roles = state.roles.map((role) => {
+          if (role.id === data.id) {
+            return data;
+          }
+          return role;
+        });
+        showToastMessage(action.payload.messages);
       }
     );
   },
