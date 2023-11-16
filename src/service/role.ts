@@ -1,6 +1,6 @@
-import { Response, api, apiPromiseHandler } from "./index";
 import { ApiCaller, Query } from "service";
 import { IRole } from "type/role";
+import { api, apiPromiseHandler } from "./index";
 
 export type RoleQuery = Query<{ keyword: string }>;
 export type ListRoleResponse = Array<IRole>;
@@ -17,7 +17,7 @@ namespace RoleService {
     return apiPromiseHandler(api.get("/roles/", { params: query }));
   };
 
-  export const attachPermission: ApiCaller<AttachPermission> = (
+  export const attachPermission: ApiCaller<AttachPermissionResponse> = (
     data: AttachPermission
   ) => {
     return apiPromiseHandler(

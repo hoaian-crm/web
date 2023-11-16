@@ -1,13 +1,13 @@
-import styled, { ThemeProvider, useTheme } from "styled-components";
+import { Loading } from "components/loadding";
 import React, { useEffect } from "react";
-import { TableTools } from "components/table_tools";
-import { Theme } from "theme";
+import { useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "store";
 import { FetchRoleStatus } from "store/roles";
 import { fetchRole } from "store/roles/action";
-import { useSearchParams } from "react-router-dom";
-import { Loading } from "components/loadding";
+import styled, { ThemeProvider, useTheme } from "styled-components";
+import { Theme } from "theme";
 import { Role } from "./role";
+import { Tools } from "./tools";
 
 export const Roles = () => {
   const theme = useTheme() as Theme;
@@ -20,31 +20,34 @@ export const Roles = () => {
   });
 
   useEffect(() => {
-    if (rolesState.fetchStatus === FetchRoleStatus.NoAction) {
-      dispatch(fetchRole(query));
-    }
-  }, []);
+    dispatch(fetchRole(query))
+  }, [query])
+
+  const onSearch = (e: any) => {
+    query.set("keyword", e.target.value);
+    setQuery(query)
+  }
 
   return (
     <Container>
       <ThemeProvider theme={theme.tableTheme}>
-        <TableTools tableName="Roles" />
+        <Tools></Tools>
       </ThemeProvider>
-      <ThemeProvider theme={theme.widgetTheme}>
-        <Loading
-          loading={
-            rolesState.fetchStatus === FetchRoleStatus.NoAction ||
-            rolesState.fetchStatus === FetchRoleStatus.Loading
-          }
-          size="20px"
-        >
-          <RolesContainer>
+      <Loading
+        loading={
+          rolesState.fetchStatus === FetchRoleStatus.NoAction ||
+          rolesState.fetchStatus === FetchRoleStatus.Loading
+        }
+        size="20px"
+      >
+        <RolesContainer>
+          <ThemeProvider theme={theme.widgetTheme}>
             {rolesState.roles.map((role, index) => (
               <Role data={role} key={index} />
             ))}
-          </RolesContainer>
-        </Loading>
-      </ThemeProvider>
+          </ThemeProvider>
+        </RolesContainer>
+      </Loading>
     </Container>
   );
 };

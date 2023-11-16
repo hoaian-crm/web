@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IRole } from "type/role";
-import { fetchRole } from "./action";
 import { Response } from "service";
-import { ListRoleResponse } from "service/role";
+import { AttachPermissionResponse, ListRoleResponse } from "service/role";
+import { IRole } from "type/role";
+import { attachPermission, fetchRole } from "./action";
 
 export enum FetchRoleStatus {
   NoAction,
@@ -46,6 +46,9 @@ const slice = createSlice({
     ) {
       state.rolesExpand[action.payload.id] = action.payload.expand;
     },
+    toggleExpandRole(state, action: PayloadAction<string>) {
+      state.rolesExpand[action.payload] = !state.rolesExpand[action.payload];
+    },
   },
   extraReducers: (builder) => {
     // --------------------- Fetch role -----------------------
@@ -67,8 +70,27 @@ const slice = createSlice({
     builder.addCase(fetchRole.rejected, (state, _) => {
       state.fetchStatus = FetchRoleStatus.Failed;
     });
+
+    // ---------------------- Attach Role ------------------
+    builder.addCase(
+      attachPermission.fulfilled,
+      (state, action: PayloadAction<Response<AttachPermissionResponse>>) => {
+        const newRole = action.payload.data.result;
+        console.log("newRole is: ", newRole);
+        state.roles = state.roles.map((role) => {
+          if (role.id !== action.payload.data.result.id) {
+            return role;
+          }
+          state.rolesExpand[newRole.id] = true;
+          return {
+            ...role,
+            ...newRole,
+          };
+        });
+      }
+    );
   },
 });
 
 export const roleReducer = slice.reducer;
-export const { setDragToRole } = slice.actions;
+export const { setDragToRole, setExpandRole, toggleExpandRole } = slice.actions;

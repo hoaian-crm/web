@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Response } from "service";
+import { GetPermissionsResponse } from "service/permission";
 import { IPermission } from "type/permission";
 import { fetchPermission } from "./action";
-import { GetPermissionsResponse } from "service/permission";
-import { Response } from "service";
 
 export enum FetchPermissionStatus {
   NoAction,
