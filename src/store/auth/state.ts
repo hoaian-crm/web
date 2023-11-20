@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "type/user";
-import { getProfile, login } from "./actions";
+import { activeUser, getProfile, login, register } from "./actions";
 import { showToastMessage } from "common/toast";
-import { FetchStatus } from "type/api.d"
+import { FetchStatus } from "type/api.d";
+import { errorHandler } from "common/error";
 
 export type AuthState = {
   currentUser?: IUser;
@@ -50,6 +51,22 @@ export const AuthSlice = createSlice({
         state.getProfileStatus = FetchStatus.Failed;
       }
     );
+
+    // ---------------- Register ----------------
+    builder.addCase(register.fulfilled, () => {
+      window.location.href = "/verify_otp";
+    });
+    builder.addCase(register.rejected, (state, action: any) => {
+      errorHandler(action);
+    });
+
+    // ---------------- Active user -----------------
+    builder.addCase(activeUser.fulfilled, () => {
+      window.location.href = "/login";
+    });
+    builder.addCase(activeUser.rejected, (state, action: any) => {
+      errorHandler(action);
+    });
   },
 });
 

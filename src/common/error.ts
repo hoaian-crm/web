@@ -11,6 +11,6 @@ export const errorHandler = <T>(
   if (action.payload.status === 403) {
     return FetchStatus.PermissionDenied;
   }
-  showToastMessage(action.payload.data.message);
+  showToastMessage(action.payload.data.messages);
   return FetchStatus.Failed;
 };

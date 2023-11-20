@@ -7,6 +7,7 @@ import { Pagination, PaginationProps } from "./pagination";
 import _ from "lodash";
 import { FetchStatus } from "type/api";
 import { Fetch } from "./fetch";
+import { Colors } from "theme/color";
 
 type TableRecord = Record<string, any>;
 
@@ -26,6 +27,7 @@ export type TableProps<T extends TableRecord> = {
   tools?: React.ReactNode;
   pagination?: PaginationProps;
   status?: FetchStatus;
+  onClick?: (e: T) => void;
 };
 
 export const Table = <T extends TableRecord>(props: TableProps<T>) => {
@@ -45,7 +47,7 @@ export const Table = <T extends TableRecord>(props: TableProps<T>) => {
               ))}
             </Row>
             {props.records.map((record, i) => (
-              <Row>
+              <Row onClick={() => props.onClick && props.onClick(record)}>
                 {Object.keys(props.columns).map((name: string, j) => {
                   const Cell = Cells[props.columns[name]!.type];
                   const path = props.columns[name]?.path || name;
@@ -102,4 +104,9 @@ const TableHead = styled.th`
   border-bottom: 2px solid ${(props) => props.theme.borderColor};
 `;
 
-const Row = styled.tr``;
+const Row = styled.tr`
+  &:hover {
+    background-color: ${Colors.grey01};
+    cursor: pointer;
+  }
+`;

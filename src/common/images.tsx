@@ -2,6 +2,7 @@ import {
   faBox,
   faCircleInfo,
   faExpand,
+  faFont,
   faGauge,
   faLock,
   faMagnifyingGlass,
@@ -16,8 +17,6 @@ import {
   faUser,
   faUserLock,
 } from "@fortawesome/free-solid-svg-icons";
-import PasswordIcon from "assets/icons/password.png";
-import UserIcon from "assets/icons/user.png";
 import LoginWallpaper from "assets/images/login-wallpaper.png";
 import MainLogo from "assets/images/main-logo.png";
 
@@ -28,6 +27,7 @@ export const PublicImages = {
 
 export const Icons = {
   UserIcon: faUser,
+  NameIcon: faFont,
   PasswordIcon: faLock,
   DashBoardIcon: faGauge,
   ProductIcon: faBox,
@@ -42,5 +42,5 @@ export const Icons = {
   InformationIcon: faCircleInfo,
   ExpandIcon: faExpand,
   AddIcon: faPlus,
-  LockIcon: faUserLock
+  LockIcon: faUserLock,
 };
