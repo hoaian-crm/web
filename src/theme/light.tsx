@@ -10,8 +10,8 @@ export const LightTheme: Theme = {
     },
   },
   foregroundButton: {
-    backgroundColor: Colors.purple02,
-    hoverColor: Colors.purple01,
+    backgroundColor: Colors.blue01,
+    hoverColor: Colors.blue01,
     childrenTheme: {
       color: Colors.white01,
     },

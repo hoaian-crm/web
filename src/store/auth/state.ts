@@ -2,32 +2,19 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IUser } from "type/user";
 import { getProfile, login } from "./actions";
 import { showToastMessage } from "common/toast";
-
-export enum AuthStatus {
-  Loading,
-  Success,
-  Failed,
-  NoAction,
-}
-
-export enum ProfileStatus {
-  Loading,
-  Success,
-  Failed,
-  NoAction,
-}
+import { FetchStatus } from "type/api.d"
 
 export type AuthState = {
   currentUser?: IUser;
   accessToken: string;
-  status: AuthStatus;
-  getProfileStatus: ProfileStatus;
+  status: FetchStatus;
+  getProfileStatus: FetchStatus;
 };
 
 const initialState: AuthState = {
   accessToken: localStorage.getItem("access_token") || "",
-  status: AuthStatus.NoAction,
-  getProfileStatus: ProfileStatus.NoAction,
+  status: FetchStatus.NoAction,
+  getProfileStatus: FetchStatus.NoAction,
 };
 
 export const AuthSlice = createSlice({
@@ -37,30 +24,30 @@ export const AuthSlice = createSlice({
   extraReducers: (builder) => {
     //  ------------ Login ------------------
     builder.addCase(login.fulfilled, (state, action) => {
-      state.status = AuthStatus.Success;
+      state.status = FetchStatus.Success;
       state.accessToken = action.payload.data.result.accessToken;
       localStorage["accessToken"] = state.accessToken;
     });
     builder.addCase(login.pending, (state, _) => {
-      state.status = AuthStatus.Loading;
+      state.status = FetchStatus.Loading;
     });
     builder.addCase(login.rejected, (state, action: PayloadAction<any>) => {
-      state.status = AuthStatus.Failed;
+      state.status = FetchStatus.Failed;
       showToastMessage(action.payload.messages);
     });
 
     //  ------------ Get profile ------------------
     builder.addCase(getProfile.fulfilled, (state, action) => {
-      state.getProfileStatus = ProfileStatus.Success;
+      state.getProfileStatus = FetchStatus.Success;
       state.currentUser = action.payload.data.result;
     });
     builder.addCase(getProfile.pending, (state, _) => {
-      state.getProfileStatus = ProfileStatus.Loading;
+      state.getProfileStatus = FetchStatus.Loading;
     });
     builder.addCase(
       getProfile.rejected,
       (state, action: PayloadAction<any>) => {
-        state.getProfileStatus = ProfileStatus.Failed;
+        state.getProfileStatus = FetchStatus.Failed;
       }
     );
   },

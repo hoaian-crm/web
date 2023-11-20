@@ -28,6 +28,7 @@ export const Users: React.FC = () => {
     <PageContainer>
       <Header title="User Management"></Header>
       <Table<IUser>
+        status={userState.fetchUsersStatus}
         total={userState.total}
         records={userState.users}
         limit={Number(searchParams.get("limit"))}

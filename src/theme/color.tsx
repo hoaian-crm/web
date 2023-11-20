@@ -25,4 +25,6 @@ export const Colors = {
 
   red01: "#FFC5C5",
   red02: "#DF0404",
+
+  blue01: "#539dd6",
 };

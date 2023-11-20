@@ -3,36 +3,31 @@ import { IUser } from "type/user";
 import { listUsers, searchUsers } from "./action";
 import { Response } from "service";
 import { ListUserResponse } from "service/user";
-
-export enum FetchUserStatus {
-  Loading,
-  Success,
-  Failed,
-  NoAction,
-}
+import { FetchStatus } from "type/api.d";
+import { errorHandler } from "common/error";
 
 export type UserState = {
   users: Array<IUser>;
-  fetchUsersStatus: FetchUserStatus;
+  fetchUsersStatus: FetchStatus;
   offset: number;
   limit: number;
   sort: string;
   keyword: string;
   total: number;
   searchResult: Array<IUser>;
-  searchStatus: FetchUserStatus;
+  searchStatus: FetchStatus;
 };
 
 const initialState: UserState = {
   users: [],
-  fetchUsersStatus: FetchUserStatus.NoAction,
+  fetchUsersStatus: FetchStatus.NoAction,
   offset: 0,
   limit: 10,
   sort: "",
   keyword: "",
   total: 0,
   searchResult: [],
-  searchStatus: FetchUserStatus.NoAction,
+  searchStatus: FetchStatus.NoAction,
 };
 
 const slice = createSlice({
@@ -45,8 +40,8 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     // ---------------------------- List Users --------------------------
-    builder.addCase(listUsers.rejected, (state, _) => {
-      state.fetchUsersStatus = FetchUserStatus.Failed;
+    builder.addCase(listUsers.rejected, (state, action: any) => {
+      state.fetchUsersStatus = errorHandler(action);
     });
     builder.addCase(
       listUsers.fulfilled,
@@ -55,11 +50,11 @@ const slice = createSlice({
         state.total = action.payload.data.total;
         state.offset = action.payload.data.offset;
         state.limit = action.payload.data.limit;
-        state.fetchUsersStatus = FetchUserStatus.Success;
+        state.fetchUsersStatus = FetchStatus.Success;
       }
     );
     builder.addCase(listUsers.pending, (state, _) => {
-      state.fetchUsersStatus = FetchUserStatus.Loading;
+      state.fetchUsersStatus = FetchStatus.Loading;
     });
 
     // ---------------------------- Search Users ----------------------------

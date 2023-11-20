@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Layout } from "routes/layout";
 import { useAppDispatch, useAppSelector } from "store";
 import { getProfile } from "store/auth/actions";
-import { ProfileStatus } from "store/auth/state";
+import { FetchStatus } from "type/api.d";
 
 export const PrivateRoute: React.FC<any> = (props) => {
   const navigate = useNavigate();
@@ -12,11 +12,11 @@ export const PrivateRoute: React.FC<any> = (props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (getProfileStatus === ProfileStatus.Failed) {
+    if (getProfileStatus === FetchStatus.Failed) {
       navigate("/login");
     }
     if (!localStorage["accessToken"]) navigate("/login");
-    if (getProfileStatus === ProfileStatus.NoAction) {
+    if (getProfileStatus === FetchStatus.NoAction) {
       dispatch(getProfile());
     }
   }, [getProfileStatus]);

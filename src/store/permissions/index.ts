@@ -3,17 +3,12 @@ import { Response } from "service";
 import { GetPermissionsResponse } from "service/permission";
 import { IPermission } from "type/permission";
 import { fetchPermission } from "./action";
-
-export enum FetchPermissionStatus {
-  NoAction,
-  Loading,
-  Success,
-  Failed,
-}
+import { FetchStatus } from "type/api.d";
+import { errorHandler } from "common/error";
 
 export type PermissionsState = {
   result: Array<IPermission>;
-  fetchPermissionStatus: FetchPermissionStatus;
+  fetchPermissionStatus: FetchStatus;
   total: number;
   offset: number;
   limit: number;
@@ -24,7 +19,7 @@ export type PermissionsState = {
 
 const initialState: PermissionsState = {
   result: [],
-  fetchPermissionStatus: FetchPermissionStatus.NoAction,
+  fetchPermissionStatus: FetchStatus.NoAction,
   total: 0,
   offset: 0,
   limit: 0,
@@ -53,14 +48,14 @@ const slice = createSlice({
         state.result = action.payload.data.result;
         state.limit = action.payload.data.limit;
         state.offset = action.payload.data.offset;
-        state.fetchPermissionStatus = FetchPermissionStatus.Success;
+        state.fetchPermissionStatus = FetchStatus.Success;
       }
     );
-    builder.addCase(fetchPermission.rejected, (state, _) => {
-      state.fetchPermissionStatus = FetchPermissionStatus.Failed;
+    builder.addCase(fetchPermission.rejected, (state, action: any) => {
+      state.fetchPermissionStatus = errorHandler(action);
     });
     builder.addCase(fetchPermission.pending, (state, _) => {
-      state.fetchPermissionStatus = FetchPermissionStatus.Loading;
+      state.fetchPermissionStatus = FetchStatus.Loading;
     });
   },
 });

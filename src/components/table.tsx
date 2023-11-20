@@ -5,6 +5,8 @@ import Cells, { CellTypes } from "./table_cell";
 import { Text } from "./text";
 import { Pagination, PaginationProps } from "./pagination";
 import _ from "lodash";
+import { FetchStatus } from "type/api";
+import { Fetch } from "./fetch";
 
 type TableRecord = Record<string, any>;
 
@@ -23,6 +25,7 @@ export type TableProps<T extends TableRecord> = {
   };
   tools?: React.ReactNode;
   pagination?: PaginationProps;
+  status?: FetchStatus;
 };
 
 export const Table = <T extends TableRecord>(props: TableProps<T>) => {
@@ -30,7 +33,7 @@ export const Table = <T extends TableRecord>(props: TableProps<T>) => {
 
   return (
     <ThemeProvider theme={theme.tableTheme}>
-      <Container>
+      <Container status={props.status}>
         {props.tools}
         <TableCore>
           <ThemeProvider theme={theme.tableTheme.secondaryText}>
@@ -53,10 +56,7 @@ export const Table = <T extends TableRecord>(props: TableProps<T>) => {
                     metadata = { ...metadata, ...metaFunction(record) };
                   }
                   return (
-                    <Cell
-                      key={i * j + j}
-                      metadata={metadata}
-                    >
+                    <Cell key={i * j + j} metadata={metadata}>
                       {value}
                     </Cell>
                   );
@@ -75,7 +75,7 @@ export const Table = <T extends TableRecord>(props: TableProps<T>) => {
 
 // const testComponent = <Table<any> total={0} limit={0} records={[]} />;
 
-const Container = styled.div<{ theme: TableTheme }>`
+const Container = styled(Fetch)<{ theme: TableTheme }>`
   padding: 30px 30px;
   background-color: ${(props) => props.theme.backgroundColor};
   border-radius: 20px;

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authReducer } from "./auth/state";
-import { modalReducer } from './modal/index';
+import { modalReducer } from "./modal/index";
 import { permissionReducer } from "./permissions/index";
 import { roleReducer } from "./roles/index";
 import { userReducer } from "./users/user";
@@ -12,7 +12,7 @@ export const store = configureStore({
     userReducer,
     permissionReducer,
     roleReducer,
-    modalReducer
+    modalReducer,
   },
 });
 
@@ -21,10 +21,3 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-
-export enum BaseStatus {
-  Loading,
-  Success,
-  Failed,
-  NoAction,
-}

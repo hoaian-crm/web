@@ -8,7 +8,6 @@ export const Modal: React.FC = () => {
     const modalState = useAppSelector(state => state.modalReducer);
 
     const renderChild = () => {
-        console.log(modalState)
         if (!modalState.currentModal) return;
         const Component = Modals[modalState.currentModal] as React.FC;
         return <Component />

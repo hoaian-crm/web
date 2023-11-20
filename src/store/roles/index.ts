@@ -8,17 +8,13 @@ import {
 } from "service/role";
 import { IRole } from "type/role";
 import { attachPermission, detachPermission, fetchRole } from "./action";
-
-export enum FetchRoleStatus {
-  NoAction,
-  Loading,
-  Failed,
-  Success,
-}
+import { FetchStatus } from "type/api.d";
+import { errorHandler } from "common/error";
+import { ErrorResponse } from "react-router-dom";
 
 export type RoleState = {
   roles: Array<IRole>;
-  fetchStatus: FetchRoleStatus;
+  fetchStatus: FetchStatus;
   total: number;
   offset: number;
   limit: number;
@@ -30,7 +26,7 @@ export type RoleState = {
 
 const initialState: RoleState = {
   roles: [],
-  fetchStatus: FetchRoleStatus.NoAction,
+  fetchStatus: FetchStatus.NoAction,
   total: 0,
   offset: 0,
   limit: 0,
@@ -64,16 +60,16 @@ const slice = createSlice({
         state.total = action.payload.data.total;
         state.offset = action.payload.data.offset;
         state.limit = action.payload.data.limit;
-        state.fetchStatus = FetchRoleStatus.Success;
+        state.fetchStatus = FetchStatus.Success;
       }
     );
 
     builder.addCase(fetchRole.pending, (state, _) => {
-      state.fetchStatus = FetchRoleStatus.Loading;
+      state.fetchStatus = FetchStatus.Loading;
     });
 
-    builder.addCase(fetchRole.rejected, (state, _) => {
-      state.fetchStatus = FetchRoleStatus.Failed;
+    builder.addCase(fetchRole.rejected, (state, action: PayloadAction<any>) => {
+      state.fetchStatus = errorHandler(action);
     });
 
     // ---------------------- Attach Permission ------------------

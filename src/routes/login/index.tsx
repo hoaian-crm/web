@@ -15,11 +15,11 @@ import { CoverImage, Right } from "./components/right";
 import { LightTheme } from "theme";
 import { ThemeProvider } from "styled-components";
 import { LoginBody } from "service/auth";
-import { useAppDispatch, useAppSelector } from "store";
+import {  useAppDispatch, useAppSelector } from "store";
 import { getProfile, login } from "store/auth/actions";
 import { ToastContainer } from "react-toastify";
-import { AuthStatus, ProfileStatus } from "store/auth/state";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { FetchStatus } from "type/api.d";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -47,13 +47,13 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
-    if (status === AuthStatus.Failed) {
+    if (status === FetchStatus.Failed) {
       setInput({
         ...input,
         password: "",
       });
     }
-    if (status === AuthStatus.Success) {
+    if (status === FetchStatus.Success) {
       navigate("/");
     }
   }, [status]); // Refresh password input after login failed

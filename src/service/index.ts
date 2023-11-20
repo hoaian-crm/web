@@ -35,6 +35,8 @@ export type Response<T> = {
   };
 };
 
+export type ErrorResponse<T> = AxiosResponse<T>;
+
 export const serializeQuery = (search: URLSearchParams) => {
   return {
     limit: search.get("limit") || "10",
@@ -49,8 +51,10 @@ export const responseParser = <T extends any>(
   return response.data;
 };
 
-export const errorParser = (error: AxiosError): Response<any> => {
-  return error.response?.data as Response<any>;
+export const errorParser = (
+  error: AxiosError
+): ErrorResponse<any> | undefined => {
+  return error.response;
 };
 
 export const apiPromiseHandler = <T>(
