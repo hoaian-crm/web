@@ -6,6 +6,7 @@ import {
   Left,
   LoginForm,
   LoginInput,
+  Register,
   SubmitButton,
   SubmitButtonLabel,
   Subtitle,
@@ -15,7 +16,7 @@ import { CoverImage, Right } from "./components/right";
 import { LightTheme } from "theme";
 import { ThemeProvider } from "styled-components";
 import { LoginBody } from "service/auth";
-import {  useAppDispatch, useAppSelector } from "store";
+import { useAppDispatch, useAppSelector } from "store";
 import { getProfile, login } from "store/auth/actions";
 import { ToastContainer } from "react-toastify";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -89,6 +90,10 @@ const Login: React.FC = () => {
               minLength={8}
               required
             />
+            <Register href="/register">
+              If you don't have account,{" "}
+              <span style={{ color: "blue" }}>register now</span>
+            </Register>
             <SubmitButton>
               <SubmitButtonLabel>Login</SubmitButtonLabel>
             </SubmitButton>

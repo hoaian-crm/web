@@ -46,11 +46,19 @@ export const LoginInput = styled(PrimaryInput)`
   box-sizing: border-box;
 `;
 
-export const SubmitButton = styled(PrimaryButton)`
-  margin-top: 20px;
-`;
+export const SubmitButton = styled(PrimaryButton)``;
 export const SubmitButtonLabel = styled(Text)`
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 700;
+`;
+
+export const Register = styled.a`
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  color: ${(props) => props.theme.primaryTextTheme.color};
+  font-size: 12px;
+  text-align: left;
+  width: 100%;
 `;
