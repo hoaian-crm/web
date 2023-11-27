@@ -8,6 +8,7 @@ import { Users } from "./users";
 import Roles from "./roles";
 import { Register } from "./register";
 import { VerifyOtp } from "./verify_otp";
+import { Plugin } from "./plugin";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Roles />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/plugins",
+    element: (
+      <PrivateRoute>
+        <Plugin />
       </PrivateRoute>
     ),
   },

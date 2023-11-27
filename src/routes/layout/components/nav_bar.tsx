@@ -21,7 +21,7 @@ const navItems: Array<INavItem> = [
   {
     href: "/roles",
     name: "Roles",
-    icon: Icons.RoleIcon
+    icon: Icons.RoleIcon,
   },
   {
     href: "/product",
@@ -34,7 +34,7 @@ const navItems: Array<INavItem> = [
     icon: Icons.IncomeIcon,
   },
   {
-    href: "/plugin",
+    href: "/plugins",
     name: "Plugin",
     icon: Icons.PluginIcon,
   },
@@ -52,7 +52,11 @@ export const Navbar = () => {
     <NavbarContainer>
       <Logo title={getRouteName()} />
       {navItems.map((navItem, index) => (
-        <NavItem {...navItem} isActive={navItem.href === location.pathname} key={index} />
+        <NavItem
+          {...navItem}
+          isActive={navItem.href === location.pathname}
+          key={index}
+        />
       ))}
       <Profile />
     </NavbarContainer>
