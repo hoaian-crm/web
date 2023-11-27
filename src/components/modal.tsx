@@ -1,4 +1,5 @@
 import React from "react";
+import { CreateRole } from "routes/roles/components/create_role";
 import { useAppDispatch, useAppSelector } from "store";
 import { closeModal } from "store/modal";
 import styled from "styled-components";
@@ -26,19 +27,21 @@ const Container = styled.div<{ open: boolean }>`
     height: 100vh;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0.3;
     justify-content: center;
     align-items: center;
+    background: rgba(0,0,0,0.5)
 `
+
 
 export enum ModalName {
     Ignore,
     Example,
+    CreateRole
 }
 
 export const Modals: {
     [key in ModalName]?: React.FC
 } = {
-    [ModalName.Example]: () => <p>Hello</p>
+    [ModalName.Example]: () => <div style={{ height: 100, width: 100, backgroundColor: 'red' }}></div>,
+    [ModalName.CreateRole]: CreateRole,
 }

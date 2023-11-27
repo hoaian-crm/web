@@ -1,4 +1,3 @@
-import { Modal } from "components/modal";
 import TimeAgo from "javascript-time-ago";
 import en from 'javascript-time-ago/locale/en';
 import React from "react";
@@ -24,7 +23,6 @@ const root = createRoot(domNode);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Modal />
       <RouterProvider router={router} />
       <ToastContainer />
     </Provider>

@@ -23,7 +23,7 @@ export const Tools = () => {
     })
 
     return <TableTools<IRole> tableName={"Role management"}>
-        <AddButton onClick={() => dispatch(openModal(ModalName.Example))} />
+        <AddButton onClick={() => dispatch(openModal(ModalName.CreateRole))} />
         <ThemeProvider theme={theme.searchBar}>
             <Search search={query.keyword} onSearch={(e) => setQuery({ ...query, keyword: e.target.value })} />
         </ThemeProvider>

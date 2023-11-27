@@ -1,9 +1,17 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import RoleService, {
   AttachPermission,
+  CreateRole,
   DetachPermission,
   RoleQuery,
 } from "service/role";
+
+export const createRole = createAsyncThunk(
+  "roles/create",
+  (data: CreateRole, {rejectWithValue}) => {
+    return RoleService.create(data).catch(rejectWithValue);
+  }
+);
 
 export const fetchRole = createAsyncThunk(
   "roles/fetch",

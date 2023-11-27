@@ -39,15 +39,23 @@ export const Roles = () => {
   );
 };
 
+<<<<<<< Updated upstream
 const Container = styled(Fetch)`
+=======
+const Container = styled.div`
+>>>>>>> Stashed changes
   min-height: 400px;
   background-color: ${(props) => props.theme.tableTheme.backgroundColor};
   border-radius: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 20px;
+<<<<<<< Updated upstream
   display: flex;
   flex-direction: column;
   justify-content: center;
+=======
+  overflow-y: scroll;
+>>>>>>> Stashed changes
 `;
 
 const RolesContainer = styled.div`

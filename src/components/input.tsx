@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEventHandler, InputHTMLAttributes } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { InputTheme, Theme } from "theme";
+import { Text } from "./text";
 
 export type OnChange = ChangeEventHandler<HTMLInputElement>;
 
@@ -17,31 +18,41 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   type: string;
   name?: string;
   className?: string;
+  label?: string;
 };
 
 export const Input: React.FC<InputProps> = (props) => {
   const theme = useTheme() as InputTheme;
 
   return (
-    <InputContainer className={props.className}>
-      {props.headIcon ? (
-        <ThemeProvider theme={theme.placeHolder}>
-          <InputHeadIcon icon={props.headIcon}></InputHeadIcon>
+    <>
+      {
+        props.label && <Label>{props.label}</Label>
+      }
+      <InputContainer className={props.className}>
+        {props.headIcon ? (
+          <ThemeProvider theme={theme.placeHolder}>
+            <InputHeadIcon icon={props.headIcon}></InputHeadIcon>
+          </ThemeProvider>
+        ) : null}
+        <ThemeProvider theme={theme.text}>
+          <InputCore
+            required={props.required}
+            value={props.value}
+            placeholder={props.placeHolder}
+            name={props.name}
+            {...props}
+            className="input-core"
+          />
         </ThemeProvider>
-      ) : null}
-      <ThemeProvider theme={theme.text}>
-        <InputCore
-          required={props.required}
-          value={props.value}
-          placeholder={props.placeHolder}
-          name={props.name}
-          {...props}
-          className="input-core"
-        />
-      </ThemeProvider>
-    </InputContainer>
+      </InputContainer>
+    </>
   );
 };
+
+const Label = styled(Text)`
+  font-size: 14px;
+`
 
 const InputContainer = styled.div`
   display: flex;
@@ -60,7 +71,7 @@ const InputCore = styled.input`
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   background: none;
-  width: 90%;
+  width: 100%;
   color: ${(props) => props.theme.color};
 `;
 

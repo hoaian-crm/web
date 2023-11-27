@@ -1,16 +1,27 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { showToastMessage } from "common/toast";
-import { Response } from "service";
 import {
   AttachPermissionResponse,
   DetachPermissionResponse,
   ListRoleResponse,
 } from "service/role";
-import { IRole } from "type/role";
-import { attachPermission, detachPermission, fetchRole } from "./action";
 import { FetchStatus } from "type/api.d";
-import { errorHandler } from "common/error";
-import { ErrorResponse } from "react-router-dom";
+import { IRole } from "type/role";
+import { Response } from "./../../service/index";
+import { CreateRoleResponse } from "./../../service/role";
+import {
+  attachPermission,
+  createRole,
+  detachPermission,
+  fetchRole,
+} from "./action";
+
+export enum FetchRoleStatus {
+  NoAction,
+  Loading,
+  Failed,
+  Success,
+}
 
 export type RoleState = {
   roles: Array<IRole>;
@@ -102,6 +113,26 @@ const slice = createSlice({
           }
           return role;
         });
+        showToastMessage(action.payload.messages);
+      }
+    );
+
+    // --------------------- Create Role ---------------------
+    builder.addCase(createRole.pending, (state) => {
+      state.fetchStatus = FetchRoleStatus.Loading;
+    });
+    builder.addCase(
+      createRole.fulfilled,
+      (state, action: PayloadAction<Response<CreateRoleResponse>>) => {
+        state.roles.push(action.payload.data.result);
+        state.fetchStatus = FetchRoleStatus.Success;
+        showToastMessage(action.payload.messages);
+      }
+    );
+    builder.addCase(
+      createRole.rejected,
+      (state, action: PayloadAction<any>) => {
+        state.fetchStatus = FetchRoleStatus.Failed;
         showToastMessage(action.payload.messages);
       }
     );
