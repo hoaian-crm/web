@@ -86,7 +86,7 @@ const RoleName = styled(Text)`
 const RoleDescription = styled(Text)`
   font-weight: 400;
   font-size: 12px;
-  min-height: 20px;
+  height: 20px;
 `;
 
 const Action = styled(FontAwesomeIcon)`

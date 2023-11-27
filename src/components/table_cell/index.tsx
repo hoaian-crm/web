@@ -12,6 +12,7 @@ import { TimeAgoCell } from "./time_ago";
 export type CellProps = {
   children?: React.ReactNode;
   metadata?: any;
+  onClick?: (record: any) => void;
 };
 
 export enum CellTypes {
@@ -22,7 +23,7 @@ export enum CellTypes {
   Boolean,
   Information,
   Date,
-  TimeAgo
+  TimeAgo,
 }
 
 export const CellContainer = styled.td`
@@ -89,7 +90,6 @@ const BooleanText = styled(Text)`
   font-size: 14px;
 `;
 
-
 const Cells: {
   [key in CellTypes]: React.FC<CellProps>;
 } = {
@@ -100,7 +100,7 @@ const Cells: {
   [CellTypes.Boolean]: BooleanCell,
   [CellTypes.Information]: InformationCell,
   [CellTypes.Date]: DateCell,
-  [CellTypes.TimeAgo]: TimeAgoCell
+  [CellTypes.TimeAgo]: TimeAgoCell,
 };
 
 export default Cells;

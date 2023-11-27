@@ -32,7 +32,7 @@ export const Subtitle = styled.p`
   font-family: "Poppins", sans-serif;
 `;
 
-export const LoginForm = styled.form`
+export const RegisterForm = styled.form`
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -40,13 +40,15 @@ export const LoginForm = styled.form`
   gap: 20px;
 `;
 
-export const LoginInput = styled(PrimaryInput)`
+export const RegisterInput = styled(PrimaryInput)`
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
 `;
 
-export const SubmitButton = styled(PrimaryButton)``;
+export const SubmitButton = styled(PrimaryButton)<{ disabled: boolean }>`
+  opacity: ${(props) => (props.disabled ? 0.8 : 1)};
+`;
 export const SubmitButtonLabel = styled(Text)`
   font-family: "Poppins", sans-serif;
   font-size: 12px;

@@ -1,5 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import AuthService, { LoginBody } from "service/auth";
+import AuthService, { ActiveUserBody, LoginBody, RegisterBody } from "service/auth";
+
+export const register = createAsyncThunk(
+  "auth/register",
+  (data: RegisterBody, { rejectWithValue }) => {
+    return AuthService.register(data).catch(rejectWithValue);
+  }
+);
+
+export const activeUser = createAsyncThunk(
+  "auth/activeUser",
+  (data: ActiveUserBody, {rejectWithValue}) => {
+    return AuthService.activeUser(data).catch(rejectWithValue);
+  }
+)
 
 export const login = createAsyncThunk(
   "auth/login",

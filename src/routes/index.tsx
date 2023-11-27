@@ -6,6 +6,8 @@ import Login from "./login";
 import AuthService from "service/auth";
 import { Users } from "./users";
 import Roles from "./roles";
+import { Register } from "./register";
+import { VerifyOtp } from "./verify_otp";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
         return false;
       }
     },
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/verify_otp",
+    element: <VerifyOtp />,
   },
 ]);
 

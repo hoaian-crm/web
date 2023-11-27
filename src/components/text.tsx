@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
 import { TextTheme } from "theme";
 
@@ -6,7 +6,7 @@ export type TextProps = {
   className?: string;
   children?: string | React.ReactNode;
   limit?: number;
-};
+} & HTMLAttributes<HTMLParagraphElement>;
 
 export const Text: React.FC<TextProps> = (props) => {
   const textLimit = (text: string = "") => {

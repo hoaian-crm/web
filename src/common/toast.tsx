@@ -64,6 +64,10 @@ export const ToastMessages: {
     content: "$field must have more than $min_length character",
     type: ToastType.error,
   },
+  5: {
+    content: "$field already exits",
+    type: ToastType.error,
+  },
   8: {
     content: "Login successfully",
     type: ToastType.success,
@@ -72,12 +76,16 @@ export const ToastMessages: {
     content: "Wrong email or password?",
     type: ToastType.error,
   },
-  20: {
-    content: "Delete success",
-    type: ToastType.success
+  12: {
+    content: "Otp code is invalid",
+    type: ToastType.error,
   },
   14: {
     content: "Update success",
-    type: ToastType.success
-  }
+    type: ToastType.success,
+  },
+  20: {
+    content: "Delete success",
+    type: ToastType.success,
+  },
 };
