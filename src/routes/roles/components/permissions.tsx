@@ -1,14 +1,12 @@
+import { Fetch } from "components/fetch";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "store";
 import { resetSelectPermission, selectPermissions } from "store/permissions";
 import { fetchPermission } from "store/permissions/action";
 import styled, { ThemeProvider, useTheme } from "styled-components";
-import { Permission } from "./permission";
 import { Theme } from "theme";
+import { Permission } from "./permission";
 import { SearchPermission } from "./search_permisson";
-import { Fetch } from "components/fetch";
 
 export const Permissions: React.FC = () => {
   const theme = useTheme() as Theme;
@@ -43,9 +41,9 @@ export const Permissions: React.FC = () => {
             data={permission}
             onMouseDown={() => {
               dispatch(resetSelectPermission());
-              dispatch(selectPermissions([permission.id]));
+              dispatch(selectPermissions([permission.id!]));
             }}
-            isSelected={permissionState.selectedPermission[permission.id]}
+            isSelected={permissionState.selectedPermission[permission.id!]}
           />
         ))}
       </ThemeProvider>

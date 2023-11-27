@@ -12,7 +12,7 @@ export type AttachPermission = {
 
 export type DetachPermission = {
   roleId: string;
-  permissionId: string;
+  permissionId: string | number;
 };
 
 export type AttachPermissionResponse = IRole;

@@ -1,18 +1,23 @@
-import React from "react";
+import { Space } from "antd";
+import React, { useEffect } from "react";
 import { usePlugin } from "store/plugins";
-import { Space, Typography } from "antd";
-import { Plugin } from "./plugin";
+import { EmailPlugin } from "../plugins/email";
+import { SkypePlugin } from "../plugins/skype";
 
 export const Plugins = () => {
-  const { plugins } = usePlugin();
+  const { fetch } = usePlugin();
 
-  // console.log(plugins)
+  useEffect(() => {
+    fetch({
+      limit: "10",
+      keyword: ""
+    });
+  }, [])
 
   return (
     <Space size="large">
-      {plugins.map((plugin) => (
-        <Plugin data={plugin} />
-      ))}
+      <EmailPlugin />
+      <SkypePlugin />
     </Space>
   );
 };

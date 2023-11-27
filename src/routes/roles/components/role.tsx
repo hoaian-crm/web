@@ -48,7 +48,7 @@ export const Role: React.FC<RoleProps> = (props) => {
               if (!Point.fromDragEvent(e).isInsideRect(Rect.fromDivRef(containerRef))) {
                 dispatch(detachPermission({
                   roleId: props.data.id,
-                  permissionId: permission.id
+                  permissionId: permission.id!
                 }))
               }
             }}
