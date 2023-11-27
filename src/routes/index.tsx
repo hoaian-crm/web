@@ -8,7 +8,7 @@ import { Users } from "./users";
 import Roles from "./roles";
 import { Register } from "./register";
 import { VerifyOtp } from "./verify_otp";
-import { Plugin } from "./plugin";
+import Plugin from "./plugin";
 
 const router = createBrowserRouter([
   {

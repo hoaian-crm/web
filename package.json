@@ -16,6 +16,7 @@
     "@types/node": "^20.8.6",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
+    "antd": "^5.11.4",
     "axios": "^1.5.1",
     "javascript-time-ago": "^2.5.9",
     "localforage": "^1.10.0",
@@ -66,6 +67,7 @@
     "styled-components": "^5"
   },
   "devDependencies": {
+    "@types/antd": "^1.0.0",
     "@types/lodash": "^4.14.201",
     "@types/moment": "^2.13.0",
     "@types/react-modal": "^3.16.3"

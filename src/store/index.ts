@@ -1,3 +1,4 @@
+import { pluginReducer } from './plugins/index';
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authReducer } from "./auth/state";
@@ -13,6 +14,7 @@ export const store = configureStore({
     permissionReducer,
     roleReducer,
     modalReducer,
+    pluginReducer
   },
 });
 

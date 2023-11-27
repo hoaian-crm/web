@@ -1,5 +1,4 @@
 import { AddButton } from "components/add_button"
-import { ModalName } from "components/modal"
 import { Search } from "components/search"
 import { TableTools } from "components/table_tools"
 import { useParams } from "hooks/useParams"
@@ -23,7 +22,6 @@ export const Tools = () => {
     })
 
     return <TableTools<IRole> tableName={"Role management"}>
-        <AddButton onClick={() => dispatch(openModal(ModalName.Example))} />
         <ThemeProvider theme={theme.searchBar}>
             <Search search={query.keyword} onSearch={(e) => setQuery({ ...query, keyword: e.target.value })} />
         </ThemeProvider>
