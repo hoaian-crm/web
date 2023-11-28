@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Layout } from "routes/layout";
+import Layout from "routes/layout";
 import { useAppDispatch, useAppSelector } from "store";
 import { getProfile } from "store/auth/actions";
 import { FetchStatus } from "type/api.d";

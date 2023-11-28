@@ -1,3 +1,4 @@
+import { mailReducer } from './mail/index';
 import { pluginReducer } from './plugins/index';
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
@@ -14,7 +15,8 @@ export const store = configureStore({
     permissionReducer,
     roleReducer,
     modalReducer,
-    pluginReducer
+    pluginReducer,
+    mailReducer
   },
 });
 
