@@ -1,15 +1,15 @@
 import { PrivateRoute } from "components/private_route";
 import React from "react";
 import { createBrowserRouter, redirect } from "react-router-dom";
+import AuthService from "service/auth";
 import Home from "./home";
 import Login from "./login";
-import AuthService from "service/auth";
-import { Users } from "./users";
-import Roles from "./roles";
-import { Register } from "./register";
-import { VerifyOtp } from "./verify_otp";
-import Plugin from "./plugin";
 import Mail from "./mail";
+import Plugin from "./plugin";
+import { Register } from "./register";
+import Roles from "./roles";
+import { Users } from "./users";
+import { VerifyOtp } from "./verify_otp";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +54,11 @@ const router = createBrowserRouter([
             <Mail />
           </PrivateRoute>
         ),
+        children: [
+          {
+            path: ":source"
+          }
+        ]
       },
     ],
   },

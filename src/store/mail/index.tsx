@@ -1,29 +1,36 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Response } from "service";
+import { CreateTemplate, FetchMailResponse, FetchTemplateResponse, QueryMail, QueryTemplate } from "service/mail";
+import { useAppDispatch, useAppSelector } from "store";
 import { FetchStatus } from "type/api.d";
 import { IMail } from "type/email";
-import { fetchMail } from "./acitons";
-import { FetchMailResponse, QueryMail } from "service/mail";
-import { Response } from "service";
-import { useAppDispatch, useAppSelector } from "store";
+import { ITemplate } from "type/template";
+import { createTemplate, fetchMail, fetchTemplate } from "./acitons";
 
 export type MailState = {
-  data: {
+  mails: {
     total: number;
-    offset: number;
-    limit: number;
     result: Array<IMail>;
+    status: FetchStatus,
   };
-  status: FetchStatus;
+  templates: {
+    total: number;
+    result: Array<ITemplate>;
+    status: FetchStatus
+  }
 };
 
 const initialState: MailState = {
-  data: {
+  mails: {
     total: 0,
-    offset: 0,
-    limit: 0,
     result: [],
+    status: FetchStatus.NoAction,
   },
-  status: FetchStatus.NoAction,
+  templates: {
+    total: 0,
+    result: [],
+    status: FetchStatus.NoAction
+  },
 };
 
 const slice = createSlice({
@@ -35,18 +42,42 @@ const slice = createSlice({
     builder.addCase(
       fetchMail.fulfilled,
       (state, action: PayloadAction<Response<FetchMailResponse>>) => {
-        state.data = action.payload.data;
-        state.status = FetchStatus.Success;
+        state.mails = {
+          result: action.payload.data.result,
+          total: action.payload.data.total,
+          status: FetchStatus.Success
+        }
       }
     );
     builder.addCase(fetchMail.pending, (state) => {
-      state.status = FetchStatus.Loading;
+      state.mails.status = FetchStatus.Loading;
     });
     builder.addCase(fetchMail.rejected, (state) => {
-      state.status = FetchStatus.Failed;
+      state.mails.status = FetchStatus.Failed;
     });
 
     // ------------------------ Create mail ------------
+
+
+    // ------------------------ List template ---------------
+    builder.addCase(fetchTemplate.fulfilled, (state, action: PayloadAction<Response<FetchTemplateResponse>>) => {
+      state.templates = {
+        result: action.payload.data.result,
+        total: action.payload.data.total,
+        status: FetchStatus.Success
+      }
+    })
+    builder.addCase(fetchTemplate.rejected, (state, action: any) => {
+      state.templates.status = FetchStatus.Failed
+    })
+    builder.addCase(fetchTemplate.pending, (state) => {
+      state.templates.status = FetchStatus.Loading
+    })
+
+    // --------------------- Create Template ----------
+    builder.addCase(createTemplate.fulfilled, (state, action) => {
+      window.location.reload();
+    })
   },
 });
 export const mailReducer = slice.reducer;
@@ -60,7 +91,26 @@ export const useMail = () => {
   };
 
   return {
-    ...state,
+    ...state.mails,
     fetch,
   };
 };
+
+export const useTemplate = () => {
+  const state = useAppSelector(state => state.mailReducer);
+  const dispatch = useAppDispatch();
+
+  const fetch = async (query: QueryTemplate) => {
+    return dispatch(fetchTemplate(query))
+  }
+
+  const create = async (data: CreateTemplate) => {
+    return dispatch(createTemplate(data))
+  }
+
+  return {
+    ...state.templates,
+    fetch,
+    create
+  }
+}
