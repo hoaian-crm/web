@@ -12,7 +12,7 @@ const Page = () => {
   return (
     <Space
       direction="vertical"
-      style={{ padding: 20, width: "100%", height: "100%" }}
+      style={{ padding: 20, width: "100%" }}
     >
       <Tabs
         activeKey={source ? source : "./"}

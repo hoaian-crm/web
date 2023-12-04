@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "common/error";
 import { showToastMessage } from "common/toast";
 import {
   AttachPermissionResponse,
@@ -119,20 +120,20 @@ const slice = createSlice({
 
     // --------------------- Create Role ---------------------
     builder.addCase(createRole.pending, (state) => {
-      state.fetchStatus = FetchRoleStatus.Loading;
+      state.fetchStatus = FetchStatus.Loading;
     });
     builder.addCase(
       createRole.fulfilled,
       (state, action: PayloadAction<Response<CreateRoleResponse>>) => {
         state.roles.push(action.payload.data.result);
-        state.fetchStatus = FetchRoleStatus.Success;
+        state.fetchStatus = FetchStatus.Success;
         showToastMessage(action.payload.messages);
       }
     );
     builder.addCase(
       createRole.rejected,
       (state, action: PayloadAction<any>) => {
-        state.fetchStatus = FetchRoleStatus.Failed;
+        state.fetchStatus = FetchStatus.Failed;
         showToastMessage(action.payload.messages);
       }
     );

@@ -7,7 +7,6 @@ import Login from "./login";
 import Mail from "./mail";
 import Plugin from "./plugin";
 import { Register } from "./register";
-import Roles from "./roles";
 import { Users } from "./users";
 import { VerifyOtp } from "./verify_otp";
 
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
     path: "/roles",
     element: (
       <PrivateRoute>
-        <Roles />
       </PrivateRoute>
     ),
   },

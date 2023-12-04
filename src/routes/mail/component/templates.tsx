@@ -21,10 +21,10 @@ export const Templates = () => {
             grid={{
                 gutter: 16,
                 xs: 1,
-                sm: 2,
-                md: 4,
-                lg: 4,
-                xl: 5,
+                sm: 1,
+                md: 3,
+                lg: 3,
+                xl: 3,
                 xxl: 5,
             }}
             dataSource={result} renderItem={(item) =>

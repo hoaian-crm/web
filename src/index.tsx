@@ -25,7 +25,6 @@ root.render(
   <React.StrictMode>
     <ConfigProvider theme={theme}>
       <Provider store={store}>
-        <Modal />
         <RouterProvider router={router} />
         <ToastContainer />
       </Provider>

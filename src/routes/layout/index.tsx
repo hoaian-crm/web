@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { LightTheme } from "theme";
-import { Button, Input, Layout, Menu, Space, Typography } from "antd";
-import {
-  DashboardOutlined,
-  SearchOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from "@ant-design/icons";
-import { Navbar } from "./components/navbar";
+import { SearchOutlined } from "@ant-design/icons";
+import { Input, Layout } from "antd";
 import { PublicImages } from "common";
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { LightTheme } from "theme";
+import { Navbar } from "./components/navbar";
 
 export type LayoutProps = {
   children?: React.ReactNode;
@@ -20,7 +15,7 @@ const LayoutProvider = (props: LayoutProps) => {
 
   return (
     <ThemeProvider theme={LightTheme}>
-      <Layout style={{ width: "100%", height: "100%" }}>
+      <Layout>
         <Layout.Sider width={250} collapsed={collapsed} theme="light">
           <img
             src={PublicImages.MainLogo}
@@ -35,7 +30,7 @@ const LayoutProvider = (props: LayoutProps) => {
           ></img>
           <Navbar />
         </Layout.Sider>
-        <Layout style={{ width: "100%", height: "100%" }}>
+        <Layout>
           <Layout.Header
             style={{
               display: "flex",
@@ -51,9 +46,7 @@ const LayoutProvider = (props: LayoutProps) => {
               suffix={<SearchOutlined />}
             />
           </Layout.Header>
-          <Layout.Content style={{ height: "100%", width: "100%" }}>
-            {props.children}
-          </Layout.Content>
+          <Layout.Content style={{minHeight: "100vh"}}>{props.children}</Layout.Content>
         </Layout>
       </Layout>
     </ThemeProvider>

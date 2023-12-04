@@ -1,18 +1,18 @@
-import { Menu, Typography } from "antd";
 import {
-  DashboardOutlined,
-  UserOutlined,
-  LockOutlined,
   AppstoreOutlined,
+  DashboardOutlined,
+  LockOutlined,
   MailOutlined,
   SettingOutlined,
   SkypeOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
+import { Menu, Typography } from "antd";
 import React, { useEffect } from "react";
-import { INavItem } from "type/nav_item";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePlugin } from "store/plugins";
 import { FetchStatus } from "type/api.d";
+import { INavItem } from "type/nav_item";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ export const Navbar = () => {
       mode="inline"
       defaultSelectedKeys={["1"]}
       defaultOpenKeys={["sub1"]}
-      style={{ height: "100%", alignItems: "center" }}
+      style={{ alignItems: "center" }}
       items={items}
       onClick={(e) => navigate(e.key)}
       selectedKeys={[pathname]}

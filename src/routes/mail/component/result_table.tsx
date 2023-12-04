@@ -8,7 +8,7 @@ import { useMail } from "store/mail";
 import styled from "styled-components";
 import { FetchStatus } from "type/api.d";
 import { IMail } from "type/email";
-import { CreateTemplate } from "./create_template";
+import { SendMail } from "./send_mail";
 
 export const ResultTable = () => {
   const { fetch, result, status, total } = useMail();
@@ -54,7 +54,7 @@ export const ResultTable = () => {
 
   return (
     <>
-      <CreateTemplate />
+      <SendMail />
       <Table
         columns={columns}
         dataSource={result}
