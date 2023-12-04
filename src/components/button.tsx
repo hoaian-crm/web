@@ -3,28 +3,33 @@ import React, { ButtonHTMLAttributes } from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { ButtonTheme, Theme } from "theme";
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {};
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & { disabled?: boolean };
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const theme = useTheme() as ButtonTheme;
   return (
     <ThemeProvider theme={theme}>
-      <ButtonContainer className={props.className}>
+      <ButtonContainer className={props.className} disabled={!!props.disabled}>
         <ThemeProvider theme={theme.childrenTheme}>
-          <ButtonCore onClick={props.onClick}>{props.children}</ButtonCore>
+          <ButtonCore onClick={props.onClick}>
+            <ThemeProvider theme={theme.childrenTheme}>
+              {props.children}
+            </ThemeProvider>
+          </ButtonCore>
         </ThemeProvider>
       </ButtonContainer>
     </ThemeProvider>
   );
 };
 
-const ButtonContainer = styled.div<ThemeProps<ButtonTheme>>`
+const ButtonContainer = styled.div<ThemeProps<ButtonTheme> & { disabled: boolean }>`
   width: 100%;
   border-radius: 10px;
   padding: 10px;
   margin: 0px;
   background-color: ${(props) => props.theme.backgroundColor};
   box-sizing: border-box;
+  opacity: ${props => props.disabled ? "0.8" : 1};
 
   :hover {
     cursor: pointer;

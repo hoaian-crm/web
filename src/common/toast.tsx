@@ -80,6 +80,10 @@ export const ToastMessages: {
     content: "Otp code is invalid",
     type: ToastType.error,
   },
+  24: {
+    content: "Create success",
+    type: ToastType.success,
+  },
   14: {
     content: "Update success",
     type: ToastType.success,

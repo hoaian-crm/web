@@ -1,4 +1,4 @@
-import { Modal } from "components/modal";
+import { ConfigProvider } from "antd";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import React from "react";
@@ -9,10 +9,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-tooltip/dist/react-tooltip.css";
 import { store } from "store";
+import { theme } from "theme/theme";
 import "./index.scss";
 import router from "./routes";
-import { ConfigProvider } from "antd";
-import { theme } from "theme/theme";
 
 const domNode = document.getElementById("root")!;
 

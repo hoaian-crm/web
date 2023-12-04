@@ -17,7 +17,7 @@ namespace PluginService {
   export const createPlugin: ApiCaller<CreatePluginResponse> = (
     data: CreatePlugin
   ) => {
-    return apiPromiseHandler(api.post("/plugins", data));
+    return apiPromiseHandler(api.put("/plugins/enable", data));
   };
 }
 

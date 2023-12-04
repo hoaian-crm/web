@@ -3,7 +3,7 @@ import { ApiCaller, Query, api } from "service";
 import { IMail } from "type/email"
 
 export type CreateMail = IMail;
-export type CrateMailResponse = IMail;
+export type CreateMailResponse = IMail;
 
 export type QueryMail = Query<{ keyword: string }>;
 export type FetchMailResponse = Array<IMail>;
@@ -13,7 +13,7 @@ namespace MailService {
     return apiPromiseHandler(api.get("/mails", { params: query }));
   }
 
-  export const createMail: ApiCaller<CrateMailResponse> = (data: CreateMail) => {
+  export const createMail: ApiCaller<CreateMailResponse> = (data: CreateMail) => {
     return apiPromiseHandler(api.post("/mails", data))
   }
 }

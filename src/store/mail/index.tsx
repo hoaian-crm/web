@@ -1,8 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { FetchStatus } from "type/api.d";
 import { IMail } from "type/email";
-import { fetchMail } from "./acitons";
-import { FetchMailResponse, QueryMail } from "service/mail";
+import { createMail, fetchMail } from "./acitons";
+import {
+  CreateMail,
+  CreateMailResponse,
+  FetchMailResponse,
+  QueryMail,
+} from "service/mail";
 import { Response } from "service";
 import { useAppDispatch, useAppSelector } from "store";
 
@@ -14,6 +19,7 @@ export type MailState = {
     result: Array<IMail>;
   };
   status: FetchStatus;
+  createStatus: FetchStatus;
 };
 
 const initialState: MailState = {
@@ -24,6 +30,7 @@ const initialState: MailState = {
     result: [],
   },
   status: FetchStatus.NoAction,
+  createStatus: FetchStatus.NoAction,
 };
 
 const slice = createSlice({
@@ -47,6 +54,19 @@ const slice = createSlice({
     });
 
     // ------------------------ Create mail ------------
+    builder.addCase(
+      createMail.fulfilled,
+      (state, action: PayloadAction<Response<CreateMailResponse>>) => {
+        state.data.result.push(action.payload.data.result);
+        state.createStatus = FetchStatus.Success;
+      }
+    );
+    builder.addCase(createMail.pending, (state) => {
+      state.createStatus = FetchStatus.Loading;
+    });
+    builder.addCase(createMail.rejected, (state) => {
+      state.createStatus = FetchStatus.Failed;
+    });
   },
 });
 export const mailReducer = slice.reducer;
@@ -59,8 +79,13 @@ export const useMail = () => {
     return dispatch(fetchMail(query));
   };
 
+  const create = async (data: CreateMail) => {
+    return dispatch(createMail(data));
+  };
+
   return {
     ...state,
     fetch,
+    create,
   };
 };
