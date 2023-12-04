@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import MailService, { CreateMail, QueryMail } from "service/mail";
+import MailService, { CreateMail, QueryMail, QueryTemplate } from "service/mail";
 
 export const fetchMail = createAsyncThunk(
   "mails/fetch",
@@ -14,3 +14,13 @@ export const createMail = createAsyncThunk(
     return MailService.createMail(data).catch(rejectWithValue);
   }
 );
+export const fetchTemplate = createAsyncThunk(
+  "templates/fetch",
+  (query: QueryTemplate, { rejectWithValue }) => {
+    return MailService.fetchTemplate(query).catch(rejectWithValue)
+  }
+)
+
+export const createTemplate = createAsyncThunk("templates/create", (data: FormData, { rejectWithValue }) => {
+  return MailService.createTemplate(data).catch(rejectWithValue)
+})

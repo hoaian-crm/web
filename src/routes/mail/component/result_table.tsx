@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import type { ColumnsType } from "antd/es/table";
-import { IMail } from "type/email";
-import Table from "antd/es/table";
-import { useMail } from "store/mail";
-import { FetchStatus } from "type/api.d";
-import { timeAgo } from "index";
-import { Button, Modal } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
+import { Button, Modal } from "antd";
+import type { ColumnsType } from "antd/es/table";
+import Table from "antd/es/table";
+import { timeAgo } from "index";
+import React, { useEffect, useState } from "react";
+import { useMail } from "store/mail";
 import styled from "styled-components";
+import { FetchStatus } from "type/api.d";
+import { IMail } from "type/email";
+import { CreateTemplate } from "./create_template";
 
 export const ResultTable = () => {
-  const { data, status, fetch } = useMail();
+  const { fetch, result, status, total } = useMail();
   const [html, setHtml] = useState();
   const columns: ColumnsType<IMail> = [
     {
@@ -53,14 +54,15 @@ export const ResultTable = () => {
 
   return (
     <>
+      <CreateTemplate />
       <Table
         columns={columns}
-        dataSource={data.result}
+        dataSource={result}
         loading={
           status === FetchStatus.Loading || status === FetchStatus.NoAction
         }
         pagination={{
-          total: +data.total,
+          total: +total,
         }}
         bordered={true}
       />
