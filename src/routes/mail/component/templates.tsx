@@ -1,19 +1,13 @@
 import { List } from 'antd';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTemplate } from 'store/mail';
-import { FetchStatus } from 'type/api.d';
 import { CreateTemplate } from './create_template';
 import { Template } from './template';
 
 export const Templates = () => {
 
-    const { result, fetch, status } = useTemplate();
+    const { result } = useTemplate();
 
-    useEffect(() => {
-        if (status == FetchStatus.NoAction) {
-            fetch({ limit: "10" })
-        }
-    }, [])
 
     return <div>
         <CreateTemplate />

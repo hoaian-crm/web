@@ -23,11 +23,11 @@ export const timeAgo = new TimeAgo("en-US");
 const root = createRoot(domNode);
 root.render(
   <React.StrictMode>
-      <ConfigProvider theme={theme}>
-        <Provider store={store}>
-          <RouterProvider router={router} />
-          <ToastContainer />
-        </Provider>
-      </ConfigProvider>
+    <ConfigProvider theme={theme}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </Provider>
+    </ConfigProvider>
   </React.StrictMode>
 );

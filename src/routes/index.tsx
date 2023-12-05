@@ -29,10 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/roles",
-    element: (
-      <PrivateRoute>
-      </PrivateRoute>
-    ),
+    element: <PrivateRoute></PrivateRoute>,
   },
   {
     path: "/plugins",
@@ -52,11 +49,6 @@ const router = createBrowserRouter([
             <Mail />
           </PrivateRoute>
         ),
-        children: [
-          {
-            path: ":source"
-          }
-        ]
       },
     ],
   },

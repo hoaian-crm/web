@@ -1,18 +1,20 @@
 import { ThemeConfig } from "antd";
 
 export const theme: ThemeConfig = {
+  token: {
+    colorPrimary: "#00adb5",
+    colorInfo: "#00adb5",
+    colorError: "#ef416d",
+    colorSuccess: "#52c41a",
+    colorBgBase: "#222831",
+    colorTextBase: "#eeeeee",
+  },
   components: {
     Layout: {
-      headerBg: "white",
-      fontSize: 20,
+      headerBg: "transparent",
     },
-    Typography: {
-      titleMarginBottom: 0,
-      titleMarginTop: 0,
-      margin: 0,
-    },
-    Menu: {
-      itemHeight: 50,
-    },
+    Select: {
+      optionSelectedColor: "#222831"
+    }
   },
 };

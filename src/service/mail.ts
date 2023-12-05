@@ -6,7 +6,7 @@ import { apiPromiseHandler } from "./index";
 export type CreateMail = IMail;
 export type CreateMailResponse = IMail;
 
-export type QueryMail = Query<{ keyword: string }>;
+export type QueryMail = Query<{ keyword?: string }>;
 export type FetchMailResponse = Array<IMail>;
 
 export type QueryTemplate = Query<{ keyword?: string }>;

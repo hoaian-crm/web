@@ -3,7 +3,7 @@ import { Button, Modal } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import Table from "antd/es/table";
 import { timeAgo } from "index";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMail } from "store/mail";
 import styled from "styled-components";
 import { FetchStatus } from "type/api.d";
@@ -11,7 +11,7 @@ import { IMail } from "type/email";
 import { SendMail } from "./send_mail";
 
 export const ResultTable = () => {
-  const { fetch, result, status, total } = useMail();
+  const { result, status, total } = useMail();
   const [html, setHtml] = useState();
   const columns: ColumnsType<IMail> = [
     {
@@ -47,10 +47,6 @@ export const ResultTable = () => {
       align: "center",
     },
   ];
-
-  useEffect(() => {
-    if (status === FetchStatus.NoAction) fetch({ limit: "10", keyword: "" });
-  }, []);
 
   return (
     <>
