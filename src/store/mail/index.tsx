@@ -1,4 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "common/error";
+import { showToastMessage } from "common/toast";
 import { Response } from "service";
 import {
   CreateMail,
@@ -76,6 +78,7 @@ const slice = createSlice({
     builder.addCase(
       createMail.fulfilled,
       (state, action: PayloadAction<Response<CreateMailResponse>>) => {
+        showToastMessage(action.payload.messages);
         state.mails.result.push(action.payload.data.result);
         state.mails.createStatus = FetchStatus.Success;
       }
@@ -83,7 +86,8 @@ const slice = createSlice({
     builder.addCase(createMail.pending, (state) => {
       state.mails.createStatus = FetchStatus.Loading;
     });
-    builder.addCase(createMail.rejected, (state) => {
+    builder.addCase(createMail.rejected, (state, action: any) => {
+      errorHandler(action);
       state.mails.createStatus = FetchStatus.Failed;
     });
 

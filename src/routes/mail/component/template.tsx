@@ -15,7 +15,7 @@ export const Template: React.FC<TemplateProps> = (props) => {
       cover={
         <Image
           src={"http://13.212.154.57:30020/storages" + props.data.previewImage}
-          style={{ objectFit: "cover", height: 400 }}
+          style={{ objectFit: "cover", height: 250 }}
         />
       }
       bodyStyle={{ height: 150 }}
