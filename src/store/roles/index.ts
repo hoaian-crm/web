@@ -5,6 +5,7 @@ import {
   AttachPermissionResponse,
   DetachPermissionResponse,
   ListRoleResponse,
+  UpdateRoleResponse,
 } from "service/role";
 import { FetchStatus } from "type/api.d";
 import { IRole } from "type/role";
@@ -13,8 +14,10 @@ import { CreateRoleResponse } from "./../../service/role";
 import {
   attachPermission,
   createRole,
+  deleteRole,
   detachPermission,
   fetchRole,
+  updateRole,
 } from "./action";
 
 export enum FetchRoleStatus {
@@ -30,7 +33,9 @@ export type RoleState = {
   total: number;
   offset: number;
   limit: number;
-  selectedRole: string;
+  selectedRole?: IRole;
+  updateStatus: FetchStatus;
+  deleteStatus: FetchStatus;
 };
 
 const initialState: RoleState = {
@@ -39,19 +44,21 @@ const initialState: RoleState = {
   total: 0,
   offset: 0,
   limit: 0,
-  selectedRole: ""
+  selectedRole: undefined,
+  updateStatus: FetchStatus.NoAction,
+  deleteStatus: FetchStatus.NoAction
 };
 
 const slice = createSlice({
   name: "roles",
   initialState: initialState,
   reducers: {
-    selectRole: (state, action: PayloadAction<string>) => {
+    selectRole: (state, action: PayloadAction<IRole>) => {
       state.selectedRole = action.payload;
     },
     deselectRole: (state) => {
-      state.selectedRole = "";
-    }
+      state.selectedRole = undefined;
+    },
   },
   extraReducers: (builder) => {
     // --------------------- Fetch role -----------------------
@@ -88,6 +95,7 @@ const slice = createSlice({
             ...newRole,
           };
         });
+        if (state.selectedRole?.id === newRole.id) state.selectedRole = newRole;
         showToastMessage(action.payload.messages);
       }
     );
@@ -126,8 +134,21 @@ const slice = createSlice({
         showToastMessage(action.payload.messages);
       }
     );
+
+    // -------------------- Update role ---------------------
+    builder.addCase(
+      updateRole.fulfilled,
+      (state, payload: PayloadAction<Response<UpdateRoleResponse>>) => {
+        state.updateStatus = FetchStatus.Success;
+      }
+    );
+
+    // -------------------- Delete role -------------------
+    builder.addCase(deleteRole.fulfilled, (state) => {
+      state.deleteStatus = FetchStatus.Success;
+    })
   },
 });
 
 export const roleReducer = slice.reducer;
-export const {selectRole, deselectRole} = slice.actions;
+export const { selectRole, deselectRole } = slice.actions;

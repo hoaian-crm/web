@@ -1,39 +1,35 @@
-import { List } from "antd";
+import { Col, Row, Space } from "antd";
 import React from "react";
 import { useRole } from "store/roles/hook";
 import { Role } from "./role";
 
 export const Roles = () => {
   const { roles } = useRole();
+  const col = 6;
+
+  const dataSplicer = (length: number) => {
+    let result: Array<Array<number>> = [];
+    for (let i = 0; i < length; i++) {
+      if (!result[i % col]) result.push([]);
+      result[i % col].push(i)
+    }
+    console.log(result)
+    return result;
+  }
 
   return (
-      <List
-        grid={{
-          gutter: 0,
-          xs: 1,
-          sm: 2,
-          md: 4,
-          lg: 4,
-          xl: 4,
-          xxl: 5,
-        }}
-        size="small"
-        dataSource={roles}
-        itemLayout="vertical"
-        renderItem={(item) => (
-          <List.Item>
-            <Role data={item} />
-          </List.Item>
-        )}
-        style={{ alignContent: "flex-start" }}
-      />
+    <Space>
+      <Row gutter={10}>
+        {
+          dataSplicer(roles.length).map(col => <Col span={24 / 6} >
+            {col.map(row =>
+              <Row>
+                <Role data={roles[row]} />
+              </Row>
+            )}
+          </Col>)
+        }
+      </Row>
+    </Space>
   );
-
-  // return (
-  //   <Grid>
-  //     {roles.map((role) => (
-  //       <Role data={role} />
-  //     ))}
-  //   </Grid>
-  // );
 };
