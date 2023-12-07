@@ -30,10 +30,7 @@ export type RoleState = {
   total: number;
   offset: number;
   limit: number;
-  dragToRole: string;
-  rolesExpand: {
-    [key: string]: boolean;
-  };
+  selectedRole: string;
 };
 
 const initialState: RoleState = {
@@ -42,26 +39,19 @@ const initialState: RoleState = {
   total: 0,
   offset: 0,
   limit: 0,
-  dragToRole: "",
-  rolesExpand: {},
+  selectedRole: ""
 };
 
 const slice = createSlice({
   name: "roles",
   initialState: initialState,
   reducers: {
-    setDragToRole(state, action) {
-      state.dragToRole = action.payload;
+    selectRole: (state, action: PayloadAction<string>) => {
+      state.selectedRole = action.payload;
     },
-    setExpandRole(
-      state,
-      action: PayloadAction<{ id: string; expand: boolean }>
-    ) {
-      state.rolesExpand[action.payload.id] = action.payload.expand;
-    },
-    toggleExpandRole(state, action: PayloadAction<string>) {
-      state.rolesExpand[action.payload] = !state.rolesExpand[action.payload];
-    },
+    deselectRole: (state) => {
+      state.selectedRole = "";
+    }
   },
   extraReducers: (builder) => {
     // --------------------- Fetch role -----------------------
@@ -93,7 +83,6 @@ const slice = createSlice({
           if (role.id !== action.payload.data.result.id) {
             return role;
           }
-          state.rolesExpand[newRole.id] = true;
           return {
             ...role,
             ...newRole,
@@ -141,4 +130,4 @@ const slice = createSlice({
 });
 
 export const roleReducer = slice.reducer;
-export const { setDragToRole, setExpandRole, toggleExpandRole } = slice.actions;
+export const {selectRole, deselectRole} = slice.actions;

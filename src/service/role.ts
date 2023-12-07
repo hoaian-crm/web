@@ -2,7 +2,7 @@ import { ApiCaller, Query } from "service";
 import { IRole } from "type/role";
 import { api, apiPromiseHandler } from "./index";
 
-export type RoleQuery = Query<{ keyword: string }>;
+export type RoleQuery = Query<{ keyword?: string }>;
 export type ListRoleResponse = Array<IRole>;
 export type CreateRole = {
   name: string;

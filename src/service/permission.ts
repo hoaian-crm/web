@@ -1,7 +1,7 @@
 import { ApiCaller, Query, api, apiPromiseHandler } from "service";
 import { IPermission } from "type/permission";
 
-export type PermissionQuery = Query<{ keyword: string }>;
+export type PermissionQuery = Query<{ keyword?: string }>;
 export type GetPermissionsResponse = Array<IPermission>;
 
 namespace PermissionService {
