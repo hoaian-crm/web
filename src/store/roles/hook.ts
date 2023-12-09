@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import {
   AttachPermission,
   CreateRole,
@@ -23,6 +24,10 @@ import {
 export const useRole = () => {
   const state = useAppSelector((state) => state.roleReducer);
   const { result: permissions } = usePermission();
+  const [query, setQuery] = useSearchParams({
+    limit: "1000",
+    keyword: "",
+  });
   const dispatch = useAppDispatch();
 
   const fetch = (query: RoleQuery) => {
@@ -43,6 +48,7 @@ export const useRole = () => {
 
   const update = async (data: UpdateRole) => {
     await dispatch(updateRole(data));
+    await fetch(query);
   };
 
   const remove = async (data: DeleteRole) => {
@@ -62,7 +68,7 @@ export const useRole = () => {
     role: IRole | undefined,
     permission: IPermission
   ) => {
-    return role?.permissions.map((p) => p.id).includes(permission.id);
+    return role?.permissions?.map((p) => p.id).includes(permission.id);
   };
 
   return {
@@ -76,5 +82,7 @@ export const useRole = () => {
     select,
     deselect,
     isHavePermission,
+    query,
+    setQuery,
   };
 };

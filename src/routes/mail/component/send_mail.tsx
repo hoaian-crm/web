@@ -50,7 +50,6 @@ export const SendMail = () => {
         <Form
           layout="vertical"
           onValuesChange={(e) => {
-            console.log(e);
             setInput({ ...input, ...e });
           }}
         >

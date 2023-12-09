@@ -16,7 +16,7 @@ const LayoutProvider = (props: LayoutProps) => {
   return (
     <ThemeProvider theme={LightTheme}>
       <Layout>
-        <Layout.Sider width={250} collapsed={collapsed} theme="light">
+        <Layout.Sider width={250} collapsed={collapsed} theme="light" breakpoint="xs" >
           <img
             src={PublicImages.MainLogo}
             style={{
@@ -46,7 +46,7 @@ const LayoutProvider = (props: LayoutProps) => {
               suffix={<SearchOutlined />}
             />
           </Layout.Header>
-          <Layout.Content style={{minHeight: "100vh"}}>{props.children}</Layout.Content>
+          <Layout.Content style={{ minHeight: "100vh" }}>{props.children}</Layout.Content>
         </Layout>
       </Layout>
     </ThemeProvider>

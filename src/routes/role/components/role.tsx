@@ -3,7 +3,7 @@ import {
   EditOutlined,
   SettingOutlined
 } from "@ant-design/icons";
-import { Card, Empty, Space } from "antd";
+import { Card, Empty, Flex, Popconfirm, Space, Typography } from "antd";
 import React from "react";
 import { useRole } from "store/roles/hook";
 import { IRole } from "type/role";
@@ -16,7 +16,7 @@ type Props = {
 export const Role: React.FC<Props> = (props) => {
   const { select, detach, remove } = useRole();
 
-  const nodata = props.data.permissions.length === 0
+  const nodata = props.data.permissions?.length === 0
 
   return (
     <Card
@@ -29,10 +29,17 @@ export const Role: React.FC<Props> = (props) => {
             select(props.data);
           }}
         />,
-        <DeleteOutlined key="ellipsis" onClick={() => { remove({ id: props.data.id }) }} />,
+        <Popconfirm title={`Are you sure delete ${props.data.name} role`} onConfirm={() => { remove({ id: props.data.id }) }} placement="bottom">
+          <DeleteOutlined key="ellipsis" />
+        </Popconfirm>
       ]}
-      title={props.data.name}
-      extra={props.data.description}
+      title={
+        <Flex vertical >
+          <Typography.Title level={5}>{props.data.name}</Typography.Title>
+          <Typography.Text type="secondary">{props.data.description}</Typography.Text>
+        </Flex>
+      }
+      headStyle={{ padding: 10 }}
       bodyStyle={{
         padding: 10,
         width: '100%'
@@ -43,11 +50,11 @@ export const Role: React.FC<Props> = (props) => {
         {
 
           nodata ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="This role not have permission" /> :
-            props.data.permissions.map((permission) => (
+            props.data.permissions?.map((permission) => (
               <Permission icon={<DeleteOutlined onClick={() => {
-                if (permission.id)
+                if (permission.id && props)
                   detach({
-                    roleId: props.data.id,
+                    roleId: props.data.id!,
                     permissionId: +permission.id
                   })
               }} />} data={permission} />

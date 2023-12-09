@@ -138,8 +138,9 @@ const slice = createSlice({
     // -------------------- Update role ---------------------
     builder.addCase(
       updateRole.fulfilled,
-      (state, payload: PayloadAction<Response<UpdateRoleResponse>>) => {
+      (state, action: PayloadAction<Response<UpdateRoleResponse>>) => {
         state.updateStatus = FetchStatus.Success;
+        showToastMessage(action.payload.messages);
       }
     );
 

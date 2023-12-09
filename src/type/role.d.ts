@@ -1,12 +1,12 @@
 import { IPermission } from "./permission";
 
 export type IRole = {
-  id: string;
+  id?: string;
   description: string;
   name: string;
-  permissions: Array<IPermission>;
+  permissions?: Array<IPermission>;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 };

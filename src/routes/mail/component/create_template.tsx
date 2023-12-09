@@ -23,7 +23,6 @@ export const CreateTemplate = () => {
         formData.append('name', input.name);
         formData.append('description', input.description);
         formData.append('file', textToFile());
-        formData.forEach(data => console.log(data))
         create(formData)
     }
 
