@@ -2,13 +2,13 @@ import { PrivateRoute } from "components/private_route";
 import React from "react";
 import { createBrowserRouter, redirect } from "react-router-dom";
 import AuthService from "service/auth";
-import Home from "./home";
+import Dashboard from './dashboard';
 import Login from "./login";
 import Mail from "./mail";
 import Plugin from "./plugin";
 import { Register } from "./register";
 import Role from "./role";
-import { Users } from "./users";
+import Users from "./users";
 import { VerifyOtp } from "./verify_otp";
 
 
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <PrivateRoute>
-        <Home />
+        <Dashboard />
       </PrivateRoute>
     ),
   },
