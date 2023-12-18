@@ -1,9 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "common/error";
 import { showToastMessage } from "common/toast";
 import {
   AttachPermissionResponse,
   DetachPermissionResponse,
   ListRoleResponse,
+  UpdateRoleResponse,
 } from "service/role";
 import { FetchStatus } from "type/api.d";
 import { IRole } from "type/role";
@@ -12,8 +14,10 @@ import { CreateRoleResponse } from "./../../service/role";
 import {
   attachPermission,
   createRole,
+  deleteRole,
   detachPermission,
   fetchRole,
+  updateRole,
 } from "./action";
 
 export enum FetchRoleStatus {
@@ -29,10 +33,9 @@ export type RoleState = {
   total: number;
   offset: number;
   limit: number;
-  dragToRole: string;
-  rolesExpand: {
-    [key: string]: boolean;
-  };
+  selectedRole?: IRole;
+  updateStatus: FetchStatus;
+  deleteStatus: FetchStatus;
 };
 
 const initialState: RoleState = {
@@ -41,25 +44,20 @@ const initialState: RoleState = {
   total: 0,
   offset: 0,
   limit: 0,
-  dragToRole: "",
-  rolesExpand: {},
+  selectedRole: undefined,
+  updateStatus: FetchStatus.NoAction,
+  deleteStatus: FetchStatus.NoAction
 };
 
 const slice = createSlice({
   name: "roles",
   initialState: initialState,
   reducers: {
-    setDragToRole(state, action) {
-      state.dragToRole = action.payload;
+    selectRole: (state, action: PayloadAction<IRole>) => {
+      state.selectedRole = action.payload;
     },
-    setExpandRole(
-      state,
-      action: PayloadAction<{ id: string; expand: boolean }>
-    ) {
-      state.rolesExpand[action.payload.id] = action.payload.expand;
-    },
-    toggleExpandRole(state, action: PayloadAction<string>) {
-      state.rolesExpand[action.payload] = !state.rolesExpand[action.payload];
+    deselectRole: (state) => {
+      state.selectedRole = undefined;
     },
   },
   extraReducers: (builder) => {
@@ -92,12 +90,12 @@ const slice = createSlice({
           if (role.id !== action.payload.data.result.id) {
             return role;
           }
-          state.rolesExpand[newRole.id] = true;
           return {
             ...role,
             ...newRole,
           };
         });
+        if (state.selectedRole?.id === newRole.id) state.selectedRole = newRole;
         showToastMessage(action.payload.messages);
       }
     );
@@ -119,25 +117,39 @@ const slice = createSlice({
 
     // --------------------- Create Role ---------------------
     builder.addCase(createRole.pending, (state) => {
-      state.fetchStatus = FetchRoleStatus.Loading;
+      state.fetchStatus = FetchStatus.Loading;
     });
     builder.addCase(
       createRole.fulfilled,
       (state, action: PayloadAction<Response<CreateRoleResponse>>) => {
         state.roles.push(action.payload.data.result);
-        state.fetchStatus = FetchRoleStatus.Success;
+        state.fetchStatus = FetchStatus.Success;
         showToastMessage(action.payload.messages);
       }
     );
     builder.addCase(
       createRole.rejected,
       (state, action: PayloadAction<any>) => {
-        state.fetchStatus = FetchRoleStatus.Failed;
+        state.fetchStatus = FetchStatus.Failed;
         showToastMessage(action.payload.messages);
       }
     );
+
+    // -------------------- Update role ---------------------
+    builder.addCase(
+      updateRole.fulfilled,
+      (state, action: PayloadAction<Response<UpdateRoleResponse>>) => {
+        state.updateStatus = FetchStatus.Success;
+        showToastMessage(action.payload.messages);
+      }
+    );
+
+    // -------------------- Delete role -------------------
+    builder.addCase(deleteRole.fulfilled, (state) => {
+      state.deleteStatus = FetchStatus.Success;
+    })
   },
 });
 
 export const roleReducer = slice.reducer;
-export const { setDragToRole, setExpandRole, toggleExpandRole } = slice.actions;
+export const { selectRole, deselectRole } = slice.actions;

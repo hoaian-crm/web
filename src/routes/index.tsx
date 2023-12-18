@@ -1,20 +1,23 @@
 import { PrivateRoute } from "components/private_route";
 import React from "react";
 import { createBrowserRouter, redirect } from "react-router-dom";
-import Home from "./home";
-import Login from "./login";
 import AuthService from "service/auth";
-import { Users } from "./users";
-import Roles from "./roles";
+import Dashboard from './dashboard';
+import Login from "./login";
+import Mail from "./mail";
+import Plugin from "./plugin";
 import { Register } from "./register";
+import Role from "./role";
+import Users from "./users";
 import { VerifyOtp } from "./verify_otp";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <PrivateRoute>
-        <Home />
+        <Dashboard />
       </PrivateRoute>
     ),
   },
@@ -28,12 +31,32 @@ const router = createBrowserRouter([
   },
   {
     path: "/roles",
-    element: (
-      <PrivateRoute>
-        <Roles />
-      </PrivateRoute>
-    ),
+    element: <PrivateRoute>
+      <Role />
+    </PrivateRoute>,
   },
+  {
+    path: "/plugins",
+    children: [
+      {
+        path: "settings",
+        element: (
+          <PrivateRoute>
+            <Plugin />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "mails",
+        element: (
+          <PrivateRoute>
+            <Mail />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+
   {
     path: "/login",
     element: <Login />,

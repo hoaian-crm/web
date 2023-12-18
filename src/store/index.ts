@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { authReducer } from "./auth/state";
+import { mailReducer } from "./mail/index";
 import { modalReducer } from "./modal/index";
 import { permissionReducer } from "./permissions/index";
+import { pluginReducer } from "./plugins/index";
 import { roleReducer } from "./roles/index";
+import { saleReducer } from "./sale";
 import { userReducer } from "./users/user";
 
 export const store = configureStore({
@@ -13,6 +16,9 @@ export const store = configureStore({
     permissionReducer,
     roleReducer,
     modalReducer,
+    pluginReducer,
+    mailReducer,
+    saleReducer,
   },
 });
 

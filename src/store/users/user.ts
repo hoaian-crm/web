@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IUser } from "type/user";
-import { listUsers, searchUsers } from "./action";
+import { errorHandler } from "common/error";
 import { Response } from "service";
 import { ListUserResponse } from "service/user";
 import { FetchStatus } from "type/api.d";
-import { errorHandler } from "common/error";
+import { IUser } from "type/user";
+import { listUsers, searchUsers } from "./action";
 
 export type UserState = {
   users: Array<IUser>;
@@ -16,6 +16,7 @@ export type UserState = {
   total: number;
   searchResult: Array<IUser>;
   searchStatus: FetchStatus;
+  selectedUser?: IUser;
 };
 
 const initialState: UserState = {
@@ -37,6 +38,12 @@ const slice = createSlice({
     resetSearchResult: (state) => {
       state.searchResult = [];
     },
+    selectUser: (state, action: PayloadAction<IUser>) => {
+      state.selectedUser = action.payload;
+    },
+    deselectUser: (state) => {
+      state.selectedUser = undefined;
+    }
   },
   extraReducers: (builder) => {
     // ---------------------------- List Users --------------------------
@@ -69,4 +76,4 @@ const slice = createSlice({
 
 export const userReducer = slice.reducer;
 
-export const { resetSearchResult } = slice.actions;
+export const { resetSearchResult, selectUser, deselectUser } = slice.actions;

@@ -1,10 +1,14 @@
+export type PermissionMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
+
 export type IPermission = {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   policy: string;
-
-  createdAt: Date;
-  updatedAt: Date;
+  resource: string;
+  method: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
+  method: PermissionMethod;
 };

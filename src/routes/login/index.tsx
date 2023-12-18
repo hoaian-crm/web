@@ -1,5 +1,12 @@
 import { Icons, PublicImages } from "common";
 import React, { useEffect, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { LoginBody } from "service/auth";
+import { useAppDispatch, useAppSelector } from "store";
+import { login } from "store/auth/actions";
+import { ThemeProvider } from "styled-components";
+import { LightTheme } from "theme";
+import { FetchStatus } from "type/api.d";
 import { Container } from "./components/container";
 import {
   Header,
@@ -13,14 +20,6 @@ import {
   Title,
 } from "./components/left";
 import { CoverImage, Right } from "./components/right";
-import { LightTheme } from "theme";
-import { ThemeProvider } from "styled-components";
-import { LoginBody } from "service/auth";
-import { useAppDispatch, useAppSelector } from "store";
-import { getProfile, login } from "store/auth/actions";
-import { ToastContainer } from "react-toastify";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { FetchStatus } from "type/api.d";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -55,7 +54,7 @@ const Login: React.FC = () => {
       });
     }
     if (status === FetchStatus.Success) {
-      navigate("/");
+      window.location.href = "/"
     }
   }, [status]); // Refresh password input after login failed
 

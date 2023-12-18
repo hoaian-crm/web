@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "common/error";
 import { Response } from "service";
 import { GetPermissionsResponse } from "service/permission";
+import { FetchStatus } from "type/api.d";
 import { IPermission } from "type/permission";
 import { fetchPermission } from "./action";
-import { FetchStatus } from "type/api.d";
-import { errorHandler } from "common/error";
 
 export type PermissionsState = {
   result: Array<IPermission>;

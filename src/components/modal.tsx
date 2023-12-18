@@ -1,5 +1,4 @@
 import React from "react";
-import { CreateRole } from "routes/roles/components/create_role";
 import { useAppDispatch, useAppSelector } from "store";
 import { closeModal } from "store/modal";
 import styled from "styled-components";
@@ -43,5 +42,4 @@ export const Modals: {
     [key in ModalName]?: React.FC
 } = {
     [ModalName.Example]: () => <div style={{ height: 100, width: 100, backgroundColor: 'red' }}></div>,
-    [ModalName.CreateRole]: CreateRole,
 }

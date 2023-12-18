@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { message as messageService } from "antd";
 import { Message, UnknownMessage } from "service";
 
 export enum ToastType {
@@ -31,11 +31,11 @@ export const showToastMessage = (message: Message | Array<Message>) => {
   });
   switch (toastMessage.type) {
     case ToastType.warning:
-      return toast.warning(toastMessage.content);
+      return messageService.warning(toastMessage.content);
     case ToastType.error:
-      return toast.error(toastMessage.content);
+      return messageService.error(toastMessage.content);
     case ToastType.success:
-      return toast.success(toastMessage.content);
+      return messageService.success(toastMessage.content);
   }
 };
 
@@ -91,5 +91,13 @@ export const ToastMessages: {
   20: {
     content: "Delete success",
     type: ToastType.success,
+  },
+  101: {
+    content: "Please enter template",
+    type: ToastType.error,
+  },
+  104: {
+    content: "$field cannot be empty",
+    type: ToastType.error,
   },
 };
