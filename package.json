@@ -2,6 +2,7 @@
   "name": "crm",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/",
   "dependencies": {
     "@ant-design/colors": "^7.0.0",
     "@ant-design/cssinjs": "^1.18.0",
