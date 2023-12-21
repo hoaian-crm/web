@@ -1,9 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "common/error";
+import { FetchStatus } from "type/api.d";
 import { IUser } from "type/user";
 import { activeUser, getProfile, login, register } from "./actions";
-import { showToastMessage } from "common/toast";
-import { FetchStatus } from "type/api.d";
-import { errorHandler } from "common/error";
 
 export type AuthState = {
   currentUser?: IUser;
@@ -34,7 +33,7 @@ export const AuthSlice = createSlice({
     });
     builder.addCase(login.rejected, (state, action: PayloadAction<any>) => {
       state.status = FetchStatus.Failed;
-      showToastMessage(action.payload.messages);
+      errorHandler(action);
     });
 
     //  ------------ Get profile ------------------
