@@ -7,6 +7,7 @@
     "@ant-design/colors": "^7.0.0",
     "@ant-design/cssinjs": "^1.18.0",
     "@ant-design/icons": "^5.2.6",
+    "@faker-js/faker": "^8.3.1",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
