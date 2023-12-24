@@ -91,9 +91,3 @@ export const TotalRevenueProduct = () => {
   </Space>
 
 };
-
-// [{
-//           label: 'Product',
-//           data: [12, 19, 3, 5, 2, 3],
-//           borderWidth: 1,
-//         }],
