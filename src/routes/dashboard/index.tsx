@@ -20,6 +20,14 @@ const Page = () => {
                 <TotalRevenueProduct />
             </Col>
         </Row>
+        <Row justify="space-between">
+            <Col span={"12"}>
+                <TopProductSale />
+            </Col>
+            <Col span={"12"}>
+                <TotalRevenueProduct />
+            </Col>
+        </Row>
     </Space>
 }
 
