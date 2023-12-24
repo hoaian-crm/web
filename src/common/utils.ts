@@ -25,3 +25,8 @@ export const useDebounce = <T extends any>(
 export function capitalizeFirstLetter(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
+
+export function limitText(value: string, length: number) {
+  if (value.length < length) return value;
+  return value.slice(0, length - 3) + "...";
+}
