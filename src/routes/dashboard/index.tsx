@@ -9,16 +9,6 @@ const Page = () => {
 
     const { totalRevenueProduct, getTotalRevenueProduct } = useSale();
 
-    useEffect(() => {
-        if (totalRevenueProduct.status === FetchStatus.NoAction) {
-            getTotalRevenueProduct({
-                timeUnit: "month",
-                from: moment().subtract(30, 'day').valueOf(),
-                to: moment().valueOf(),
-            })
-        }
-    }, [])
-
 
     return <Space style={{ padding: 10, width: "100%" }} direction="vertical">
         <Row>

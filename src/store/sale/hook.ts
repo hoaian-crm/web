@@ -10,8 +10,23 @@ export const useSale = () => {
     return dispatch(getTotalRevenueProduct(query));
   };
 
+  const formatTotalRevenue = () => {
+    let result: {
+      [productName: string]: {
+        [col: string]: number;
+      };
+    } = {};
+    state.totalRevenueProduct.data.map((data) => {
+      if (!result[data.name]) result[data.name] = {};
+      result[data.name][data.time] = data.revenue;
+    });
+
+    return result;
+  };
+
   return {
     ...state,
     getTotalRevenueProduct: _getTotalRevenueProduct,
+    formatTotalRevenue,
   };
 };

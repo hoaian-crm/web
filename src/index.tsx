@@ -12,8 +12,28 @@ import { store } from "store";
 import { theme } from "theme/theme";
 import "./index.scss";
 import router from "./routes";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
 const domNode = document.getElementById("root")!;
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 // English.
 TimeAgo.addDefaultLocale(en);
