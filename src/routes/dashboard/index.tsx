@@ -4,14 +4,18 @@ import React, { useEffect } from "react";
 import { useSale } from "store/sale/hook";
 import { FetchStatus } from "type/api.d";
 import { TotalRevenueProduct } from "./components/total_revenue_product";
+import { TopProductSale } from "./components/top_product_stale";
 
 const Page = () => {
 
     const { totalRevenueProduct, getTotalRevenueProduct } = useSale();
 
 
-    return <Space style={{ padding: 10, width: "100%" }} direction="vertical">
-        <Row>
+    return <Space style={{ padding: 10, width: "100%" }} direction="vertical" >
+        <Row justify="space-between">
+            <Col span={"12"}>
+                <TopProductSale />
+            </Col>
             <Col span={"12"}>
                 <TotalRevenueProduct />
             </Col>

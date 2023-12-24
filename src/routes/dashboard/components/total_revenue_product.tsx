@@ -25,69 +25,67 @@ export const TotalRevenueProduct = () => {
     }
   }, [])
 
-  return <Space style={{ borderRadius: 20, width: '50vw', padding: 20 }}>
-    <Line
-      style={{
-        width: '40vw',
-        padding: token.padding,
-        borderRadius: token.borderRadius,
-        boxShadow: token.boxShadow,
-        backgroundColor: token.colorBgContainer
-      }}
-      options={{
-        scales: {
-          y: {
-            ticks: { color: token.colorTextBase }
-          },
-          x: {
-            ticks: { color: token.colorTextBase }
-          }
+  return <Line
+    style={{
+      padding: token.padding,
+      borderRadius: token.borderRadius,
+      boxShadow: token.boxShadow,
+      backgroundColor: token.colorBgContainer
+    }}
+    options={{
+      scales: {
+        y: {
+          ticks: { color: token.colorTextBase },
+          grid: { color: token.colorTextTertiary, lineWidth: 0.5 }
         },
-        plugins: {
-          colors: {
-            forceOverride: true
-          },
-          legend: {
-            display: false,
-          },
-          title: {
-            text: "Top 5 revenue product",
-            display: true,
-            font: {
-              size: 18
-            },
-            color: token.colorTextLabel,
-          }
+        x: {
+          ticks: { color: token.colorTextBase },
+          grid: { color: token.colorTextTertiary, lineWidth: 0.5 }
+        }
+      },
+      plugins: {
+        colors: {
+          forceOverride: true
         },
-        elements: {
-          line: {
-          }
+        legend: {
+          display: false,
+        },
+        title: {
+          text: "Top 5 revenue product",
+          display: true,
+          font: {
+            size: 18
+          },
+          color: token.colorTextLabel,
+        },
+      },
+      elements: {
+        line: {
         }
       }
-      }
-      data={{
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', "September", 'October', 'November', 'December'],
-        datasets: Object.keys(chartData).map((productName, index) => {
-          const color = colors[index];
-          return {
-            label: productName,
-            data: Object.keys(chartData[productName]).map(key => chartData[productName][key]),
-            borderColor: (context: any) => {
-              const { ctx, chartArea } = context.chart;
-              if (!chartArea) {
-                // This case happens on initial chart load
-                return;
-              }
-              const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
-              gradient.addColorStop(0, color);
-              gradient.addColorStop(1, token.colorPrimary);
-              return gradient;
-            },
-            backgroundColor: color,
-            borderWidth: 1.5,
-          }
-        })
-      }} />
-  </Space>
-
+    }
+    }
+    data={{
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', "September", 'October', 'November', 'December'],
+      datasets: Object.keys(chartData).map((productName, index) => {
+        const color = colors[index];
+        return {
+          label: productName,
+          data: Object.keys(chartData[productName]).map(key => chartData[productName][key]),
+          borderColor: (context: any) => {
+            const { ctx, chartArea } = context.chart;
+            if (!chartArea) {
+              // This case happens on initial chart load
+              return;
+            }
+            const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
+            gradient.addColorStop(0, color);
+            gradient.addColorStop(1, token.colorBgTextActive);
+            return gradient;
+          },
+          backgroundColor: color,
+          borderWidth: 2,
+        }
+      })
+    }} />
 };

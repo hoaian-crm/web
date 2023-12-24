@@ -21,7 +21,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  ArcElement,
 } from 'chart.js';
+import { plugin } from "routes/dashboard/components/top_product_stale";
 
 const domNode = document.getElementById("root")!;
 
@@ -30,9 +32,10 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 // English.
