@@ -33,14 +33,15 @@ export const TotalRevenueProduct = () => {
       }}
       options={{
         responsive: true,
+        aspectRatio: 3,
         scales: {
           y: {
-            ticks: { color: token.colorTextBase },
-            grid: { color: token.colorTextTertiary, lineWidth: 0.5 },
+            ticks: { color: token.colorTextLabel },
+            grid: { color: 'transparent', lineWidth: 0.5 },
           },
           x: {
-            ticks: { color: token.colorTextBase },
-            grid: { color: token.colorTextTertiary, lineWidth: 0.5 },
+            ticks: { color: token.colorTextLabel },
+            grid: { color: 'transparent', lineWidth: 0.5 },
           },
         },
         plugins: {
@@ -54,9 +55,11 @@ export const TotalRevenueProduct = () => {
             text: "Top 5 revenue product",
             display: true,
             font: {
-              size: 18,
+              size: 16,
             },
-            color: token.colorTextLabel,
+            color: token.colorPrimary,
+            align: 'start',
+            padding: 20
           },
         },
         elements: {
@@ -97,8 +100,10 @@ export const TotalRevenueProduct = () => {
             //   return gradient;
             // },
             borderColor: color,
-            backgroundColor: color,
-            borderWidth: 2,
+            // backgroundColor: color,
+            pointBorderWidth: 0,
+            borderWidth: 1.5,
+            tension: 0.4
           };
         }),
       }}

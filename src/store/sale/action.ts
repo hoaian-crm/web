@@ -14,3 +14,10 @@ export const getTopProductSale = createAsyncThunk(
     return SaleService.getTopProductSale(query).catch(rejectWithValue);
   }
 );
+
+export const getTotalRevenue = createAsyncThunk(
+  "sales/total_revenue",
+  (query: ChartQuery, { rejectWithValue }) => {
+    return SaleService.getTotalRevenue(query).catch(rejectWithValue);
+  }
+);

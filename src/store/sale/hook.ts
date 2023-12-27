@@ -1,6 +1,10 @@
 import { ChartQuery } from "service/sale";
 import { useAppDispatch, useAppSelector } from "store";
-import { getTopProductSale, getTotalRevenueProduct } from "./action";
+import {
+  getTopProductSale,
+  getTotalRevenue,
+  getTotalRevenueProduct,
+} from "./action";
 
 export const useSale = () => {
   const state = useAppSelector((state) => state.saleReducer);
@@ -27,10 +31,15 @@ export const useSale = () => {
     return dispatch(getTopProductSale(query));
   };
 
+  const _getTotalRevenue = async (query: ChartQuery) => {
+    return dispatch(getTotalRevenue(query));
+  };
+
   return {
     ...state,
     getTotalRevenueProduct: _getTotalRevenueProduct,
     getTopProductSale: _getTopProductSale,
+    getTotalRevenue: _getTotalRevenue,
     formatTotalRevenue,
   };
 };

@@ -9,6 +9,7 @@ import {
   PointElement,
   Title,
   Tooltip,
+  BarElement 
 } from 'chart.js';
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -35,6 +36,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  BarElement
 );
 
 // English.

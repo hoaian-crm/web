@@ -24,6 +24,11 @@ export type TopProductSaleResponse = Array<{
   alias: string;
 }>;
 
+export type TotalRevenueResponse = Array<{
+  revenue: number;
+  label: string;
+}>;
+
 namespace SaleService {
   export const totalRevenueProduct: ApiCaller<TotalRevenueProductResponse> = (
     query: ChartQuery
@@ -38,6 +43,14 @@ namespace SaleService {
   ) => {
     return apiPromiseHandler(
       api.get("/sales/top_total_sold_product", { params: query })
+    );
+  };
+
+  export const getTotalRevenue: ApiCaller<TotalRevenueResponse> = (
+    query: ChartQuery
+  ) => {
+    return apiPromiseHandler(
+      api.get("/sales/total_revenue", { params: query })
     );
   };
 }
