@@ -42,20 +42,27 @@ export const TopProductSale = () => {
 
   return (
     <Doughnut
-      plugins={[plugin]}
+      style={{
+        backgroundColor: token.colorBgContainer,
+        padding: 10,
+      }}
       options={{
-        cutout: "80%",
+        cutout: "60%",
         responsive: true,
         aspectRatio: 2,
+        offset: 0,
         plugins: {
           title: {
             text: "Top 5 amount sale product",
             display: true,
-            color: token.colorTextBase,
+            color: token.colorTextLabel,
             font: {
-              size: 18,
+              size: 16,
             },
             align: "center",
+            padding: {
+              bottom: 30,
+            },
           },
           legend: {
             align: "end",
@@ -63,12 +70,14 @@ export const TopProductSale = () => {
             position: "right",
             fullSize: true,
             labels: {
-              color: token.colorTextBase,
+              color: token.colorTextLabel,
               font: {
                 size: 14,
               },
               boxWidth: 10,
               boxHeight: 10,
+              usePointStyle: true,
+              pointStyle: "rounded",
             },
           },
         },
@@ -79,6 +88,9 @@ export const TopProductSale = () => {
           {
             data: topProductSale.data.map((data) => data.amount),
             backgroundColor: colors,
+            borderColor: "transparent",
+            borderRadius: 5,
+            spacing: 5,
           },
         ],
       }}

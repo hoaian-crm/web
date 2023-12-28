@@ -6,6 +6,8 @@ export type ChartQuery =
       to?: number;
       limit?: number;
       timeUnit?: "day" | "week" | "month" | "year";
+      previousFrom?: number;
+      previousTo?: number;
     }
   | URLSearchParams;
 export type TotalRevenueProductResponse = Array<{
@@ -28,6 +30,12 @@ export type TotalRevenueResponse = Array<{
   revenue: number;
   label: string;
 }>;
+
+export type GeneralStatisticResponse = Array<{
+  value: string | number;
+  label: string;
+  delta: string | number | null;
+}>
 
 namespace SaleService {
   export const totalRevenueProduct: ApiCaller<TotalRevenueProductResponse> = (
@@ -53,6 +61,12 @@ namespace SaleService {
       api.get("/sales/total_revenue", { params: query })
     );
   };
+
+  export const generalStatistic: ApiCaller<GeneralStatisticResponse> = (query: ChartQuery) => {
+    return apiPromiseHandler(
+      api.get("/sales/general_statistic", { params: query})
+    )
+  }
 }
 
 export default SaleService;

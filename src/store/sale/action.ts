@@ -21,3 +21,7 @@ export const getTotalRevenue = createAsyncThunk(
     return SaleService.getTotalRevenue(query).catch(rejectWithValue);
   }
 );
+
+export const getGeneralStatistic = createAsyncThunk("sales/general_statistic", (query: ChartQuery, { rejectWithValue }) => {
+  return SaleService.generalStatistic(query).catch(rejectWithValue)
+})

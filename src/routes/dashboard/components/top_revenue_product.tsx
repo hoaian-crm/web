@@ -1,13 +1,18 @@
-import { theme } from "antd";
+import { Col, Row, theme } from "antd";
+import { limitText } from "common/utils";
 import React, { useEffect } from "react";
-import { Line } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 import { useSale } from "store/sale/hook";
 import { FetchStatus } from "type/api.d";
 const { useToken } = theme;
 
 export const TotalRevenueProduct = () => {
-  const { totalRevenueProduct, getTotalRevenueProduct, formatTotalRevenue } =
-    useSale();
+  const {
+    totalRevenueProduct,
+    getTotalRevenueProduct,
+    formatTotalRevenue,
+    topProductSale,
+  } = useSale();
   const { token } = useToken();
   const colors = ["#5A3FFF", "#268AFF", "#1ED6FF", "#3DFFDC", "#ADE1FF"];
 
@@ -24,89 +29,127 @@ export const TotalRevenueProduct = () => {
   }, []);
 
   return (
-    <Line
-      style={{
-        padding: token.padding,
-        borderRadius: token.borderRadius,
-        boxShadow: token.boxShadow,
-        backgroundColor: token.colorBgContainer,
-      }}
-      options={{
-        responsive: true,
-        aspectRatio: 3,
-        scales: {
-          y: {
-            ticks: { color: token.colorTextLabel },
-            grid: { color: 'transparent', lineWidth: 0.5 },
-          },
-          x: {
-            ticks: { color: token.colorTextLabel },
-            grid: { color: 'transparent', lineWidth: 0.5 },
-          },
-        },
-        plugins: {
-          colors: {
-            forceOverride: true,
-          },
-          legend: {
-            display: false,
-          },
-          title: {
-            text: "Top 5 revenue product",
-            display: true,
-            font: {
-              size: 16,
+    <Row justify="space-around" gutter={[10, 10]}>
+      <Col span="18">
+        <Line
+          style={{
+            borderRadius: token.borderRadius,
+            boxShadow: token.boxShadow,
+            backgroundColor: token.colorBgContainer,
+            height: "100%",
+          }}
+          options={{
+            responsive: true,
+            aspectRatio: 3,
+            scales: {
+              y: {
+                ticks: { color: token.colorTextLabel },
+                grid: { color: "transparent", lineWidth: 0.5 },
+              },
+              x: {
+                ticks: { color: token.colorTextLabel },
+                grid: { color: "transparent", lineWidth: 0.5 },
+              },
             },
-            color: token.colorPrimary,
-            align: 'start',
-            padding: 20
-          },
-        },
-        elements: {
-          line: {},
-        },
-      }}
-      data={{
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ],
-        datasets: Object.keys(chartData).map((productName, index) => {
-          const color = colors[index];
-          return {
-            label: productName,
-            data: Object.keys(chartData[productName]).map(
-              (key) => chartData[productName][key]
-            ),
-            // borderColor: (context: any) => {
-            //   const { ctx, chartArea } = context.chart;
-            //   if (!chartArea) {
-            //     // This case happens on initial chart load
-            //     return;
-            //   }
-            //   const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top)
-            //   gradient.addColorStop(0, color);
-            //   gradient.addColorStop(1, token.colorBgTextActive);
-            //   return gradient;
-            // },
-            borderColor: color,
-            // backgroundColor: color,
-            pointBorderWidth: 0,
-            borderWidth: 1.5,
-            tension: 0.4
-          };
-        }),
-      }}
-    />
+            plugins: {
+              colors: {
+                forceOverride: true,
+              },
+              legend: {
+                display: false,
+              },
+              title: {
+                text: "Top 5 Revenue Product",
+                display: true,
+                font: {
+                  size: 18,
+                  weight: 600,
+                  family: "Poppins",
+                },
+                color: token.colorTextLabel,
+                align: "center",
+              },
+            },
+            elements: {
+              line: {},
+            },
+          }}
+          data={{
+            labels: [
+              "January",
+              "February",
+              "March",
+              "April",
+              "May",
+              "June",
+              "July",
+              "August",
+              "September",
+              "October",
+              "November",
+              "December",
+            ],
+            datasets: Object.keys(chartData).map((productName, index) => {
+              const color = colors[index];
+              return {
+                label: productName,
+                data: Object.keys(chartData[productName]).map(
+                  (key) => chartData[productName][key]
+                ),
+                borderColor: color,
+                pointBorderWidth: 0,
+                borderWidth: 1.5,
+                tension: 0.4,
+              };
+            }),
+          }}
+        />
+      </Col>
+      <Col span="6">
+        <Bar
+          style={{
+            backgroundColor: token.colorBgContainer,
+            borderRadius: 10,
+          }}
+          options={{
+            scales: {
+              y: {
+                ticks: { color: token.colorTextLabel },
+                grid: { color: "transparent", lineWidth: 0.5 },
+              },
+              x: {
+                ticks: { color: token.colorTextLabel },
+                grid: { color: "transparent", lineWidth: 0.5 },
+              },
+            },
+            aspectRatio: 1,
+            indexAxis: "y",
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: "Top 5 Product",
+                color: token.colorTextLabel,
+                font: {
+                  size: 16,
+                },
+              },
+            },
+          }}
+          data={{
+            labels: topProductSale.data.map((data) => limitText(data.name, 10)),
+            datasets: [
+              {
+                data: topProductSale.data.map((data) => data.amount),
+                backgroundColor: colors,
+                borderRadius: 100,
+              },
+            ],
+          }}
+        />
+      </Col>
+    </Row>
   );
 };

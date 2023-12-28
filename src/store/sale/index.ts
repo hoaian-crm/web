@@ -1,17 +1,18 @@
-import {
-  TopProductSaleResponse,
-  TotalRevenueResponse,
-} from "./../../service/sale";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Response } from "service";
 import { TotalRevenueProductResponse } from "service/sale";
 import { FetchStatus } from "type/api.d";
 import {
+  GeneralStatisticResponse,
+  TopProductSaleResponse,
+  TotalRevenueResponse,
+} from "./../../service/sale";
+import {
+  getGeneralStatistic,
   getTopProductSale,
   getTotalRevenue,
   getTotalRevenueProduct,
 } from "./action";
-import { TotalRevenue } from "routes/dashboard/components/total_revenue";
 
 type State = {
   totalRevenueProduct: {
@@ -26,6 +27,10 @@ type State = {
     status: FetchStatus;
     data: TotalRevenueResponse;
   };
+  generalStatistic: {
+    status: FetchStatus,
+    data: GeneralStatisticResponse
+  }
 };
 const initialState: State = {
   totalRevenueProduct: {
@@ -40,6 +45,10 @@ const initialState: State = {
     status: FetchStatus.NoAction,
     data: [],
   },
+  generalStatistic: {
+    status: FetchStatus.NoAction,
+    data: []
+  }
 };
 
 const slice = createSlice({
@@ -47,6 +56,10 @@ const slice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getGeneralStatistic.fulfilled, (state, action: PayloadAction<Response<GeneralStatisticResponse>>) => {
+      state.generalStatistic.data = action.payload.data.result;
+      state.generalStatistic.status = FetchStatus.Success;
+    });
     builder.addCase(
       getTotalRevenueProduct.fulfilled,
       (state, action: PayloadAction<Response<TotalRevenueProductResponse>>) => {

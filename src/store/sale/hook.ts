@@ -1,6 +1,7 @@
 import { ChartQuery } from "service/sale";
 import { useAppDispatch, useAppSelector } from "store";
 import {
+  getGeneralStatistic,
   getTopProductSale,
   getTotalRevenue,
   getTotalRevenueProduct,
@@ -9,6 +10,11 @@ import {
 export const useSale = () => {
   const state = useAppSelector((state) => state.saleReducer);
   const dispatch = useAppDispatch();
+
+
+  const _getGeneralStatistic = async (query: ChartQuery) => {
+    return dispatch(getGeneralStatistic(query));
+  }
 
   const _getTotalRevenueProduct = async (query: ChartQuery) => {
     return dispatch(getTotalRevenueProduct(query));
@@ -35,11 +41,13 @@ export const useSale = () => {
     return dispatch(getTotalRevenue(query));
   };
 
+
   return {
     ...state,
     getTotalRevenueProduct: _getTotalRevenueProduct,
     getTopProductSale: _getTopProductSale,
     getTotalRevenue: _getTotalRevenue,
+    getGeneralStatistic: _getGeneralStatistic,
     formatTotalRevenue,
   };
 };
