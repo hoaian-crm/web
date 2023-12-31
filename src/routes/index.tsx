@@ -9,6 +9,7 @@ import Plugin from "./plugin";
 import { Register } from "./register";
 import Role from "./role";
 import Users from "./users";
+import Customer from './customer';
 import { VerifyOtp } from "./verify_otp";
 
 
@@ -36,6 +37,12 @@ const router = createBrowserRouter([
     </PrivateRoute>,
   },
   {
+    path: "/customers",
+    element: <PrivateRoute>
+      <Customer />
+    </PrivateRoute>
+  },
+  {
     path: "/plugins",
     children: [
       {
@@ -56,7 +63,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
   {
     path: "/login",
     element: <Login />,

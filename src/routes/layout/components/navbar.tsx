@@ -1,5 +1,6 @@
 import {
   AppstoreOutlined,
+  ContactsOutlined,
   DashboardOutlined,
   LockOutlined,
   MailOutlined,
@@ -54,26 +55,31 @@ export const Navbar = () => {
       label: "Role",
     },
     {
+      key: "/customers",
+      icon: <ContactsOutlined style={{ fontSize: 24 }} />,
+      label: "Customer",
+    },
+    {
       key: "/plugins",
       icon: <AppstoreOutlined style={{ fontSize: 24 }} />,
       label: "Plugins",
       children:
         status === FetchStatus.NoAction
           ? [
-              {
-                key: "/plugins/settings",
-                icon: <SettingOutlined style={{ fontSize: 24 }} />,
-                label: "Settings",
-              },
-            ]
+            {
+              key: "/plugins/settings",
+              icon: <SettingOutlined style={{ fontSize: 24 }} />,
+              label: "Settings",
+            },
+          ]
           : [
-              {
-                key: "/plugins/settings",
-                icon: <SettingOutlined style={{ fontSize: 24 }} />,
-                label: "Settings",
-              },
-              ...pluginItem.filter((item) => !!getConfigured(item.name || "")),
-            ],
+            {
+              key: "/plugins/settings",
+              icon: <SettingOutlined style={{ fontSize: 24 }} />,
+              label: "Settings",
+            },
+            ...pluginItem.filter((item) => !!getConfigured(item.name || "")),
+          ],
     },
   ];
 
