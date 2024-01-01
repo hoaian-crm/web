@@ -5,20 +5,22 @@ import { fetchCustomers } from "./actions";
 import { FetchStatus } from "type/api.d";
 
 type State = {
-  fetch: {
+  customers: {
     limit: number;
     offset: number;
     result: FetchCustomerResponse;
     status: FetchStatus;
+    total: number;
   };
 };
 
 const initialState: State = {
-  fetch: {
+  customers: {
     limit: 0,
     offset: 0,
     result: [],
     status: FetchStatus.NoAction,
+    total: 0,
   },
 };
 
@@ -31,10 +33,11 @@ const slice = createSlice({
     builder.addCase(
       fetchCustomers.fulfilled,
       (state, action: PayloadAction<Response<FetchCustomerResponse>>) => {
-        state.fetch.result = action.payload.data.result;
-        state.fetch.limit = action.payload.data.limit;
-        state.fetch.offset = action.payload.data.offset;
-        state.fetch.status = FetchStatus.Success;
+        state.customers.result = action.payload.data.result;
+        state.customers.limit = action.payload.data.limit;
+        state.customers.offset = action.payload.data.offset;
+        state.customers.status = FetchStatus.Success;
+        state.customers.total = action.payload.data.total;
       }
     );
   },

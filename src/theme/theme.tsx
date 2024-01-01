@@ -2,13 +2,8 @@ import { ThemeConfig } from "antd";
 
 export const theme: ThemeConfig = {
   token: {
-    colorPrimary: "#00adb5",
-    colorInfo: "#00adb5",
-    colorError: "#ef416d",
-    colorSuccess: "#52c41a",
-    colorBgBase: "#222831",
-    colorTextBase: "#eeeeee",
-    boxShadow: 'none'
+    "colorPrimary": "#5932ea",
+    "colorInfo": "#5932ea"
   },
   components: {
     Layout: {
@@ -23,6 +18,9 @@ export const theme: ThemeConfig = {
     Table: {
       rowSelectedBg: "#347ccb5e",
       rowSelectedHoverBg: "#347ccb5e"
+    },
+    Input: {
+
     }
   },
 };

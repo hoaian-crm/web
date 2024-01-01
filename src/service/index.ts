@@ -18,8 +18,8 @@ export type Message = {
 
 export type Query<T> =
   | ({
-      limit?: string;
-      offset?: string;
+      limit?: string | number;
+      offset?: string | number;
       order?: string;
       direction?: string;
     } & T)

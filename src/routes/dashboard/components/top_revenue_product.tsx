@@ -34,7 +34,7 @@ export const TotalRevenueProduct = () => {
         <Line
           style={{
             borderRadius: token.borderRadius,
-            boxShadow: token.boxShadow,
+            // boxShadow: token.boxShadow,
             backgroundColor: token.colorBgContainer,
             height: "100%",
           }}
