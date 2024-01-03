@@ -1,10 +1,10 @@
 import { ApiCaller, api, apiPromiseHandler } from "service";
-import { Address } from "type/address";
+import { IAddress } from "type/address";
 
 export type SearchAddress = {
   input: string;
 }
-export type SearchAddressResponse = Array<Address>
+export type SearchAddressResponse = Array<IAddress>
 
 namespace AddressService {
   export const searchAddress: ApiCaller<SearchAddressResponse> = (query: SearchAddress) => {

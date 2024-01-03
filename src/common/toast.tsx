@@ -100,4 +100,8 @@ export const ToastMessages: {
     content: "$field cannot be empty",
     type: ToastType.error,
   },
+  23505: {
+    content: "$field already exists",
+    type: ToastType.error
+  }
 };

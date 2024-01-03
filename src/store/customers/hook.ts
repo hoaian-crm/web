@@ -1,6 +1,6 @@
-import { CustomerQuery } from "service/customer";
+import { CreateCustomerBody, CustomerQuery } from "service/customer";
 import { useAppDispatch, useAppSelector } from "store";
-import { fetchCustomers } from "./actions";
+import { createCustomer, fetchCustomers } from "./actions";
 
 export const useCustomers = () => {
   const state = useAppSelector((state) => state.customerReducer);
@@ -10,8 +10,8 @@ export const useCustomers = () => {
     return dispatch(fetchCustomers(query));
   };
 
-  const create = () => {
-    throw new Error("handle latter");
+  const create = async (data: CreateCustomerBody) => {
+    return dispatch(createCustomer(data));
   };
 
   return {

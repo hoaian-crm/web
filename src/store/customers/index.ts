@@ -1,8 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Response } from "service";
-import { FetchCustomerResponse } from "service/customer";
-import { fetchCustomers } from "./actions";
+import {
+  CreateCustomerResponse,
+  FetchCustomerResponse,
+} from "service/customer";
+import { createCustomer, fetchCustomers } from "./actions";
 import { FetchStatus } from "type/api.d";
+import { ICustomer } from "type/customer";
+import { CreateCustomerForm } from "routes/customer/components/form";
+import { errorHandler } from "common/error";
 
 type State = {
   customers: {
@@ -11,6 +17,10 @@ type State = {
     result: FetchCustomerResponse;
     status: FetchStatus;
     total: number;
+  };
+  createCustomer: {
+    data?: ICustomer;
+    status: FetchStatus;
   };
 };
 
@@ -22,6 +32,10 @@ const initialState: State = {
     status: FetchStatus.NoAction,
     total: 0,
   },
+  createCustomer: {
+    data: undefined,
+    status: FetchStatus.NoAction,
+  },
 };
 
 const slice = createSlice({
@@ -29,7 +43,7 @@ const slice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Async method
+    // Fetch customers
     builder.addCase(
       fetchCustomers.fulfilled,
       (state, action: PayloadAction<Response<FetchCustomerResponse>>) => {
@@ -40,6 +54,21 @@ const slice = createSlice({
         state.customers.total = action.payload.data.total;
       }
     );
+
+    // Create customers
+    builder.addCase(
+      createCustomer.fulfilled,
+      (state, action: PayloadAction<Response<CreateCustomerResponse>>) => {
+        state.createCustomer.data = action.payload.data.result;
+        state.createCustomer.status = FetchStatus.Success;
+      }
+    );
+    builder.addCase(createCustomer.pending, (state) => {
+      state.createCustomer.status = FetchStatus.Loading;
+    });
+    builder.addCase(createCustomer.rejected, (state, action: any) => {
+      state.createCustomer.status = errorHandler(action);
+    });
   },
 });
 

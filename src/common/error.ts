@@ -6,7 +6,6 @@ import { showToastMessage } from "./toast";
 export const errorHandler = <T>(
   action: PayloadAction<ErrorResponse>
 ): FetchStatus => {
-  console.log('action is: ', action)
   if (action.payload?.status === 403) {
     return FetchStatus.PermissionDenied;
   }

@@ -1,9 +1,11 @@
-import { Col, Table, theme } from "antd";
+import { Col, Table, Typography, theme } from "antd";
 import React, { useEffect } from "react";
 import { useCustomers } from "store/customers/hook";
 import { FetchStatus } from "type/api.d";
 import { ICustomer } from "type/customer";
 import { TableHeader } from "./table_header";
+import moment from "moment";
+import { CustomerAction } from "./action";
 
 export const Customers = () => {
   const { fetch, customers } = useCustomers();
@@ -48,13 +50,26 @@ export const Customers = () => {
             key: "phone",
             dataIndex: "phone",
             title: "Phone number",
+            render: (value, record) => (record.extension || "") + " " + value
           },
           {
             key: "age",
-            dataIndex: "age",
+            dataIndex: "dob",
             title: "Age",
             sorter: true,
+            render: (value) => value && moment().diff(value, 'year')
           },
+          {
+            key: "address",
+            dataIndex: "address",
+            title: "Address",
+            render: (value) => value?.metadata?.name || ""
+          },
+          {
+            key: "action",
+            title: "Actions",
+            render: (_, record) => <CustomerAction data={record} />
+          }
         ]}
         rowSelection={{}}
       />
