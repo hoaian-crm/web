@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { addressReducer } from "./address";
 import { authReducer } from "./auth/state";
+import { customerReducer } from "./customers";
 import { mailReducer } from "./mail/index";
 import { modalReducer } from "./modal/index";
 import { permissionReducer } from "./permissions/index";
@@ -8,7 +10,6 @@ import { pluginReducer } from "./plugins/index";
 import { roleReducer } from "./roles/index";
 import { saleReducer } from "./sale";
 import { userReducer } from "./users/user";
-import { customerReducer } from "./customers";
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     mailReducer,
     saleReducer,
     customerReducer,
+    addressReducer
   },
 });
 
