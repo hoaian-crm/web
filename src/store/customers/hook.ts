@@ -18,7 +18,8 @@ export const useCustomers = () => {
   };
 
   const create = async (data: CreateCustomerBody) => {
-    return dispatch(createCustomer(data));
+    await dispatch(createCustomer(data));
+    await dispatch(fetchCustomers(query))
   };
 
   const remove = async (data: DeleteCustomerBody) => {

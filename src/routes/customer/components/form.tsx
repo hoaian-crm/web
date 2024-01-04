@@ -1,22 +1,24 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Button, DatePicker, Form, Input, Modal, Select } from "antd";
+import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
 import { DebounceSelect } from "components/debounce_select";
 import React, { useEffect, useState } from "react";
 import { useAddress } from "store/address/hook";
 import { useCustomers } from "store/customers/hook";
 import { FetchStatus } from "type/FetchStatus";
 import { ICustomer } from "type/customer";
+import { faker } from '@faker-js/faker';
 
 export const CreateCustomerForm = () => {
   const [open, setOpen] = useState(false);
   const address = useAddress();
   const [form] = Form.useForm();
   const customer = useCustomers();
+  const [image, setImage] = useState<string>();
 
   const prefixSelector = (
-    <Form.Item name="extension" noStyle>
-      <Select style={{ width: 70 }} defaultActiveFirstOption>
-        <Select.Option value="+84">+84</Select.Option>
+    <Form.Item name="extension" noStyle initialValue={"+84"}>
+      <Select style={{ width: 100 }}>
+        <Select.Option value="+84">🇻🇳 +84 </Select.Option>
       </Select>
     </Form.Item>
   );
