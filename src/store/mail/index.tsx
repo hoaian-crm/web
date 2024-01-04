@@ -3,23 +3,23 @@ import { errorHandler } from "common/error";
 import { showToastMessage } from "common/toast";
 import { Response } from "service";
 import {
-  CreateMail,
-  CreateMailResponse,
-  CreateTemplate,
-  FetchMailResponse,
-  FetchTemplateResponse,
-  QueryMail,
-  QueryTemplate,
+    CreateMail,
+    CreateMailResponse,
+    CreateTemplate,
+    FetchMailResponse,
+    FetchTemplateResponse,
+    QueryMail,
+    QueryTemplate,
 } from "service/mail";
 import { useAppDispatch, useAppSelector } from "store";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IMail } from "type/email";
 import { ITemplate } from "type/template";
 import {
-  createMail,
-  createTemplate,
-  fetchMail,
-  fetchTemplate,
+    createMail,
+    createTemplate,
+    fetchMail,
+    fetchTemplate,
 } from "./acitons";
 
 export type MailState = {

@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { errorHandler } from "common/error";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IUser } from "type/user";
 import { activeUser, getProfile, login, register } from "./actions";
 

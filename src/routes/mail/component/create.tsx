@@ -3,7 +3,7 @@ import { Button, Form, Input, Modal, Typography } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import { useMail } from "store/mail";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IMail } from "type/email";
 
 export const CreateMail = () => {

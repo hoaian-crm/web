@@ -1,19 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "common/error";
 import { Response } from "service";
 import {
   CreateCustomerResponse,
-  FetchCustomerResponse,
+  FetchCustomerResponse
 } from "service/customer";
-import { createCustomer, fetchCustomers } from "./actions";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { ICustomer } from "type/customer";
-import { CreateCustomerForm } from "routes/customer/components/form";
-import { errorHandler } from "common/error";
+import { createCustomer, deleteCustomer, fetchCustomers } from "./actions";
 
 type State = {
   customers: {
-    limit: number;
-    offset: number;
     result: FetchCustomerResponse;
     status: FetchStatus;
     total: number;
@@ -22,12 +19,14 @@ type State = {
     data?: ICustomer;
     status: FetchStatus;
   };
+  deleteCustomer: {
+    status: FetchStatus;
+  };
+  selectedCustomer: Array<string | number>
 };
 
 const initialState: State = {
   customers: {
-    limit: 0,
-    offset: 0,
     result: [],
     status: FetchStatus.NoAction,
     total: 0,
@@ -36,26 +35,33 @@ const initialState: State = {
     data: undefined,
     status: FetchStatus.NoAction,
   },
+  deleteCustomer: {
+    status: FetchStatus.NoAction
+  },
+  selectedCustomer: [],
 };
 
 const slice = createSlice({
   name: "customer",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    selectCustomer: (state, action: PayloadAction<Array<string | number>>) => {
+      state.selectedCustomer = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     // Fetch customers
     builder.addCase(
       fetchCustomers.fulfilled,
       (state, action: PayloadAction<Response<FetchCustomerResponse>>) => {
         state.customers.result = action.payload.data.result;
-        state.customers.limit = action.payload.data.limit;
-        state.customers.offset = action.payload.data.offset;
         state.customers.status = FetchStatus.Success;
         state.customers.total = action.payload.data.total;
       }
     );
+    builder.addCase(fetchCustomers.pending, (state) => { state.customers.status = FetchStatus.Loading })
 
-    // Create customers
+    // Create customer
     builder.addCase(
       createCustomer.fulfilled,
       (state, action: PayloadAction<Response<CreateCustomerResponse>>) => {
@@ -69,7 +75,16 @@ const slice = createSlice({
     builder.addCase(createCustomer.rejected, (state, action: any) => {
       state.createCustomer.status = errorHandler(action);
     });
+
+    // Delete customers
+    builder.addCase(deleteCustomer.fulfilled, (state) => {
+      state.deleteCustomer.status = FetchStatus.Success
+    })
+    builder.addCase(deleteCustomer.pending, (state) => {
+      state.deleteCustomer.status = FetchStatus.Loading
+    })
   },
 });
 
 export const customerReducer = slice.reducer;
+export const { selectCustomer } = slice.actions;

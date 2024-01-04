@@ -2,7 +2,7 @@ import { Input, Row, Space, Typography } from "antd";
 import React, { useEffect } from "react";
 import { usePermission } from "store/permissions/hook";
 import { useRole } from "store/roles/hook";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { CreateRole } from "./components/create_role";
 import { PermissionDrawer } from "./components/permission_drawer";
 import { Roles } from "./components/roles";

@@ -1,6 +1,6 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, Layout } from "antd";
-import { PublicImages } from "common";
+import { Logo } from "common/logo";
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { LightTheme } from "theme";
@@ -16,18 +16,17 @@ const LayoutProvider = (props: LayoutProps) => {
   return (
     <ThemeProvider theme={LightTheme}>
       <Layout>
-        <Layout.Sider width={250} collapsed={collapsed} theme="light" breakpoint="xs" >
-          <img
-            src={PublicImages.MainLogo}
-            style={{
-              width: "100%",
-              paddingRight: 20,
-              paddingLeft: 20,
-              marginBottom: 30,
-              paddingTop: 10,
-            }}
-            alt=""
-          ></img>
+        <Layout.Sider
+          width={250}
+          collapsed={collapsed}
+          theme="light"
+          breakpoint="xs"
+        >
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
+            <Logo width={200} height={80} />
+          </div>
           <Navbar />
         </Layout.Sider>
         <Layout>
@@ -46,7 +45,9 @@ const LayoutProvider = (props: LayoutProps) => {
               suffix={<SearchOutlined />}
             />
           </Layout.Header>
-          <Layout.Content style={{ minHeight: "100vh" }}>{props.children}</Layout.Content>
+          <Layout.Content style={{ minHeight: "100vh" }}>
+            {props.children}
+          </Layout.Content>
         </Layout>
       </Layout>
     </ThemeProvider>

@@ -2,7 +2,7 @@ import { Space, Tabs, Typography } from "antd";
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useMail, useTemplate } from "store/mail";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { ResultTable } from "./component/result_table";
 import { Templates } from "./component/templates";
 

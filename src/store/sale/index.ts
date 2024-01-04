@@ -1,17 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Response } from "service";
 import { TotalRevenueProductResponse } from "service/sale";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import {
-  GeneralStatisticResponse,
-  TopProductSaleResponse,
-  TotalRevenueResponse,
+    GeneralStatisticResponse,
+    TopProductSaleResponse,
+    TotalRevenueResponse,
 } from "./../../service/sale";
 import {
-  getGeneralStatistic,
-  getTopProductSale,
-  getTotalRevenue,
-  getTotalRevenueProduct,
+    getGeneralStatistic,
+    getTopProductSale,
+    getTotalRevenue,
+    getTotalRevenueProduct,
 } from "./action";
 
 type State = {

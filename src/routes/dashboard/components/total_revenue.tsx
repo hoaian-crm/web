@@ -2,7 +2,7 @@ import { theme } from "antd";
 import React, { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSale } from "store/sale/hook";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 
 export const TotalRevenue = () => {
   const { getTotalRevenue, totalRevenue } = useSale();

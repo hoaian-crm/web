@@ -16,8 +16,7 @@ export type Message = {
   meta_data: any;
 };
 
-export type Query<T> =
-  | ({
+export type Query<T> = ({
       limit?: string | number;
       offset?: string | number;
       order?: string;
@@ -71,7 +70,7 @@ export const apiPromiseHandler = <T>(
   });
 };
 
-export type ApiCaller<T> = (...params: any[]) => Promise<Response<T>>;
+export type ApiCaller<T = undefined> = (...params: any[]) => Promise<Response<T>>;
 
 export const UnknownMessage: Message = {
   code: 0,

@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icons } from "common";
 import React from "react";
-import { FetchStatus } from "type/api.d";
 import styled from "styled-components";
-import { Text } from "./text";
 import { Colors } from "theme/color";
+import { Text } from "./text";
 
 enum PermissionValidateType {
   Hidden,

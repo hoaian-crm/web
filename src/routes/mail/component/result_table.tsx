@@ -6,7 +6,7 @@ import { timeAgo } from "index";
 import React, { useState } from "react";
 import { useMail } from "store/mail";
 import styled from "styled-components";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IMail } from "type/email";
 import { SendMail } from "./send_mail";
 

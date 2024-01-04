@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { ErrorResponse } from "react-router-dom";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { showToastMessage } from "./toast";
 
 export const errorHandler = <T>(

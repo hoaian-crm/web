@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { errorHandler } from "common/error";
 import { Response } from "service";
 import { GetPermissionsResponse } from "service/permission";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IPermission } from "type/permission";
 import { fetchPermission } from "./action";
 

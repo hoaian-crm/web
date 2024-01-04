@@ -6,18 +6,18 @@ import { useAppDispatch, useAppSelector } from "store";
 import { login } from "store/auth/actions";
 import { ThemeProvider } from "styled-components";
 import { LightTheme } from "theme";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { Container } from "./components/container";
 import {
-  Header,
-  Left,
-  LoginForm,
-  LoginInput,
-  Register,
-  SubmitButton,
-  SubmitButtonLabel,
-  Subtitle,
-  Title,
+    Header,
+    Left,
+    LoginForm,
+    LoginInput,
+    Register,
+    SubmitButton,
+    SubmitButtonLabel,
+    Subtitle,
+    Title,
 } from "./components/left";
 import { CoverImage, Right } from "./components/right";
 

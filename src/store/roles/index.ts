@@ -2,22 +2,22 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { errorHandler } from "common/error";
 import { showToastMessage } from "common/toast";
 import {
-  AttachPermissionResponse,
-  DetachPermissionResponse,
-  ListRoleResponse,
-  UpdateRoleResponse,
+    AttachPermissionResponse,
+    DetachPermissionResponse,
+    ListRoleResponse,
+    UpdateRoleResponse,
 } from "service/role";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IRole } from "type/role";
 import { Response } from "./../../service/index";
 import { CreateRoleResponse } from "./../../service/role";
 import {
-  attachPermission,
-  createRole,
-  deleteRole,
-  detachPermission,
-  fetchRole,
-  updateRole,
+    attachPermission,
+    createRole,
+    deleteRole,
+    detachPermission,
+    fetchRole,
+    updateRole,
 } from "./action";
 
 export enum FetchRoleStatus {

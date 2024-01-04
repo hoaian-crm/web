@@ -1,13 +1,13 @@
+import _ from "lodash";
 import React from "react";
 import styled, { ThemeProvider, useTheme } from "styled-components";
 import { TableTheme, Theme } from "theme";
+import { Colors } from "theme/color";
+import { FetchStatus } from "type/FetchStatus";
+import { Fetch } from "./fetch";
+import { Pagination, PaginationProps } from "./pagination";
 import Cells, { CellTypes } from "./table_cell";
 import { Text } from "./text";
-import { Pagination, PaginationProps } from "./pagination";
-import _ from "lodash";
-import { FetchStatus } from "type/api";
-import { Fetch } from "./fetch";
-import { Colors } from "theme/color";
 
 type TableRecord = Record<string, any>;
 

@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Response } from "service";
 import { SearchAddressResponse } from "service/address";
+import { FetchStatus } from "type/FetchStatus";
 import { IAddress } from "type/address";
-import { FetchStatus } from "type/api.d";
 import { searchAddress } from "./action";
 
 type State = {

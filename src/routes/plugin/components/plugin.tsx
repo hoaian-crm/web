@@ -1,11 +1,11 @@
 import { CheckCircleFilled } from "@ant-design/icons";
-import { Card, FormInstance, Modal, Typography } from "antd";
+import { Card, Modal, Typography } from "antd";
 import { capitalizeFirstLetter } from "common/utils";
 import React, { useState } from "react";
 import { usePlugin } from "store/plugins";
 import styled from "styled-components";
 import { Colors } from "theme/color";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IPlugin } from "type/plugin";
 
 type PluginProps = {

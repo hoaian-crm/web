@@ -5,11 +5,3 @@ export type TQuery = {
   order: string;
   direction: string;
 };
-
-export enum FetchStatus {
-  NoAction,
-  Loading,
-  Success,
-  Failed,
-  PermissionDenied,
-}

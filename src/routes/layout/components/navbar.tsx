@@ -1,18 +1,18 @@
 import {
-  AppstoreOutlined,
-  ContactsOutlined,
-  DashboardOutlined,
-  LockOutlined,
-  MailOutlined,
-  SettingOutlined,
-  SkypeOutlined,
-  UserOutlined,
+    AppstoreOutlined,
+    ContactsOutlined,
+    DashboardOutlined,
+    LockOutlined,
+    MailOutlined,
+    SettingOutlined,
+    SkypeOutlined,
+    UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { usePlugin } from "store/plugins";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { INavItem } from "type/nav_item";
 
 export const Navbar = () => {

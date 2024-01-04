@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import CustomerService, { CreateCustomerBody, CustomerQuery } from "service/customer";
+import CustomerService, { CreateCustomerBody, CustomerQuery, DeleteCustomerBody } from "service/customer";
 
 export const fetchCustomers = createAsyncThunk(
   "customers/fetch",
@@ -10,4 +10,8 @@ export const fetchCustomers = createAsyncThunk(
 
 export const createCustomer = createAsyncThunk("customers/create", (data: CreateCustomerBody, {rejectWithValue}) => {
   return CustomerService.createCustomer(data).catch(rejectWithValue)
+})
+
+export const deleteCustomer = createAsyncThunk("customers/delete", (data: DeleteCustomerBody, { rejectWithValue }) => {
+  return CustomerService.deleteCustomers(data).catch(rejectWithValue)
 })

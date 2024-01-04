@@ -2,7 +2,7 @@ import { Row } from "antd";
 import moment from "moment";
 import React, { useEffect } from "react";
 import { useSale } from "store/sale/hook";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 
 export const GeneralStatistic = () => {
   const { generalStatistic, getGeneralStatistic } = useSale();

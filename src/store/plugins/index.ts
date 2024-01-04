@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { showToastMessage } from "common/toast";
 import { Response } from "service";
 import {
   CreatePlugin,
@@ -8,7 +7,7 @@ import {
   PluginQuery,
 } from "service/plugin";
 import { useAppDispatch, useAppSelector } from "store";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IPlugin } from "type/plugin";
 import { createPlugin, fetchPlugin } from "./action";
 
@@ -49,7 +48,6 @@ const slice = createSlice({
       fetchPlugin.rejected,
       (state, action: PayloadAction<any>) => {
         state.status = FetchStatus.Failed;
-        showToastMessage(action.payload.messages);
       }
     );
     builder.addCase(fetchPlugin.pending, (state, _) => {

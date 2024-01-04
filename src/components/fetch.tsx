@@ -1,7 +1,7 @@
-import React, { HTMLAttributes, HtmlHTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
+import { FetchStatus } from "type/FetchStatus";
 import { Loading } from "./loadding";
 import { PermissionValidate } from "./permission_validate";
-import { FetchStatus } from "type/api.d";
 
 export type FetchProps = {
   children?: React.ReactNode;

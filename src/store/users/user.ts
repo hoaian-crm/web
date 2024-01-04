@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { errorHandler } from "common/error";
 import { Response } from "service";
 import { ListUserResponse } from "service/user";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { IUser } from "type/user";
 import { listUsers, searchUsers } from "./action";
 

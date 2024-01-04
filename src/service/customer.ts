@@ -13,6 +13,12 @@ export type CreateCustomerResponse = ICustomer;
 export type UpdateCustomerBody = ICustomer;
 export type UpdateCustomerResponse = ICustomer;
 
+
+// Delete
+export type DeleteCustomerBody = {
+  ids: Array<number|string>
+}
+
 namespace CustomerService {
   export const getCustomer: ApiCaller<FetchCustomerResponse> = (
     query: CustomerQuery
@@ -25,6 +31,10 @@ namespace CustomerService {
   ) => {
     return apiPromiseHandler(api.post("/customers", data));
   };
+
+  export const deleteCustomers: ApiCaller = (data: DeleteCustomerBody) => {
+    return apiPromiseHandler(api.delete('/customers', {data}))
+  }
 }
 
 export default CustomerService;

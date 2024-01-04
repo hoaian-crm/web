@@ -1,21 +1,19 @@
-import { Col, Table, Typography, theme } from "antd";
+import { Col, Table, theme } from "antd";
+import moment from "moment";
 import React, { useEffect } from "react";
 import { useCustomers } from "store/customers/hook";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 import { ICustomer } from "type/customer";
-import { TableHeader } from "./table_header";
-import moment from "moment";
 import { CustomerAction } from "./action";
+import { TableHeader } from "./table_header";
 
 export const Customers = () => {
-  const { fetch, customers } = useCustomers();
+  const { fetch, customers, query, setQuery, select } = useCustomers();
   const { token } = theme.useToken();
 
   useEffect(() => {
-    if (customers.status === FetchStatus.NoAction) {
-      fetch({ limit: "30" });
-    }
-  }, []);
+    fetch(query);
+  }, [query]);
 
   return (
     <Col style={{ padding: token.padding }} span={24}>
@@ -25,11 +23,16 @@ export const Customers = () => {
         dataSource={customers.result}
         pagination={{
           total: customers.total,
-          pageSize: customers.limit || 30,
+          pageSize: +(query.limit || 30),
           onChange: (page, pageSize) => {
-            fetch({ offset: (page - 1) * pageSize, limit: pageSize });
+            setQuery({
+              ...query,
+              limit: pageSize.toString(),
+              offset: ((page - 1) * pageSize).toString(),
+            });
           },
         }}
+        rowKey="id"
         columns={[
           {
             key: "id",
@@ -50,28 +53,33 @@ export const Customers = () => {
             key: "phone",
             dataIndex: "phone",
             title: "Phone number",
-            render: (value, record) => (record.extension || "") + " " + value
+            render: (value, record) => (record.extension || "") + " " + value,
           },
           {
             key: "age",
             dataIndex: "dob",
             title: "Age",
             sorter: true,
-            render: (value) => value && moment().diff(value, 'year')
+            render: (value) => value && moment().diff(value, "year"),
           },
           {
             key: "address",
             dataIndex: "address",
             title: "Address",
-            render: (value) => value?.metadata?.name || ""
+            render: (value) => value?.metadata?.name || "",
           },
           {
             key: "action",
             title: "Actions",
-            render: (_, record) => <CustomerAction data={record} />
-          }
+            render: (_, record) => <CustomerAction data={record} />,
+          },
         ]}
-        rowSelection={{}}
+        rowSelection={{
+          onChange(selectedRowKeys) {
+            select(selectedRowKeys.map(key => key.toString()));
+          },
+        }}
+        loading={customers.status === FetchStatus.Loading}
       />
     </Col>
   );

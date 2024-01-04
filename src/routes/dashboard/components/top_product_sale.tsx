@@ -3,7 +3,7 @@ import { limitText } from "common/utils";
 import React, { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { useSale } from "store/sale/hook";
-import { FetchStatus } from "type/api.d";
+import { FetchStatus } from "type/FetchStatus";
 const { useToken } = theme;
 
 export const TopProductSale = () => {
