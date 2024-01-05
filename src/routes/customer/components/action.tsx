@@ -21,6 +21,6 @@ export const CustomerAction = ({ data }: { data: ICustomer }) => {
       {/* <Col>
         <Button icon={<MailOutlined />} type="primary" shape="circle" />
       </Col> */}
-    </Row>
-  );
+        </Row>
+    );
 };
