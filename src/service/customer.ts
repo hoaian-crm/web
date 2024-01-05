@@ -16,7 +16,7 @@ export type UpdateCustomerResponse = ICustomer;
 
 // Delete
 export type DeleteCustomerBody = {
-  ids: Array<number|string>
+  ids: Array<number | string>
 }
 
 namespace CustomerService {
@@ -33,7 +33,7 @@ namespace CustomerService {
   };
 
   export const deleteCustomers: ApiCaller = (data: DeleteCustomerBody) => {
-    return apiPromiseHandler(api.delete('/customers', {data}))
+    return apiPromiseHandler(api.delete('/customers', { data }))
   }
 }
 

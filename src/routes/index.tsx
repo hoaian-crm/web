@@ -2,16 +2,16 @@ import { PrivateRoute } from "components/private_route";
 import React from "react";
 import { createBrowserRouter, redirect } from "react-router-dom";
 import AuthService from "service/auth";
-import Dashboard from './dashboard';
+import Customer from "./customer";
+import { DetailCustomer } from "./customer/detail";
+import Dashboard from "./dashboard";
 import Login from "./login";
 import Mail from "./mail";
 import Plugin from "./plugin";
 import { Register } from "./register";
 import Role from "./role";
 import Users from "./users";
-import Customer from './customer';
 import { VerifyOtp } from "./verify_otp";
-
 
 const router = createBrowserRouter([
   {
@@ -32,15 +32,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/roles",
-    element: <PrivateRoute>
-      <Role />
-    </PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Role />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/customers",
-    element: <PrivateRoute>
-      <Customer />
-    </PrivateRoute>
+    element: (
+      <PrivateRoute>
+        <Customer />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "customers/:customerId",
+    element: <DetailCustomer />,
   },
   {
     path: "/plugins",

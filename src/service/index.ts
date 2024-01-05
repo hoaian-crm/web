@@ -17,11 +17,11 @@ export type Message = {
 };
 
 export type Query<T> = ({
-      limit?: string | number;
-      offset?: string | number;
-      order?: string;
-      direction?: string;
-    } & T)
+  limit?: string | number;
+  offset?: string | number;
+  order?: string;
+  direction?: string;
+} & T)
   | URLSearchParams;
 
 export type Response<T> = {

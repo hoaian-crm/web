@@ -9,7 +9,7 @@ import {
   PointElement,
   Title,
   Tooltip,
-  BarElement 
+  BarElement
 } from 'chart.js';
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -24,6 +24,7 @@ import { store } from "store";
 import { theme } from "theme/theme";
 import "./index.scss";
 import router from "./routes";
+
 
 const domNode = document.getElementById("root")!;
 

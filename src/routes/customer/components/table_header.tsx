@@ -1,5 +1,4 @@
 import { Col, Input, Row, Typography } from "antd";
-import { debounce } from "lodash";
 import React from "react";
 import { useCustomers } from "store/customers/hook";
 import { DeleteCustomer } from "./delete";
@@ -40,15 +39,10 @@ export const TableHeader = () => {
             <Input.Search
               placeholder="Search customers"
               type="primary"
-              onChange={debounce(
-                (value) =>
-                  setQuery({
-                    ...query,
-                    keyword: value.target.value,
-                    offset: "0",
-                  }),
-                1000
-              )}
+              onSearch={(e) => setQuery({
+                ...query,
+                keyword: e
+              })}
             />
           </Col>
         </Row>
