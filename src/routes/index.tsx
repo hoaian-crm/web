@@ -12,6 +12,7 @@ import { Register } from "./register";
 import Role from "./role";
 import Users from "./users";
 import { VerifyOtp } from "./verify_otp";
+import Product from './product';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
         <Customer />
       </PrivateRoute>
     ),
+  },
+  {
+    path: "/product",
+    element: (
+      <PrivateRoute>
+        <Product />
+      </PrivateRoute>
+    )
   },
   {
     path: "customers/:customerId",
