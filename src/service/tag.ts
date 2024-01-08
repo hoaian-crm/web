@@ -1,5 +1,5 @@
 import { ApiCaller, api, apiPromiseHandler } from "service";
-import { ITag } from "type/tag";
+import { IResourceTag, ITag } from "type/tag";
 
 export type GetTagResponse = Array<ITag>;
 
@@ -14,8 +14,9 @@ export type AttachTagBody = {
   key: string;
   value: string;
   resource: string;
-  resource_id: string;
+  resource_id: string | number;
 };
+export type AttachTagResponse = IResourceTag
 
 namespace TagService {
   export const getTag: ApiCaller<GetTagResponse> = () => {
@@ -28,7 +29,7 @@ namespace TagService {
     return apiPromiseHandler(api.post("/tags", data));
   };
 
-  export const attachTag: ApiCaller<AttachTagBody> = (data: AttachTagBody) => {
+  export const attachTag: ApiCaller<AttachTagResponse> = (data: AttachTagBody) => {
     return apiPromiseHandler(api.post("/tags/attach", data));
   };
 }

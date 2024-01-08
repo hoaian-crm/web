@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import TagService, { CreateTagBody } from "service/tag";
+import TagService, { AttachTagBody, CreateTagBody } from "service/tag";
 
 export const createTag = createAsyncThunk(
   "tags/create",
@@ -11,3 +11,7 @@ export const createTag = createAsyncThunk(
 export const getTag = createAsyncThunk("tag/get", (_, { rejectWithValue }) => {
   return TagService.getTag().catch(rejectWithValue);
 });
+
+export const attachTag = createAsyncThunk("tag/attach", (data: AttachTagBody, { rejectWithValue }) => {
+  return TagService.attachTag(data).catch(rejectWithValue)
+})

@@ -3,13 +3,16 @@ import { Button, Col, Popconfirm, Row } from "antd";
 import { TagInput } from "components/tag_input";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTags } from "store/tag/hook";
 import { ICustomer } from "type/customer";
 
 export const CustomerAction = ({ data }: { data: ICustomer }) => {
   const navigate = useNavigate();
-  const [tag, setTag] = useState({});
-
-  const onAttachTag = () => {};
+  const [tag, setTag] = useState({
+    key: "",
+    value: "",
+  });
+  const tags = useTags();
 
   return (
     <Row gutter={[5, 0]}>
@@ -37,7 +40,11 @@ export const CustomerAction = ({ data }: { data: ICustomer }) => {
             />
           }
           onConfirm={() => {
-            console.log("submit: value", tag);
+            tags.attachTag({
+              ...tag,
+              resource: "customers",
+              resource_id: data.id.toString(),
+            });
           }}
         >
           <Button

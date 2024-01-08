@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { errorHandler } from "common/error";
+import { Response } from "service";
+import { AttachTagResponse, CreateTagResponse, GetTagResponse } from "service/tag";
 import { FetchStatus } from "type/FetchStatus";
 import { IResourceTag, ITag } from "type/tag";
-import { createTag, getTag } from "./action";
-import { CreateTagResponse, GetTagResponse } from "service/tag";
-import { Response } from "service";
-import { errorHandler } from "common/error";
+import { attachTag, createTag, getTag } from "./action";
 
 type State = {
   fetch: {
@@ -15,6 +15,10 @@ type State = {
     result?: ITag;
     status: FetchStatus;
   };
+  attach: {
+    result?: IResourceTag;
+    status: FetchStatus;
+  }
 };
 
 const initialState: State = {
@@ -25,6 +29,9 @@ const initialState: State = {
   create: {
     status: FetchStatus.NoAction,
   },
+  attach: {
+    status: FetchStatus.NoAction,
+  }
 };
 
 const slice = createSlice({
@@ -59,6 +66,12 @@ const slice = createSlice({
       state.create.status = FetchStatus.Failed;
       errorHandler(action);
     });
+
+    // Attach tag
+    builder.addCase(attachTag.fulfilled, (state, action: PayloadAction<Response<AttachTagResponse>>) => {
+      state.attach.status = FetchStatus.Success;
+      state.attach.result = action.payload.data.result;
+    })
   },
 });
 

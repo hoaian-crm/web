@@ -76,7 +76,7 @@ export const Customers = () => {
         ]}
         rowSelection={{
           onChange(selectedRowKeys) {
-            select(selectedRowKeys.map(key => key.toString()));
+            select(selectedRowKeys.map((key) => key.toString()));
           },
         }}
         loading={customers.status === FetchStatus.Loading}

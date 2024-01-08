@@ -1,9 +1,11 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, Layout } from "antd";
 import { Logo } from "common/logo";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useTags } from "store/tag/hook";
 import { ThemeProvider } from "styled-components";
 import { LightTheme } from "theme";
+import { FetchStatus } from "type/FetchStatus";
 import { Navbar } from "./components/navbar";
 
 export type LayoutProps = {
@@ -12,6 +14,13 @@ export type LayoutProps = {
 
 const LayoutProvider = (props: LayoutProps) => {
   const [collapsed, setCollapsed] = useState(false);
+  const tags = useTags();
+
+  useEffect(() => {
+    if (tags.fetch.status === FetchStatus.NoAction) {
+      tags.fetchTag();
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={LightTheme}>

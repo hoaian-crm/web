@@ -1,18 +1,12 @@
+import { AttachTagBody, CreateTagBody } from "service/tag";
 import { useAppDispatch, useAppSelector } from "store";
-import { createTag, getTag } from "./action";
-import { useEffect, useMemo } from "react";
-import { FetchStatus } from "type/FetchStatus";
-import { CreateTagBody } from "service/tag";
+import { attachTag, createTag, getTag } from "./action";
 
 export const useTags = () => {
   const state = useAppSelector((state) => state.tagReducer);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (state.fetch.status === FetchStatus.NoAction) {
-      dispatch(getTag());
-    }
-  }, []);
+
 
   const _fetchTag = async () => {
     dispatch(getTag());
@@ -23,9 +17,14 @@ export const useTags = () => {
     _fetchTag();
   };
 
+  const _attachTag = async (data: AttachTagBody) => {
+    await dispatch(attachTag(data));
+  }
+
   return {
     ...state,
     createTag: _createTag,
     fetchTag: _fetchTag,
+    attachTag: _attachTag
   };
 };

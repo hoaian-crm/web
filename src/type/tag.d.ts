@@ -10,6 +10,6 @@ export type IResourceTag = {
   key: string;
   value: string;
   resource: string;
-  resource_id: string;
+  resource_id: string | number;
   tag: ITag;
 };
