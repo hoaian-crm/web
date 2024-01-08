@@ -1,14 +1,8 @@
-import { MailFilled, MailOutlined, MailTwoTone, ManOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, Card, Col, DatePicker, Divider, Form, Input, Row, Select, Space, Statistic, Typography } from 'antd';
-import { DebounceSelect } from 'components/debounce_select';
-import { isEqual } from 'lodash';
+import { Col, Form, Row, Select } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
-import { useActionData } from 'react-router-dom';
 import { useAddress } from 'store/address/hook';
-import { FetchStatus } from 'type/FetchStatus';
 import { InformationCard } from './components/information_card';
-import { ICustomer } from 'type/customer';
 
 const data: any = {
   "id": "10324",

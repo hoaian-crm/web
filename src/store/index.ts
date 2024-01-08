@@ -10,6 +10,7 @@ import { pluginReducer } from "./plugins/index";
 import { roleReducer } from "./roles/index";
 import { saleReducer } from "./sale";
 import { userReducer } from "./users/user";
+import { tagReducer } from "./tag";
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +23,8 @@ export const store = configureStore({
     mailReducer,
     saleReducer,
     customerReducer,
-    addressReducer
+    addressReducer,
+    tagReducer
   },
 });
 
