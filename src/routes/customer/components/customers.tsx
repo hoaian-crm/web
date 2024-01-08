@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 import { useCustomers } from "store/customers/hook";
 import { FetchStatus } from "type/FetchStatus";
 import { ICustomer } from "type/customer";
-import { CustomerAction } from "./action";
 import { TableHeader } from "./table_header";
 
 export const Customers = () => {
@@ -75,11 +74,11 @@ export const Customers = () => {
             title: "Tag",
             render: (value) => <Tags data={value} />,
           },
-          {
-            key: "action",
-            title: "Actions",
-            render: (_, record) => <CustomerAction data={record} />,
-          },
+          // {
+          //   key: "action",
+          //   title: "Actions",
+          //   render: (_, record) => <CustomerAction data={record} />,
+          // },
         ]}
         rowSelection={{
           onChange(selectedRowKeys) {
