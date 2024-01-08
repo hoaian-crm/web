@@ -1,4 +1,5 @@
 import { Col, Table, theme } from "antd";
+import { Tags } from "components/tags";
 import moment from "moment";
 import React, { useEffect } from "react";
 import { useCustomers } from "store/customers/hook";
@@ -67,6 +68,12 @@ export const Customers = () => {
             dataIndex: "address",
             title: "Address",
             render: (value) => value?.metadata?.name || "",
+          },
+          {
+            key: "tags",
+            dataIndex: "tags",
+            title: "Tag",
+            render: (value) => <Tags data={value} />,
           },
           {
             key: "action",

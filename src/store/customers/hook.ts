@@ -17,6 +17,10 @@ export const useCustomers = () => {
     return dispatch(fetchCustomers(query));
   };
 
+  const reload = () => {
+    return dispatch(fetchCustomers(query))
+  }
+
   const getDetail = (param: GetCustomerParam) => {
     return dispatch(getCustomer(param))
   }
@@ -52,6 +56,7 @@ export const useCustomers = () => {
     setQuery,
     select,
     removeSelected,
-    getDetail
+    getDetail,
+    reload
   };
 };
