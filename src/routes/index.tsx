@@ -48,7 +48,9 @@ const router = createBrowserRouter([
   },
   {
     path: "customers/:customerId",
-    element: <DetailCustomer />,
+    element: <PrivateRoute>
+      <DetailCustomer />
+    </PrivateRoute>
   },
   {
     path: "/plugins",

@@ -5,6 +5,10 @@ import { ICustomer } from "type/customer";
 export type CustomerQuery = Query<{ keyword?: string }>;
 export type FetchCustomerResponse = Array<ICustomer>;
 
+// Get Detail
+export type GetCustomerParam = { customerId: string; };
+export type GetCustomerResponse = ICustomer;
+
 // Create
 export type CreateCustomerBody = ICustomer;
 export type CreateCustomerResponse = ICustomer;
@@ -20,11 +24,16 @@ export type DeleteCustomerBody = {
 }
 
 namespace CustomerService {
-  export const getCustomer: ApiCaller<FetchCustomerResponse> = (
+
+  export const fetchCustomer: ApiCaller<FetchCustomerResponse> = (
     query: CustomerQuery
   ) => {
     return apiPromiseHandler(api.get("/customers", { params: query }));
   };
+
+  export const getCustomer: ApiCaller<GetCustomerResponse> = (param: GetCustomerParam) => {
+    return apiPromiseHandler(api.get(`/customers/${param.customerId}`));
+  }
 
   export const createCustomer: ApiCaller<CreateCustomerResponse> = (
     data: CreateCustomerBody
@@ -35,6 +44,7 @@ namespace CustomerService {
   export const deleteCustomers: ApiCaller = (data: DeleteCustomerBody) => {
     return apiPromiseHandler(api.delete('/customers', { data }))
   }
+
 }
 
 export default CustomerService;

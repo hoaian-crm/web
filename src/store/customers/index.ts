@@ -3,11 +3,12 @@ import { errorHandler } from "common/error";
 import { Response } from "service";
 import {
   CreateCustomerResponse,
-  FetchCustomerResponse
+  FetchCustomerResponse,
+  GetCustomerResponse
 } from "service/customer";
 import { FetchStatus } from "type/FetchStatus";
 import { ICustomer } from "type/customer";
-import { createCustomer, deleteCustomer, fetchCustomers } from "./actions";
+import { createCustomer, deleteCustomer, fetchCustomers, getCustomer } from "./actions";
 
 type State = {
   customers: {
@@ -22,7 +23,11 @@ type State = {
   deleteCustomer: {
     status: FetchStatus;
   };
-  selectedCustomer: Array<string | number>
+  selectedCustomer: Array<string | number>,
+  customerDetail: {
+    data?: ICustomer
+    status: FetchStatus;
+  };
 };
 
 const initialState: State = {
@@ -39,6 +44,9 @@ const initialState: State = {
     status: FetchStatus.NoAction
   },
   selectedCustomer: [],
+  customerDetail: {
+    status: FetchStatus.NoAction
+  }
 };
 
 const slice = createSlice({
@@ -60,6 +68,12 @@ const slice = createSlice({
       }
     );
     builder.addCase(fetchCustomers.pending, (state) => { state.customers.status = FetchStatus.Loading })
+
+    // Get customer
+    builder.addCase(getCustomer.fulfilled, (state, action: PayloadAction<Response<GetCustomerResponse>>) => {
+      state.customerDetail.data = action.payload.data.result;
+      state.customerDetail.status = FetchStatus.Success;
+    })
 
     // Create customer
     builder.addCase(

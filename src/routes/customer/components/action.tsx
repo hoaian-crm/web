@@ -1,6 +1,5 @@
-
-import { EditOutlined, MailOutlined, TagOutlined } from "@ant-design/icons";
-import { Button, Col, Popconfirm, Popover, Row } from "antd";
+import { EditOutlined, TagOutlined } from "@ant-design/icons";
+import { Button, Col, Popconfirm, Row } from "antd";
 import { TagInput } from "components/tag_input";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +9,7 @@ export const CustomerAction = ({ data }: { data: ICustomer }) => {
   const navigate = useNavigate();
   const [tag, setTag] = useState({});
 
-  const onAttachTag = () => {
-
-  }
+  const onAttachTag = () => {};
 
   return (
     <Row gutter={[5, 0]}>
@@ -27,15 +24,28 @@ export const CustomerAction = ({ data }: { data: ICustomer }) => {
       </Col>
       <Col>
         <Popconfirm
-          title="Assign Tag" trigger="click" okType="primary"
+          title="Assign Tag"
+          trigger="click"
+          okType="primary"
           icon={null}
           okText="Assign"
           description={
-            <TagInput onChange={(value) => { setTag(value) }} />
+            <TagInput
+              onChange={(value) => {
+                setTag(value);
+              }}
+            />
           }
-          onConfirm={() => { console.log("submit: value", tag) }}
+          onConfirm={() => {
+            console.log("submit: value", tag);
+          }}
         >
-          <Button size="small" icon={<TagOutlined />} type="primary" shape="circle" />
+          <Button
+            size="small"
+            icon={<TagOutlined />}
+            type="primary"
+            shape="circle"
+          />
         </Popconfirm>
       </Col>
     </Row>
