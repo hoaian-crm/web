@@ -1,12 +1,13 @@
 import {
-    AppstoreOutlined,
-    ContactsOutlined,
-    DashboardOutlined,
-    LockOutlined,
-    MailOutlined,
-    SettingOutlined,
-    SkypeOutlined,
-    UserOutlined,
+  AppstoreOutlined,
+  ContactsOutlined,
+  DashboardOutlined,
+  LockOutlined,
+  MailOutlined,
+  SettingOutlined,
+  ShopFilled,
+  SkypeOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import React, { useEffect } from "react";
@@ -58,6 +59,11 @@ export const Navbar = () => {
       key: "/customers",
       icon: <ContactsOutlined style={{ fontSize: 24 }} />,
       label: "Customer",
+    },
+    {
+      key: "/product",
+      icon: <ShopFilled style={{ fontSize: 24 }} />,
+      label: "Product"
     },
     {
       key: "/plugins",
