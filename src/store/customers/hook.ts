@@ -1,8 +1,8 @@
 import { useParams } from "hooks/useParams";
-import { CreateCustomerBody, CustomerQuery, DeleteCustomerBody } from "service/customer";
+import { CreateCustomerBody, CustomerQuery, DeleteCustomerBody, GetCustomerParam } from "service/customer";
 import { useAppDispatch, useAppSelector } from "store";
 import { selectCustomer } from ".";
-import { createCustomer, deleteCustomer, fetchCustomers } from "./actions";
+import { createCustomer, deleteCustomer, fetchCustomers, getCustomer } from "./actions";
 
 export const useCustomers = () => {
   const state = useAppSelector((state) => state.customerReducer);
@@ -16,6 +16,10 @@ export const useCustomers = () => {
   const fetch = (query: CustomerQuery) => {
     return dispatch(fetchCustomers(query));
   };
+
+  const getDetail = (param: GetCustomerParam) => {
+    return dispatch(getCustomer(param))
+  }
 
   const create = async (data: CreateCustomerBody) => {
     await dispatch(createCustomer(data));
@@ -48,5 +52,6 @@ export const useCustomers = () => {
     setQuery,
     select,
     removeSelected,
+    getDetail
   };
 };
