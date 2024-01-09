@@ -1,19 +1,14 @@
-import { Col, Row, Space } from "antd";
 import React from "react";
-import { GeneralStatistic } from "./components/general_statistic";
-import { TopProductSale } from "./components/top_product_sale";
-import { TotalRevenueProduct } from "./components/top_revenue_product";
-import { TotalRevenue } from "./components/total_revenue";
 
 const Page = () => {
 
   const getUrl = () => {
 
-    var METABASE_SITE_URL = "http://metabase.relationc.com";
+    var METABASE_SITE_URL = "https://metabase.relationc.com";
 
-    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjF9LCJwYXJhbXMiOnt9LCJleHAiOjE3MDQ3MjE1NjA0ODMwfQ.xUpO29yNhTB9pI_a8hHnRXZFDZmzJT6Qginu7imgaOY";
+    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjF9LCJwYXJhbXMiOnt9LCJleHAiOjE3MDQ3ODI4NTUwfQ.ugLWgQiid1WiwznhH3o4ZGIbSqLdlSy0WSCtI9U2q1s";
 
-    return METABASE_SITE_URL + "/embed/dashboard/" + token + "#theme=null&bordered=false&titled=false";
+    return METABASE_SITE_URL + "/embed/dashboard/" + token + "#theme=transparent&bordered=false&titled=false";
 
   }
 
@@ -27,3 +22,4 @@ const Page = () => {
 };
 
 export default Page;
+
