@@ -38,7 +38,7 @@ const LayoutProvider = (props: LayoutProps) => {
           </div>
           <Navbar />
         </Layout.Sider>
-        <Layout style = {{height: "100%"}}>
+        <Layout style={{ minHeight: "100%" }}>
           <Layout.Header
             style={{
               display: "flex",
@@ -54,7 +54,7 @@ const LayoutProvider = (props: LayoutProps) => {
               suffix={<SearchOutlined />}
             />
           </Layout.Header>
-          <Layout.Content>
+          <Layout.Content style={{ minHeight: "100%" }}>
             {props.children}
           </Layout.Content>
         </Layout>
