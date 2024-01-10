@@ -6,8 +6,7 @@ const Page = () => {
 
     var METABASE_SITE_URL = "https://metabase.relationc.com";
 
-    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjF9LCJwYXJhbXMiOnt9LCJleHAiOjE3MDQ3ODI4NTUwfQ.ugLWgQiid1WiwznhH3o4ZGIbSqLdlSy0WSCtI9U2q1s";
-
+    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjF9LCJwYXJhbXMiOnt9LCJleHAiOjE3MDQ4MDk4OTcwfQ.T8LOAa_kow3nUm0bCVdnZ-K6RsIN5NLmaqJ2u3lGJ9E";
     return METABASE_SITE_URL + "/embed/dashboard/" + token + "#theme=transparent&bordered=false&titled=false";
 
   }
