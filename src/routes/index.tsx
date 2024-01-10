@@ -8,11 +8,12 @@ import Dashboard from "./dashboard";
 import Login from "./login";
 import Mail from "./mail";
 import Plugin from "./plugin";
+import Product from './product';
 import { Register } from "./register";
 import Role from "./role";
+import Tag from './tag';
 import Users from "./users";
 import { VerifyOtp } from "./verify_otp";
-import Product from './product';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <Product />
+      </PrivateRoute>
+    )
+  },
+  {
+    path: "/tags",
+    element: (
+      <PrivateRoute>
+        <Tag />
       </PrivateRoute>
     )
   },
