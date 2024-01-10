@@ -7,6 +7,7 @@ import {
   SettingOutlined,
   ShopFilled,
   SkypeOutlined,
+  TagOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -61,9 +62,14 @@ export const Navbar = () => {
       label: "Customer",
     },
     {
-      key: "/product",
+      key: "/products",
       icon: <ShopFilled style={{ fontSize: 24 }} />,
       label: "Product"
+    },
+    {
+      key: "/tags",
+      icon: <TagOutlined style={{ fontSize: 24 }} />,
+      label: "Tags"
     },
     {
       key: "/plugins",

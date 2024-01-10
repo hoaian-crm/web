@@ -8,23 +8,26 @@ export type CreateTagForm = FormProps & { action?: "create" | "update", onCreate
 
 export const CreateTagFrom: React.FC<CreateTagForm> = ({ action = "create", ...props }) => {
 
-    const tag = useTags();
+  const tag = useTags();
 
-    return <Form<ITag> {...props} layout="vertical" onFinish={(value) => {
-        if (action === 'create') {
-            tag.createTag(value).then(() => {
-                props.onCreated && props.onCreated(tag.create.result)
-            })
-        }
-    }}>
-        <Form.Item name="key" rules={[{ required: true }]} label="Key">
-            <Input placeholder="Enter tag key" />
-        </Form.Item>
-        <Form.Item name="color" rules={[{ required: true }]} label="Color" getValueFromEvent={(e) => e.toRgbString()}>
-            <ColorPicker format="hex" />
-        </Form.Item>
-        <Form.Item name="description" rules={[{ required: true }]} label="Description">
-            <Input placeholder="Enter tag description" />
-        </Form.Item>
-    </Form>
+  return <Form<ITag> {...props} layout="vertical" onFinish={(value) => {
+    if (action === 'create') {
+      tag.createTag(value).then(() => {
+        props.onCreated && props.onCreated(tag.create.result)
+      })
+    }
+    if (action === 'update') {
+      // tags.update()
+    }
+  }}>
+    <Form.Item name="key" rules={[{ required: true }]} label="Key">
+      <Input placeholder="Enter tag key" />
+    </Form.Item>
+    <Form.Item name="color" rules={[{ required: true }]} label="Color" getValueFromEvent={(e) => e.toRgbString()}>
+      <ColorPicker format="hex" />
+    </Form.Item>
+    <Form.Item name="description" rules={[{ required: true }]} label="Description">
+      <Input placeholder="Enter tag description" />
+    </Form.Item>
+  </Form>
 }
