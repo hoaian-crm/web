@@ -1,10 +1,11 @@
-import { Col, Table, theme } from "antd";
+import { Col, Table, Typography, theme } from "antd";
 import { Tags } from "components/tags";
 import moment from "moment";
 import React, { useEffect } from "react";
 import { useCustomers } from "store/customers/hook";
 import { FetchStatus } from "type/FetchStatus";
 import { ICustomer } from "type/customer";
+import { CustomerInformationCompound } from "./information_compound";
 import { TableHeader } from "./table_header";
 
 export const Customers = () => {
@@ -20,6 +21,9 @@ export const Customers = () => {
       <TableHeader />
       <Table<ICustomer>
         style={{ marginTop: 20 }}
+        scroll={{
+          x: true,
+        }}
         dataSource={customers.result}
         pagination={{
           total: customers.total,
@@ -35,25 +39,24 @@ export const Customers = () => {
         rowKey="id"
         columns={[
           {
-            key: "id",
-            dataIndex: "id",
-            title: "Id",
-          },
-          {
             key: "name",
             dataIndex: "name",
             title: "Name",
+            render: (value, record) => <CustomerInformationCompound data={record} />,
           },
           {
-            key: "email",
-            dataIndex: "email",
-            title: "Email",
+            key: "id",
+            dataIndex: "id",
+            title: "Customer Id",
+            render: (value: string) => (
+              <Typography.Text strong>#{value}</Typography.Text>
+            ),
           },
           {
             key: "phone",
             dataIndex: "phone",
             title: "Phone number",
-            render: (value, record) => (record.extension || "") + " " + value,
+            render: (value, record) => `🇻🇳 ${value}`,
           },
           {
             key: "age",
@@ -67,18 +70,17 @@ export const Customers = () => {
             dataIndex: "address",
             title: "Address",
             render: (value) => value?.metadata?.name || "",
+            ellipsis: {
+              showTitle: true,
+            },
           },
           {
             key: "tags",
             dataIndex: "tags",
             title: "Tag",
             render: (value) => <Tags data={value} />,
+            width: 100,
           },
-          // {
-          //   key: "action",
-          //   title: "Actions",
-          //   render: (_, record) => <CustomerAction data={record} />,
-          // },
         ]}
         rowSelection={{
           onChange(selectedRowKeys) {

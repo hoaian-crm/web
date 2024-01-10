@@ -12,4 +12,5 @@ export type ICustomer = {
   createdAt?: Date;
   updatedAt?: Date;
   placeId: string;
+  avatar?: string;
 };

@@ -1,6 +1,7 @@
 import { Col, Input, Row, Typography, theme } from "antd";
 import React from "react";
 import { useCustomers } from "store/customers/hook";
+import { AttachTagCustomers } from "./attach_tag";
 import { DeleteCustomer } from "./delete";
 import { CreateCustomerForm } from "./form";
 
@@ -28,13 +29,16 @@ export const TableHeader = () => {
             <DeleteCustomer />
           </Col>
           <Col>
+            <AttachTagCustomers />
+          </Col>
+          <Col>
             <CreateCustomerForm />
           </Col>
         </Row>
       </Col>
 
       <Col span={12}>
-        <Row align={"middle"} gutter={[10, 10]}>
+        <Row align={"middle"} justify="end" gutter={[10, 10]}>
           {selectedCustomer.length ? (
             <Col>
               <Typography.Text>

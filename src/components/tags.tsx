@@ -9,7 +9,7 @@ export type TagsProps = {
 
 export const Tags: React.FC<TagsProps> = (props) => {
   return (
-    <Space wrap style={{ maxHeight: 60, overflow: "scroll" }}>
+    <Space wrap>
       {props.data.map((data) => (
         <Tag color={data.tag.color} bordered={false}>
           {data.key} <SwapOutlined /> {data.value}

@@ -14,7 +14,7 @@ export type AttachTagBody = {
   key: string;
   value: string;
   resource: string;
-  resource_id: string | number;
+  resource_ids: Array<string | number>;
 };
 export type AttachTagResponse = IResourceTag
 

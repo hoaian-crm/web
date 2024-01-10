@@ -24,7 +24,7 @@ const LayoutProvider = (props: LayoutProps) => {
 
   return (
     <ThemeProvider theme={LightTheme}>
-      <Layout style={{ height: "100%" }}>
+      <Layout style={{ minHeight: "100%" }}>
         <Layout.Sider
           width={250}
           collapsed={collapsed}
@@ -54,7 +54,7 @@ const LayoutProvider = (props: LayoutProps) => {
               suffix={<SearchOutlined />}
             />
           </Layout.Header>
-          <Layout.Content style={{ minHeight: "100%" }}>
+          <Layout.Content>
             {props.children}
           </Layout.Content>
         </Layout>
