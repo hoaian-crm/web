@@ -1,5 +1,3 @@
-import { SearchOutlined } from "@ant-design/icons";
-import { Input, Layout } from "antd";
 import { Logo } from "common/logo";
 import React, { useEffect, useState } from "react";
 import { useTags } from "store/tag/hook";
@@ -7,6 +5,8 @@ import { ThemeProvider } from "styled-components";
 import { LightTheme } from "theme";
 import { FetchStatus } from "type/FetchStatus";
 import { Navbar } from "./components/navbar";
+import { Header } from "./components/header";
+import { Layout } from "antd";
 
 export type LayoutProps = {
   children?: React.ReactNode;
@@ -39,21 +39,7 @@ const LayoutProvider = (props: LayoutProps) => {
           <Navbar />
         </Layout.Sider>
         <Layout style={{ minHeight: "100%" }}>
-          <Layout.Header
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <div></div>
-            <Input
-              placeholder="Search features"
-              style={{ maxWidth: 200 }}
-              size="large"
-              suffix={<SearchOutlined />}
-            />
-          </Layout.Header>
+          <Header />
           <Layout.Content style={{ minHeight: "100%" }}>
             {props.children}
           </Layout.Content>

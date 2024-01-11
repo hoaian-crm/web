@@ -10,6 +10,7 @@ export const theme: ThemeConfig = {
   components: {
     Layout: {
       headerBg: "transparent",
+      headerHeight: 80,
     },
     Select: {
       optionSelectedColor: "#222831",

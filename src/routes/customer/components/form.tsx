@@ -38,14 +38,13 @@ export const CreateCustomerForm = () => {
   return (
     <>
       <Button
-        size="small"
-        shape="circle"
+        size="large"
         icon={<PlusOutlined />}
         type="primary"
         onClick={() => {
           setOpen(true);
         }}
-      />
+      >Add Customer</Button>
       <Modal
         open={open}
         onCancel={() => {

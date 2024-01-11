@@ -6,7 +6,7 @@ const Page = () => {
   const { token } = theme.useToken();
 
   return (
-    <Row style={{ padding: token.padding}}>
+    <Row style={{ padding: token.padding }} justify="center">
       <Customers />
     </Row>
   );

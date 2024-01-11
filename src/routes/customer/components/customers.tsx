@@ -7,6 +7,7 @@ import { FetchStatus } from "type/FetchStatus";
 import { ICustomer } from "type/customer";
 import { CustomerInformationCompound } from "./information_compound";
 import { TableHeader } from "./table_header";
+import { Constants } from "common/constant";
 
 export const Customers = () => {
   const { fetch, customers, query, setQuery, select } = useCustomers();
@@ -17,15 +18,19 @@ export const Customers = () => {
   }, [query]);
 
   return (
-    <Col style={{ padding: token.padding }} span={24}>
+    <Col style={{
+      maxWidth: Constants.MAX_WIDTH_CONTAINER,
+      boxShadow: token.boxShadow,
+      borderRadius: token.borderRadiusLG,
+    }} span={24}>
       <TableHeader />
       <Table<ICustomer>
-        style={{ marginTop: 20 }}
         scroll={{
           x: true,
         }}
         dataSource={customers.result}
         pagination={{
+          style: { paddingLeft: token.padding, paddingRight: token.padding },
           total: customers.total,
           pageSize: +(query.limit || 30),
           onChange: (page, pageSize) => {

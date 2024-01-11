@@ -7,7 +7,7 @@ import { useTags } from "store/tag/hook";
 
 export const AttachTagCustomers = () => {
   const { selectedCustomer, reload } = useCustomers();
-  const {attachTag} = useTags();
+  const { attachTag } = useTags();
   const [tag, setTag] = useState({
     key: "",
     value: ""
@@ -35,10 +35,8 @@ export const AttachTagCustomers = () => {
       <Button
         icon={<TagOutlined />}
         disabled={selectedCustomer.length === 0}
-        size="small"
-        shape="circle"
-        type="primary"
-      />
+        size="large"
+      >Attach Tag</Button>
     </Popconfirm>
   );
 };

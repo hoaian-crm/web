@@ -8,7 +8,7 @@ export const DeleteCustomer = () => {
   const [open, setOpen] = useState(false);
   const { selectedCustomer, removeSelected, deleteCustomer } = useCustomers();
   useEffect(() => {
-    if(deleteCustomer.status !== FetchStatus.Loading) setOpen(false);
+    if (deleteCustomer.status !== FetchStatus.Loading) setOpen(false);
   }, [deleteCustomer.status])
   return (
     <>
@@ -17,10 +17,9 @@ export const DeleteCustomer = () => {
         type="primary"
         icon={<DeleteOutlined />}
         onClick={() => setOpen(true)}
-        shape="circle"
-        size="small"
+        size="large"
         disabled={!selectedCustomer.length}
-      />
+      >Delete Customer</Button>
       <Modal
         title="Delete customer"
         okButtonProps={{ danger: true, type: "primary" }}
