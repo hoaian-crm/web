@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { errorHandler } from "common/error";
 import { Response } from "service";
-import { AttachTagResponse, CreateTagResponse, GetTagResponse } from "service/tag";
+import { AttachTagResponse, CreateTagResponse, DeleteTagResponse, GetTagResponse, UpdateTagResponse } from "service/tag";
 import { FetchStatus } from "type/FetchStatus";
 import { IResourceTag, ITag } from "type/tag";
-import { attachTag, createTag, getTag } from "./action";
+import { attachTag, createTag, deleteTag, getTag, updateTag } from "./action";
 
 type State = {
   fetch: {
@@ -18,6 +18,13 @@ type State = {
   attach: {
     result?: IResourceTag;
     status: FetchStatus;
+  },
+  update: {
+    result?: ITag,
+    status: FetchStatus,
+  },
+  remove: {
+    status: FetchStatus,
   }
 };
 
@@ -31,6 +38,12 @@ const initialState: State = {
   },
   attach: {
     status: FetchStatus.NoAction,
+  },
+  update: {
+    status: FetchStatus.NoAction
+  },
+  remove: {
+    status: FetchStatus.NoAction
   }
 };
 
@@ -71,6 +84,23 @@ const slice = createSlice({
     builder.addCase(attachTag.fulfilled, (state, action: PayloadAction<Response<AttachTagResponse>>) => {
       state.attach.status = FetchStatus.Success;
       state.attach.result = action.payload.data.result;
+    })
+
+    // Update Tag
+    builder.addCase(updateTag.fulfilled, (state, action: PayloadAction<Response<UpdateTagResponse>>) => {
+      state.update.status = FetchStatus.Success;
+      state.update.result = action.payload.data.result;
+    })
+    builder.addCase(updateTag.pending, (state) => {
+      state.update.status = FetchStatus.Loading;
+    })
+
+    // Delete Tag
+    builder.addCase(deleteTag.fulfilled, (state, action: PayloadAction<Response<DeleteTagResponse>>) => {
+      state.remove.status = FetchStatus.Success
+    })
+    builder.addCase(deleteTag.pending, (state) => {
+      state.remove.status = FetchStatus.Loading
     })
   },
 });

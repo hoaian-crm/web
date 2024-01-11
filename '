@@ -5,7 +5,7 @@ import {
   ExportOutlined,
   DeleteOutlined
 } from "@ant-design/icons";
-import { Card, Modal, TagProps, Form, Popconfirm } from "antd";
+import { Card, Modal, TagProps, Form } from "antd";
 import { CreateTagFrom } from "components/tag_form";
 import React, { useState } from "react";
 import { useTags } from "store/tag/hook";
@@ -29,9 +29,7 @@ export const TagCard: React.FC<TagCardProps> = (props) => {
         {...props}
         actions={[
           <EditOutlined key="edit" onClick={() => setOpen(true)} />,
-          <Popconfirm title="Do you want to delete this tag" onConfirm={() => tags.deleteTag({ key: props.data.key })}>
-            <DeleteOutlined key="setting" />
-          </Popconfirm>,
+          <DeleteOutlined key="setting" />,
           <ExportOutlined key="ellipsis" />,
         ]}
       >

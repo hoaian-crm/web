@@ -4,7 +4,11 @@ import { useTags } from "store/tag/hook";
 import { ITag } from "type/tag";
 
 
-export type CreateTagForm = FormProps & { action?: "create" | "update", onCreated?: (result?: ITag) => void };
+export type CreateTagForm = FormProps & {
+  action?: "create" | "update",
+  onCreated?: (result?: ITag) => void,
+  onUpdated?: (result?: ITag) => void,
+};
 
 export const CreateTagFrom: React.FC<CreateTagForm> = ({ action = "create", ...props }) => {
 
@@ -17,7 +21,7 @@ export const CreateTagFrom: React.FC<CreateTagForm> = ({ action = "create", ...p
       })
     }
     if (action === 'update') {
-      // tags.update()
+      tag.updateTag(value).then(() => props.onUpdated && props.onUpdated(tag.update.result))
     }
   }}>
     <Form.Item name="key" rules={[{ required: true }]} label="Key">

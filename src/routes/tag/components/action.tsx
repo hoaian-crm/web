@@ -1,11 +1,14 @@
 import { PlusOutlined, TagFilled } from "@ant-design/icons";
-import { Button, Col, Input, Modal, Row, Typography, theme } from "antd";
-import React from "react";
+import { Button, Col, Input, Modal, Row, Typography, theme, Form } from "antd";
+import { CreateTagFrom } from "components/tag_form";
+import React, { useState } from "react";
 import { useTags } from "store/tag/hook";
 
 export const TagAction = () => {
   const tags = useTags();
   const { token } = theme.useToken();
+  const [form] = Form.useForm();
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -25,7 +28,7 @@ export const TagAction = () => {
         <Col span={"12"}>
           <Row justify="end" align="middle" gutter={[10, 0]}>
             <Col>
-              <Button icon={<PlusOutlined />} type="primary" size="large">
+              <Button icon={<PlusOutlined />} type="primary" size="large" onClick={() => setOpen(true)}>
                 Create
               </Button>
             </Col>
@@ -35,6 +38,9 @@ export const TagAction = () => {
           </Row>
         </Col>
       </Row>
+      <Modal onCancel={() => setOpen(false)} onOk={() => form.submit()} open={open}>
+        <CreateTagFrom action="create" form={form} onCreated={() => setOpen(false)} />
+      </Modal>
     </>
   );
 };
