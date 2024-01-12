@@ -8,7 +8,7 @@ export const useCustomers = () => {
   const state = useAppSelector((state) => state.customerReducer);
   const dispatch = useAppDispatch();
   const [query, setQuery] = useParams({
-    limit: "30",
+    limit: "10",
     offset: "0",
     keyword: ""
   })

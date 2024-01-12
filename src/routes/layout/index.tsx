@@ -40,7 +40,7 @@ const LayoutProvider = (props: LayoutProps) => {
         </Layout.Sider>
         <Layout style={{ minHeight: "100%" }}>
           <Header />
-          <Layout.Content style={{ minHeight: "100%" }}>
+          <Layout.Content>
             {props.children}
           </Layout.Content>
         </Layout>

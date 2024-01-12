@@ -32,7 +32,7 @@ export const Customers = () => {
         pagination={{
           style: { paddingLeft: token.padding, paddingRight: token.padding },
           total: customers.total,
-          pageSize: +(query.limit || 30),
+          pageSize: +(query.limit || 10),
           onChange: (page, pageSize) => {
             setQuery({
               ...query,
