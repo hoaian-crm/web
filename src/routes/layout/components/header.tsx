@@ -10,7 +10,7 @@ export const Header = () => {
   return <Layout.Header style={{ padding: token.padding }}>
     <Row
       style={{
-        width: Constants.MAX_WIDTH_CONTAINER,
+        maxWidth: Constants.MAX_WIDTH_CONTAINER,
         boxShadow: token.boxShadowTertiary,
         backgroundColor: token.colorBgContainer,
         height: "100%",
@@ -19,7 +19,8 @@ export const Header = () => {
         paddingRight: token.padding,
         cursor: 'pointer',
         marginLeft: "auto",
-        marginRight: 'auto'
+        marginRight: 'auto',
+        width: "100%"
       }}
       align="middle"
       justify="space-between"
