@@ -11,6 +11,7 @@ import { roleReducer } from "./roles/index";
 import { saleReducer } from "./sale";
 import { userReducer } from "./users/user";
 import { tagReducer } from "./tag";
+import { productReducer } from "./product";
 
 export const store = configureStore({
   reducer: {
@@ -24,7 +25,8 @@ export const store = configureStore({
     saleReducer,
     customerReducer,
     addressReducer,
-    tagReducer
+    tagReducer,
+    productReducer
   },
 });
 
