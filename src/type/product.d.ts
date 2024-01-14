@@ -1,3 +1,5 @@
+import { ITag } from "./tag";
+
 export type IProduct = {
   id: string;
   name: string;
@@ -11,4 +13,5 @@ export type IProduct = {
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string;
+  tags: Array<ITag>;
 }

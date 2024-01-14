@@ -21,6 +21,8 @@ export const theme: ThemeConfig = {
     Table: {
       rowSelectedBg: "#347ccb5e",
       rowSelectedHoverBg: "#347ccb5e",
+      headerBg: 'white',
+      footerBg: 'white',
     },
     Input: {},
   },
