@@ -2,11 +2,14 @@ import { DeleteFilled, ExportOutlined, PlusOutlined, TagOutlined } from "@ant-de
 import { Button, Col, Form, Input, Modal, Row, theme } from "antd"
 import React, { useState } from "react"
 import { ProductForm } from "./form";
+import { useProducts } from "store/product/hook";
+import { FetchStatus } from "type/FetchStatus";
 
 
 export const TableHeader = () => {
   const { token } = theme.useToken();
   const [open, setOpen] = useState(false);
+  const { create, createStatus } = useProducts();
 
   const [form] = Form.useForm();
 
@@ -37,8 +40,14 @@ export const TableHeader = () => {
         </Row>
       </Col>
     </Row >
-    <Modal open={open} onOk={() => console.log(form.getFieldsValue(['image', 'alias']))}>
-      <ProductForm form={form} />
+    <Modal
+      title="Create Product"
+      onCancel={() => setOpen(false)}
+      open={open}
+      onOk={() => form.submit()}
+      confirmLoading={createStatus === FetchStatus.Loading}
+    >
+      <ProductForm form={form} onFinish={create} />
     </Modal>
   </>
 }
