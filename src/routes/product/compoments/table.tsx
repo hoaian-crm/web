@@ -6,28 +6,27 @@ import { useProducts } from "store/product/hook"
 import { IProduct } from "type/product"
 
 export const ProductTable = () => {
-  const { products } = useProducts();
+  const { products, select } = useProducts();
   const { token } = theme.useToken();
 
 
   return <Table<IProduct>
-    // style={{ padding: token.paddingMD }}
     columns={[
       {
         key: 'product',
         title: "Prouct",
-        width: 200,
+        width: 300,
         render: (_, record) => {
           return <Row align="middle" gutter={[10, 0]} justify={"space-around"}>
             <Col>
-              <Image src={record.image} height={50} />
+              <Image src={record.image} height={80} style={{ borderRadius: token.borderRadiusLG }} />
             </Col>
             <Col>
               <Row>
-                <Typography.Text strong style={{ color: token.colorPrimary }}>{limitText(record.name, 15)}</Typography.Text>
+                <Typography.Text strong style={{ color: token.colorPrimary }}>{limitText(record.name, 20)}</Typography.Text>
               </Row>
               <Row>
-                <Typography.Text type="secondary">{record.description}</Typography.Text>
+                <Typography.Text type="secondary">{limitText(record.description, 20)}</Typography.Text>
               </Row>
             </Col>
           </Row>
@@ -63,7 +62,12 @@ export const ProductTable = () => {
         render: (value) => <Tags data={value} />
       }
     ]}
-    rowSelection={{}}
+    rowKey="id"
     dataSource={products}
+    rowSelection={{
+      onChange: (selectedRowKeys) => {
+        select(selectedRowKeys as any)
+      }
+    }}
   />
 }

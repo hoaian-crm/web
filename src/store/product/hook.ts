@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
 import { CreateProductBody, FetchProductQuery } from "service/product";
 import { useAppDispatch, useAppSelector } from "store"
-import { createProduct, fetchProduct } from "./action";
+import { createProduct, fetchProduct, softDeleteProduct } from "./action";
 import { useParams } from "hooks/useParams";
 import { useCallback, useEffect } from "react";
+import { select } from ".";
+import { FetchStatus } from "type/FetchStatus";
 
 export const useProducts = () => {
   const state = useAppSelector(state => state.productReducer);
@@ -19,16 +20,22 @@ export const useProducts = () => {
   }, [query])
 
   const create = async (data: CreateProductBody) => {
-    return dispatch(createProduct(data));
+    await dispatch(createProduct(data));
+    await fetch();
   }
 
-  useEffect(() => {
-    fetch();
-  }, [query])
+  const _select = (selectedIds: Array<string | number>) => dispatch(select(selectedIds))
+
+  const _softDelete = async () => {
+    await dispatch(softDeleteProduct({ ids: state.selectedIds }))
+    await fetch();
+  };
 
   return {
     ...state,
     fetch,
-    create
+    create,
+    select: _select,
+    softDelete: _softDelete,
   }
 }

@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CreateProductResponse, FetchProductQuery, FetchProductResponse } from "service/product";
 import { FetchStatus } from "type/FetchStatus";
 import { IProduct } from "type/product";
-import { createProduct, fetchProduct } from "./action";
+import { createProduct, fetchProduct, softDeleteProduct } from "./action";
 import { Response } from "service";
 import { errorHandler } from "common/error";
 
@@ -12,6 +12,8 @@ type State = {
   fetchStatus: FetchStatus;
   createStatus: FetchStatus;
   query: FetchProductQuery;
+  selectedIds: Array<string | number>;
+  softDeleteStatus: FetchStatus;
 }
 
 const initialState: State = {
@@ -21,14 +23,20 @@ const initialState: State = {
   query: {
     limit: "10",
     offset: "0",
-    keyword: ""
-  }
+    keyword: "",
+  },
+  selectedIds: [],
+  softDeleteStatus: FetchStatus.NoAction
 }
 
 const slice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    select(state, action: PayloadAction<Array<string | number>>) {
+      state.selectedIds = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     // Create Product
     builder.addCase(createProduct.fulfilled, (state, action: PayloadAction<Response<CreateProductResponse>>) => {
@@ -53,7 +61,18 @@ const slice = createSlice({
     builder.addCase(fetchProduct.rejected, (state, action: any) => {
       state.fetchStatus = errorHandler(action);
     })
+
+    builder.addCase(softDeleteProduct.fulfilled, (state) => {
+      state.softDeleteStatus = FetchStatus.Success
+    })
+    builder.addCase(softDeleteProduct.rejected, (state) => {
+      state.softDeleteStatus = FetchStatus.Failed
+    })
+    builder.addCase(softDeleteProduct.pending, (state) => {
+      state.softDeleteStatus = FetchStatus.Loading
+    })
   }
 })
 
 export const productReducer = slice.reducer;
+export const { select } = slice.actions;

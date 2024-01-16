@@ -1,15 +1,18 @@
 import { DeleteFilled, ExportOutlined, PlusOutlined, TagOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, Modal, Row, theme } from "antd"
+import { Button, Col, Form, Input, Modal, Row, theme, Typography } from "antd"
 import React, { useState } from "react"
 import { ProductForm } from "./form";
 import { useProducts } from "store/product/hook";
 import { FetchStatus } from "type/FetchStatus";
+import { softDeleteProduct } from "store/product/action";
 
 
 export const TableHeader = () => {
   const { token } = theme.useToken();
   const [open, setOpen] = useState(false);
   const { create, createStatus } = useProducts();
+  const { selectedIds, softDeleteStatus, softDelete } = useProducts();
+  const [openDelete, setOpenDelete] = useState(false);
 
   const [form] = Form.useForm();
 
@@ -26,7 +29,15 @@ export const TableHeader = () => {
       <Col>
         <Row gutter={[10, 0]}>
           <Col>
-            <Button icon={<DeleteFilled />} size="large" type="primary" danger>Delete</Button>
+            <Button
+              onClick={() => setOpenDelete(true)}
+              disabled={selectedIds.length === 0}
+              icon={<DeleteFilled />}
+              size="large"
+              type="primary"
+              danger>
+              Delete
+            </Button>
           </Col>
           <Col>
             <Button icon={<TagOutlined />} type="dashed" size="large">Tag</Button>
@@ -47,7 +58,24 @@ export const TableHeader = () => {
       onOk={() => form.submit()}
       confirmLoading={createStatus === FetchStatus.Loading}
     >
-      <ProductForm form={form} onFinish={create} />
+      <ProductForm form={form} onFinish={(value) => create(value).then(() => setOpen(false))} />
+    </Modal>
+    <Modal
+      title="Delete product"
+      okButtonProps={{ danger: true, type: "primary" }}
+      okText="Delete"
+      onCancel={() => setOpenDelete(false)}
+      onOk={() => {
+        softDelete().then(() => setOpenDelete(false));
+      }}
+      open={openDelete}
+      confirmLoading={softDeleteStatus === FetchStatus.Loading}
+    >
+      <Typography.Text>
+        Do you want to delete{" "}
+        <Typography.Text strong>{selectedIds.length}</Typography.Text>{" "}
+        product ?{" "}
+      </Typography.Text>
     </Modal>
   </>
 }

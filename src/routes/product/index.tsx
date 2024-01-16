@@ -1,12 +1,18 @@
 import { Constants } from "common/constant";
-import React from "react";
+import React, { useEffect } from "react";
 import { ProductTable } from "./compoments/table";
 import { Col, Row, theme } from "antd";
 import { TableHeader } from "./compoments/table_header";
+import { useProducts } from "store/product/hook";
 
 const Page = () => {
 
   const { token } = theme.useToken();
+  const { query, fetch } = useProducts();
+
+  useEffect(() => {
+    fetch()
+  }, [query])
 
   return <div style={{ padding: 20 }}>
     <Row justify="center" style={{ maxWidth: Constants.MAX_WIDTH_CONTAINER, marginLeft: 'auto', marginRight: 'auto' }}>
@@ -14,7 +20,7 @@ const Page = () => {
         <TableHeader />
         <ProductTable />
       </Col>
-    </Row >
+    </Row>
   </div>
 }
 
