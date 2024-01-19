@@ -1,10 +1,12 @@
 import { DeleteFilled, ExportOutlined, PlusOutlined, TagOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, Modal, Row, theme, Typography } from "antd"
+import { Button, Col, Form, Input, Modal, Popconfirm, Row, theme, Typography } from "antd"
 import React, { useState } from "react"
 import { ProductForm } from "./form";
 import { useProducts } from "store/product/hook";
 import { FetchStatus } from "type/FetchStatus";
 import { softDeleteProduct } from "store/product/action";
+import { TagInput } from "components/tag_input";
+import { useTags } from "store/tag/hook";
 
 
 export const TableHeader = () => {
@@ -13,6 +15,8 @@ export const TableHeader = () => {
   const { create, createStatus } = useProducts();
   const { selectedIds, softDeleteStatus, softDelete } = useProducts();
   const [openDelete, setOpenDelete] = useState(false);
+  const [tag, setTag] = useState({ key: "", value: "" });
+  const { attachTag } = useTags();
 
   const [form] = Form.useForm();
 
@@ -40,7 +44,20 @@ export const TableHeader = () => {
             </Button>
           </Col>
           <Col>
-            <Button icon={<TagOutlined />} type="dashed" size="large">Tag</Button>
+            <Popconfirm title={`Attach tag to ${selectedIds.length} products`}
+              icon=""
+              description={
+                <TagInput onChange={(e) => setTag(e)} />
+              }
+              onConfirm={() => attachTag({
+                ...tag,
+                resource: 'products',
+                resource_ids: selectedIds
+              })}
+              okText={"Attach"}
+            >
+              <Button icon={<TagOutlined />} type="dashed" size="large">Tag</Button>
+            </Popconfirm>
           </Col>
           <Col>
             <Button icon={<ExportOutlined />} size="large">Export</Button>

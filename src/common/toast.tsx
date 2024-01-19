@@ -103,5 +103,9 @@ export const ToastMessages: {
   23505: {
     content: "$field already exists",
     type: ToastType.error
+  },
+  107: {
+    content: "$field must be boolean",
+    type: ToastType.error
   }
 };

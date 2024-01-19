@@ -12,7 +12,7 @@ export const Tags: React.FC<TagsProps> = (props) => {
     <Space wrap>
       {props.data.map((data) => (
         <Tag color={data.tag.color} bordered={false}>
-          {data.key} <SwapOutlined /> {data.value}
+          {data.key}: {data.value}
         </Tag>
       ))}
     </Space>

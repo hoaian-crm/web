@@ -17,9 +17,9 @@ export const ProductTable = () => {
         title: "Prouct",
         width: 300,
         render: (_, record) => {
-          return <Row align="middle" gutter={[10, 0]} justify={"space-around"}>
+          return <Row align="middle" gutter={[10, 0]}>
             <Col>
-              <Image src={record.image} height={80} style={{ borderRadius: token.borderRadiusLG }} />
+              <Image src={record.image} height={60} style={{ borderWidth: 1, borderStyle: 'solid', borderRadius: token.borderRadiusLG, borderColor: token.colorBorder }} />
             </Col>
             <Col>
               <Row>
