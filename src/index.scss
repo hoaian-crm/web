@@ -22,3 +22,11 @@ h5 {
   margin: 0 !important;
   padding: 0 !important;
 }
+
+.sub-menu-expanded {
+  .ant-menu-submenu-title {
+    background-color: #F5F5F5;
+    // opacity: 0.4;
+    color: rgb(112,109,121) !important;
+  }
+}

@@ -6,7 +6,8 @@ import { LightTheme } from "theme";
 import { FetchStatus } from "type/FetchStatus";
 import { Navbar } from "./components/navbar";
 import { Header } from "./components/header";
-import { Layout } from "antd";
+import { Col, Layout, Row, Typography, theme } from "antd";
+import { PublicImages } from "common";
 
 export type LayoutProps = {
   children?: React.ReactNode;
@@ -15,6 +16,7 @@ export type LayoutProps = {
 const LayoutProvider = (props: LayoutProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const tags = useTags();
+  const {token} = theme.useToken();
 
   useEffect(() => {
     if (tags.fetch.status === FetchStatus.NoAction) {
@@ -23,19 +25,27 @@ const LayoutProvider = (props: LayoutProps) => {
   }, []);
 
   return (
-    <ThemeProvider theme={LightTheme}>
       <Layout style={{ minHeight: "100%" }}>
         <Layout.Sider
           width={250}
           collapsed={collapsed}
           theme="light"
           breakpoint="xs"
+          style = {{boxShadow: token.boxShadowTertiary}}
         >
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            <Logo width={200} height={80} />
-          </div>
+          {/* <div */}
+          {/*   style={{ width: "100%", display: "flex", justifyContent: "center" }} */}
+          {/* > */}
+          {/*   <Logo width={200} height={80} /> */}
+          {/* </div> */}
+          <Row align="middle" style={{padding: token.padding}}>
+            <Col>
+              <img src={PublicImages.MainLogo} width={50}/>
+            </Col>
+            <Col style = {{marginLeft: 10}}>
+              <Typography.Title level={4}>Relation C</Typography.Title>
+            </Col>
+          </Row>
           <Navbar />
         </Layout.Sider>
         <Layout style={{ minHeight: "100%" }}>
@@ -45,7 +55,6 @@ const LayoutProvider = (props: LayoutProps) => {
           </Layout.Content>
         </Layout>
       </Layout>
-    </ThemeProvider>
   );
 };
 

@@ -25,5 +25,13 @@ export const theme: ThemeConfig = {
       footerBg: 'white',
     },
     Input: {},
+    Menu: {
+      itemSelectedBg: "rgb(115, 103, 240)",
+      itemSelectedColor: "rgb(254, 254, 255)",
+      iconSize: 20,
+      colorText: 'rgb(109,107,119)',
+      fontSize: 15,
+      itemMarginInline: 20
+    }
   },
 };
