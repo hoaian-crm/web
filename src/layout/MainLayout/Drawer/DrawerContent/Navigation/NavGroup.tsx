@@ -1,8 +1,7 @@
-import { useEffect, useState, Dispatch, Fragment, MouseEvent, SetStateAction } from 'react';
+import { Dispatch, Fragment, MouseEvent, SetStateAction, useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 
 // material-ui
-import { useTheme, styled } from '@mui/material/styles';
 import {
   Box,
   ClickAwayListener,
@@ -15,15 +14,13 @@ import {
   Typography,
   useMediaQuery
 } from '@mui/material';
-
-// third-party
-import { FormattedMessage } from 'react-intl';
+import { styled, useTheme } from '@mui/material/styles';
 
 // project-imports
-import NavItem from './NavItem';
-import NavCollapse from './NavCollapse';
-import SimpleBar from 'components/third-party/SimpleBar';
 import Transitions from 'components/@extended/Transitions';
+import SimpleBar from 'components/third-party/SimpleBar';
+import NavCollapse from './NavCollapse';
+import NavItem from './NavItem';
 
 import useConfig from 'hooks/useConfig';
 import { dispatch, useSelector } from 'store';
@@ -296,7 +293,7 @@ const NavGroup = ({ item, lastItem, remItems, lastItemId, setSelectedItems, sele
               sx={{ mr: 1 }}
               primary={
                 <Typography variant="h6" color={isSelected ? 'primary' : textColor} sx={{ fontWeight: isSelected ? 500 : 400 }}>
-                  {currentItem.id === lastItemId ? <FormattedMessage id="More Items" /> : currentItem.title}
+                  {currentItem.id === lastItemId ? "More Items" : currentItem.title}
                 </Typography>
               }
             />

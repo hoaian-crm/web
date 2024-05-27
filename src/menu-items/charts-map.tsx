@@ -1,6 +1,3 @@
-// third-party
-import { FormattedMessage } from 'react-intl';
-
 // assets
 import { Graph, Chart21 } from 'iconsax-react';
 
@@ -17,25 +14,25 @@ const icons = {
 
 const chartsMap: NavItemType = {
   id: 'group-charts-map',
-  title: <FormattedMessage id="charts-map" />,
+  title: "Charts map",
   icon: icons.charts,
   type: 'group',
   children: [
     {
       id: 'react-chart',
-      title: <FormattedMessage id="charts" />,
+      title: "Charts",
       type: 'collapse',
       icon: icons.chart,
       children: [
         {
           id: 'apexchart',
-          title: <FormattedMessage id="apexchart" />,
+          title: "Apex chart",
           type: 'item',
           url: '/charts/apexchart'
         },
         {
           id: 'org-chart',
-          title: <FormattedMessage id="org-chart" />,
+          title: "Org chart",
           type: 'item',
           url: '/charts/org-chart'
         }

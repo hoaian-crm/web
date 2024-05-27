@@ -14,6 +14,7 @@ import { activeItem, openDrawer } from 'store/reducers/menu';
 // types
 import { MenuOrientation, ThemeMode } from 'types/config';
 import { LinkTarget, NavItemType } from 'types/menu';
+import { useTranslation } from 'react-i18next';
 
 // ==============================|| NAVIGATION - ITEM ||============================== //
 
@@ -28,6 +29,8 @@ const NavItem = ({ item, level }: Props) => {
 
   const { drawerOpen, openItem } = useSelector((state) => state.menu);
   const { menuOrientation } = useConfig();
+
+  const { t } = useTranslation();
 
   let itemTarget: LinkTarget = '_self';
   if (item.target) {
@@ -90,19 +93,19 @@ const NavItem = ({ item, level }: Props) => {
             }),
             ...(drawerOpen &&
               level === 1 && {
-                mx: 1.25,
-                my: 0.5,
-                borderRadius: 1,
+              mx: 1.25,
+              my: 0.5,
+              borderRadius: 1,
+              '&:hover': {
+                bgcolor: theme.palette.mode === ThemeMode.DARK ? 'divider' : 'secondary.200'
+              },
+              '&.Mui-selected': {
+                color: iconSelectedColor,
                 '&:hover': {
-                  bgcolor: theme.palette.mode === ThemeMode.DARK ? 'divider' : 'secondary.200'
-                },
-                '&.Mui-selected': {
-                  color: iconSelectedColor,
-                  '&:hover': {
-                    color: iconSelectedColor
-                  }
+                  color: iconSelectedColor
                 }
-              }),
+              }
+            }),
             ...(!drawerOpen && {
               px: 2.75,
               justifyContent: 'center',
@@ -128,22 +131,22 @@ const NavItem = ({ item, level }: Props) => {
                 color: isSelected ? iconSelectedColor : textColor,
                 ...(!drawerOpen &&
                   level === 1 && {
-                    borderRadius: 1,
-                    width: 46,
-                    height: 46,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    '&:hover': {
-                      bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.light' : 'secondary.200'
-                    }
-                  }),
+                  borderRadius: 1,
+                  width: 46,
+                  height: 46,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  '&:hover': {
+                    bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.light' : 'secondary.200'
+                  }
+                }),
                 ...(!drawerOpen &&
                   isSelected && {
-                    bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.100' : 'primary.lighter',
-                    '&:hover': {
-                      bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.200' : 'primary.lighter'
-                    }
-                  })
+                  bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.100' : 'primary.lighter',
+                  '&:hover': {
+                    bgcolor: theme.palette.mode === ThemeMode.DARK ? 'secondary.200' : 'primary.lighter'
+                  }
+                })
               }}
             >
               {itemIcon}
@@ -230,11 +233,11 @@ const NavItem = ({ item, level }: Props) => {
                 }),
                 ...(!drawerOpen &&
                   isSelected && {
-                    bgcolor: 'transparent',
-                    '&:hover': {
-                      bgcolor: 'transparent'
-                    }
-                  })
+                  bgcolor: 'transparent',
+                  '&:hover': {
+                    bgcolor: 'transparent'
+                  }
+                })
               }}
             >
               {itemIcon}
@@ -244,7 +247,7 @@ const NavItem = ({ item, level }: Props) => {
           <ListItemText
             primary={
               <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor, fontWeight: isSelected ? 500 : 400 }}>
-                {item.title}
+                {item.title && t(item.title)}
               </Typography>
             }
           />

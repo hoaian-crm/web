@@ -1,7 +1,8 @@
 {
-  "name": "able-pro-material-react-ts",
+  "name": "web",
   "homepage": ".",
   "version": "9.1.2",
+  "type": "module",
   "dependencies": {
     "@auth0/auth0-spa-js": "^2.0.5",
     "@date-io/date-fns": "^2.16.0",
@@ -44,6 +45,8 @@
     "formik": "^2.2.9",
     "framer-motion": "^10.12.16",
     "history": "^5.3.0",
+    "i18next": "^23.11.5",
+    "i18next-parser": "^8.13.0",
     "iconsax-react": "^0.0.8",
     "immutability-helper": "^3.1.1",
     "jwt-decode": "^3.1.2",
@@ -66,6 +69,7 @@
     "react-dropzone": "^14.2.3",
     "react-fast-marquee": "^1.6.0",
     "react-google-recaptcha": "^2.1.0",
+    "react-i18next": "^14.1.2",
     "react-intersection-observer": "^9.4.3",
     "react-intl": "^6.4.2",
     "react-number-format": "^5.2.2",
@@ -100,7 +104,8 @@
     "build-stage": "env-cmd -f .env.qa react-scripts build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "extract-translations": "npx i18next -c i18n-parser.config.js"
   },
   "eslintConfig": {
     "extends": [
@@ -155,6 +160,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "i18next-scanner": "^4.4.0",
     "immutable": "^4.3.0",
     "prettier": "^2.8.8",
     "prettier-eslint-cli": "^7.1.0",

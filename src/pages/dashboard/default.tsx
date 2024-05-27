@@ -1,22 +1,21 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import { Grid, Stack, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 // project-imports
 import EcommerceDataCard from 'components/cards/statistics/EcommerceDataCard';
 import EcommerceDataChart from 'sections/widget/chart/EcommerceDataChart';
 
-import RepeatCustomerRate from 'sections/widget/chart/RepeatCustomerRate';
-import ProjectOverview from 'sections/widget/chart/ProjectOverview';
 import ProjectRelease from 'sections/dashboard/default/ProjectRelease';
+import ProjectOverview from 'sections/widget/chart/ProjectOverview';
+import RepeatCustomerRate from 'sections/widget/chart/RepeatCustomerRate';
 import AssignUsers from 'sections/widget/statistics/AssignUsers';
 
-import Transactions from 'sections/widget/data/Transactions';
 import TotalIncome from 'sections/widget/chart/TotalIncome';
+import Transactions from 'sections/widget/data/Transactions';
 
 // assets
 import { ArrowDown, ArrowUp, Book, Calendar, CloudChange, Wallet3 } from 'iconsax-react';
-import WelcomeBanner from 'sections/dashboard/default/WelcomeBanner';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -25,9 +24,9 @@ const DashboardDefault = () => {
 
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <WelcomeBanner />
-      </Grid>
+      </Grid> */}
 
       {/* row 1 */}
       <Grid item xs={12} sm={6} lg={3}>

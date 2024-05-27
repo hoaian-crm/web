@@ -27,7 +27,7 @@ function getColorStyle({ variant, color, theme }: ButtonStyleProps) {
       boxShadow: `0 0 5px 5px ${alpha(main, 0.9)}`
     },
     '&:active::after': {
-      boxShadow: `0 0 0 0 ${alpha(main, 0.9)}`
+      boxShadow: `0 0 0px 0px ${alpha(main, 0.9)}`
     },
     '&:focus-visible': {
       outline: `2px solid ${dark}`,

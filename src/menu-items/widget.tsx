@@ -1,6 +1,3 @@
-// third-party
-import { FormattedMessage } from 'react-intl';
-
 // assets
 import { Story, Fatrows, PresentionChart } from 'iconsax-react';
 
@@ -19,27 +16,27 @@ const icons = {
 
 const widget: NavItemType = {
   id: 'group-widget',
-  title: <FormattedMessage id="widgets" />,
+  title: "Widgets",
   icon: icons.widgets,
   type: 'group',
   children: [
     {
       id: 'statistics',
-      title: <FormattedMessage id="statistics" />,
+      title: "Statistics",
       type: 'item',
       url: '/widget/statistics',
       icon: icons.statistics
     },
     {
       id: 'data',
-      title: <FormattedMessage id="data" />,
+      title: "Data",
       type: 'item',
       url: '/widget/data',
       icon: icons.data
     },
     {
       id: 'chart',
-      title: <FormattedMessage id="chart" />,
+      title: "Chart",
       type: 'item',
       url: '/widget/chart',
       icon: icons.chart

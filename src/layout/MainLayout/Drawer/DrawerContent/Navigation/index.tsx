@@ -17,10 +17,13 @@ import { HORIZONTAL_MAX_ITEM } from 'config';
 import { NavItemType } from 'types/menu';
 import { MenuOrientation } from 'types/config';
 
+import { useTranslation } from 'react-i18next';
+
 // ==============================|| DRAWER CONTENT - NAVIGATION ||============================== //
 
 const Navigation = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const downLG = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -92,7 +95,7 @@ const Navigation = () => {
       default:
         return (
           <Typography key={item.id} variant="h6" color="error" align="center">
-            Fix - Navigation Group
+            {t("Fix - Navigation Group")}
           </Typography>
         );
     }

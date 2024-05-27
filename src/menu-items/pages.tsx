@@ -1,8 +1,5 @@
-// third-party
-import { FormattedMessage } from 'react-intl';
-
 // assets
-import { Book1, I24Support, Security, MessageProgramming, DollarSquare, Airplane } from 'iconsax-react';
+import { Airplane, Book1, DollarSquare, I24Support, MessageProgramming, Security } from 'iconsax-react';
 
 // type
 import { NavItemType } from 'types/menu';
@@ -21,63 +18,59 @@ const icons = {
 
 const pages: NavItemType = {
   id: 'group-pages',
-  title: <FormattedMessage id="pages" />,
+  title: 'pages',
   type: 'group',
   icon: icons.page,
   children: [
     {
       id: 'authentication',
-      title: <FormattedMessage id="authentication" />,
+      title: 'authentication',
       type: 'collapse',
       icon: icons.authentication,
       children: [
         {
           id: 'authentication1',
-          title: (
-            <>
-              <FormattedMessage id="authentication" /> 1
-            </>
-          ),
+          title: 'authentication',
           type: 'collapse',
           children: [
             {
               id: 'login',
-              title: <FormattedMessage id="login" />,
+              title: 'login',
               type: 'item',
               url: '/auth/login',
               target: true
             },
             {
               id: 'register',
-              title: <FormattedMessage id="register" />,
+              title: 'register',
               type: 'item',
               url: '/auth/register',
               target: true
             },
             {
               id: 'forgot-password',
-              title: <FormattedMessage id="forgot-password" />,
+              title: 'forgot-password',
               type: 'item',
               url: '/auth/forgot-password',
               target: true
             },
             {
               id: 'reset-password',
-              title: <FormattedMessage id="reset-password" />,
+              title: 'reset-password',
               type: 'item',
               url: '/auth/reset-password',
               target: true
             },
             {
               id: 'check-mail',
-              title: <FormattedMessage id="check-mail" />,
+              title: 'check-mail',
               type: 'item',
               url: '/auth/check-mail',
               target: true
             },
             {
               id: 'code-verification',
-              title: <FormattedMessage id="code-verification" />,
+              title: 'code-verification',
               type: 'item',
               url: '/auth/code-verification',
               target: true
@@ -86,51 +79,47 @@ const pages: NavItemType = {
         },
         {
           id: 'authentication2',
-          title: (
-            <>
-              <FormattedMessage id="authentication" /> 2
-            </>
-          ),
+          title: 'authentication',
           type: 'collapse',
           children: [
             {
               id: 'login2',
-              title: <FormattedMessage id="login" />,
+              title: 'login',
               type: 'item',
               url: '/auth/login2',
               target: true
             },
             {
               id: 'register2',
-              title: <FormattedMessage id="register" />,
+              title: 'register',
               type: 'item',
               url: '/auth/register2',
               target: true
             },
             {
               id: 'forgot-password2',
-              title: <FormattedMessage id="forgot-password" />,
+              title: 'forgot-password',
               type: 'item',
               url: '/auth/forgot-password2',
               target: true
             },
             {
               id: 'reset-password2',
-              title: <FormattedMessage id="reset-password" />,
+              title: 'reset-password',
               type: 'item',
               url: '/auth/reset-password2',
               target: true
             },
             {
               id: 'check-mail2',
-              title: <FormattedMessage id="check-mail" />,
+              title: 'check-mail',
               type: 'item',
               url: '/auth/check-mail2',
               target: true
             },
             {
               id: 'code-verification2',
-              title: <FormattedMessage id="code-verification" />,
+              title: 'code-verification',
               type: 'item',
               url: '/auth/code-verification2',
               target: true
@@ -139,11 +128,7 @@ const pages: NavItemType = {
         },
         {
           id: 'authentication3',
-          title: (
-            <>
-              <FormattedMessage id="authentication" /> 3
-            </>
-          ),
+          title: 'authentication',
           type: 'item',
           url: '/auth/login3',
           target: true
@@ -152,47 +137,39 @@ const pages: NavItemType = {
     },
     {
       id: 'maintenance',
-      title: <FormattedMessage id="maintenance" />,
+      title: 'maintenance',
       type: 'collapse',
       icon: icons.maintenance,
       children: [
         {
           id: 'error-404',
-          title: <FormattedMessage id="error-404" />,
+          title: 'error-404',
           type: 'item',
           url: '/maintenance/404',
           target: true
         },
         {
           id: 'error-500',
-          title: <FormattedMessage id="error-500" />,
+          title: 'error-500',
           type: 'item',
           url: '/maintenance/500',
           target: true
         },
         {
           id: 'coming-soon-collapse',
-          title: <FormattedMessage id="coming-soon" />,
+          title: 'coming-soon',
           type: 'collapse',
           children: [
             {
               id: 'coming-soon-1',
-              title: (
-                <>
-                  <FormattedMessage id="coming-soon" /> 1
-                </>
-              ),
+              title: 'coming-soon',
               type: 'item',
               url: '/maintenance/coming-soon',
               target: true
             },
             {
               id: 'coming-soon-2',
-              title: (
-                <>
-                  <FormattedMessage id="coming-soon" /> 2
-                </>
-              ),
+              title: 'coming-soon',
               type: 'item',
               url: '/maintenance/coming-soon2',
               target: true
@@ -201,27 +178,19 @@ const pages: NavItemType = {
         },
         {
           id: 'under-construction-collapse',
-          title: <FormattedMessage id="under-construction" />,
+          title: 'under-construction',
           type: 'collapse',
           children: [
             {
               id: 'under-construction-1',
-              title: (
-                <>
-                  <FormattedMessage id="under-construction" /> 1
-                </>
-              ),
+              title: 'under-construction',
               type: 'item',
               url: '/maintenance/under-construction',
               target: true
             },
             {
               id: 'under-construction-2',
-              title: (
-                <>
-                  <FormattedMessage id="under-construction" /> 2
-                </>
-              ),
+              title: 'under-construction',
               type: 'item',
               url: '/maintenance/under-construction2',
               target: true
@@ -232,27 +201,19 @@ const pages: NavItemType = {
     },
     {
       id: 'price',
-      title: <FormattedMessage id="price" />,
+      title: 'price',
       type: 'collapse',
       icon: icons.pricing,
       children: [
         {
           id: 'price1',
-          title: (
-            <>
-              <FormattedMessage id="price" /> 1
-            </>
-          ),
+          title: 'price',
           type: 'item',
           url: '/price/price1'
         },
         {
           id: 'price2',
-          title: (
-            <>
-              <FormattedMessage id="price" /> 2
-            </>
-          ),
+          title: 'price',
           type: 'item',
           url: '/price/price2'
         }
@@ -260,7 +221,7 @@ const pages: NavItemType = {
     },
     {
       id: 'contact-us',
-      title: <FormattedMessage id="contact-us" />,
+      title: 'contact-us',
       type: 'item',
       url: '/contact-us',
       icon: icons.contactus,
@@ -268,7 +229,7 @@ const pages: NavItemType = {
     },
     {
       id: 'landing',
-      title: <FormattedMessage id="landing" />,
+      title: 'landing',
       type: 'item',
       icon: icons.landing,
       url: '/landing'
