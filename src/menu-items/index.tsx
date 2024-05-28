@@ -8,11 +8,12 @@ import pages from './pages';
 
 // types
 import { NavItemType } from 'types/menu';
+import dashboard from './dashboard';
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems: { items: NavItemType[] } = {
-  items: [widget, applications, formsTables, chartsMap, pages, support]
+  items: [dashboard, widget, applications, formsTables, chartsMap, pages, support]
 };
 
 export default menuItems;

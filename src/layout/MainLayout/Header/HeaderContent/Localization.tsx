@@ -8,7 +8,6 @@ import { Box, ClickAwayListener, Grid, List, ListItemButton, ListItemText, Paper
 import MainCard from 'components/MainCard';
 import IconButton from 'components/@extended/IconButton';
 import Transitions from 'components/@extended/Transitions';
-import useConfig from 'hooks/useConfig';
 
 // assets
 import { LanguageSquare } from 'iconsax-react';
@@ -16,13 +15,13 @@ import { LanguageSquare } from 'iconsax-react';
 // types
 import { I18n, ThemeMode } from 'types/config';
 
+import i18n from 'i18next';
+
 // ==============================|| HEADER CONTENT - LOCALIZATION ||============================== //
 
 const Localization = () => {
   const theme = useTheme();
   const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
-
-  const { i18n, onChangeLocalization } = useConfig();
 
   const anchorRef = useRef<any>(null);
   const [open, setOpen] = useState(false);
@@ -38,7 +37,8 @@ const Localization = () => {
   };
 
   const handleListItemClick = (lang: I18n) => {
-    onChangeLocalization(lang);
+    // onChangeLocalization(lang);
+    i18n.changeLanguage(lang);
     setOpen(false);
   };
 
@@ -96,7 +96,7 @@ const Localization = () => {
                       }
                     }}
                   >
-                    <ListItemButton selected={i18n === 'en'} onClick={() => handleListItemClick('en')}>
+                    <ListItemButton selected={i18n.language === 'en'} onClick={() => handleListItemClick('en')}>
                       <ListItemText
                         primary={
                           <Grid container>
@@ -108,37 +108,13 @@ const Localization = () => {
                         }
                       />
                     </ListItemButton>
-                    <ListItemButton selected={i18n === 'fr'} onClick={() => handleListItemClick('fr')}>
+                    <ListItemButton selected={i18n.language === 'vi'} onClick={() => handleListItemClick('vi')}>
                       <ListItemText
                         primary={
                           <Grid container>
-                            <Typography color="textPrimary">français</Typography>
+                            <Typography color="textPrimary">Việt Nam</Typography>
                             <Typography variant="caption" color="textSecondary" sx={{ ml: '8px' }}>
-                              (French)
-                            </Typography>
-                          </Grid>
-                        }
-                      />
-                    </ListItemButton>
-                    <ListItemButton selected={i18n === 'ro'} onClick={() => handleListItemClick('ro')}>
-                      <ListItemText
-                        primary={
-                          <Grid container>
-                            <Typography color="textPrimary">Română</Typography>
-                            <Typography variant="caption" color="textSecondary" sx={{ ml: '8px' }}>
-                              (Romanian)
-                            </Typography>
-                          </Grid>
-                        }
-                      />
-                    </ListItemButton>
-                    <ListItemButton selected={i18n === 'zh'} onClick={() => handleListItemClick('zh')}>
-                      <ListItemText
-                        primary={
-                          <Grid container>
-                            <Typography color="textPrimary">中国人</Typography>
-                            <Typography variant="caption" color="textSecondary" sx={{ ml: '8px' }}>
-                              (Chinese)
+                              (VietNam)
                             </Typography>
                           </Grid>
                         }

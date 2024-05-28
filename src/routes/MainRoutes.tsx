@@ -143,7 +143,7 @@ const MainRoutes = {
           path: 'dashboard',
           children: [
             {
-              path: 'default',
+              path: "default",
               element: <DashboardDefault />
             },
             {

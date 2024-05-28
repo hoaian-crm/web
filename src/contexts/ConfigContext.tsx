@@ -10,16 +10,16 @@ import { CustomizationProps, FontFamily, I18n, MenuOrientation, PresetColor, The
 // initial state
 const initialState: CustomizationProps = {
   ...config,
-  onChangeContainer: () => {},
-  onChangeLocalization: (lang: I18n) => {},
-  onChangeMode: (mode: ThemeMode) => {},
-  onChangePresetColor: (theme: PresetColor) => {},
-  onChangeDirection: (direction: ThemeDirection) => {},
-  onChangeMiniDrawer: (miniDrawer: boolean) => {},
-  onChangeMenuOrientation: (menuOrientation: MenuOrientation) => {},
-  onChangeMenuCaption: () => {},
-  onChangeFontFamily: (fontFamily: FontFamily) => {},
-  onChangeContrast: () => {}
+  onChangeContainer: () => { },
+  onChangeLocalization: (lang: I18n) => { },
+  onChangeMode: (mode: ThemeMode) => { },
+  onChangePresetColor: (theme: PresetColor) => { },
+  onChangeDirection: (direction: ThemeDirection) => { },
+  onChangeMiniDrawer: (miniDrawer: boolean) => { },
+  onChangeMenuOrientation: (menuOrientation: MenuOrientation) => { },
+  onChangeMenuCaption: () => { },
+  onChangeFontFamily: (fontFamily: FontFamily) => { },
+  onChangeContrast: () => { }
 };
 
 // ==============================|| CONFIG CONTEXT & PROVIDER ||============================== //

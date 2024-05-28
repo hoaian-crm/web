@@ -20,7 +20,7 @@ export type NavItemType = {
   id?: string;
   search?: string;
   target?: boolean;
-  title?: ReactNode | string;
+  title?: string;
   type?: string;
   url?: string | undefined;
 };

@@ -1,8 +1,5 @@
-// third-party
-import { FormattedMessage } from 'react-intl';
-
 // assets
-import { Book, PasswordCheck, Next, RowVertical, CpuCharge, TableDocument, Subtitle } from 'iconsax-react';
+import { Book, CpuCharge, Next, PasswordCheck, RowVertical, Subtitle, TableDocument } from 'iconsax-react';
 
 // type
 import { NavItemType } from 'types/menu';
@@ -22,51 +19,51 @@ const icons = {
 
 const formsTables: NavItemType = {
   id: 'group-forms-tables',
-  title: <FormattedMessage id="forms-tables" />,
+  title: 'forms-tables',
   icon: icons.formsTable,
   type: 'group',
   children: [
     {
       id: 'validation',
-      title: <FormattedMessage id="forms-validation" />,
+      title: 'forms-validation',
       type: 'item',
       url: '/forms/validation',
       icon: icons.validation
     },
     {
       id: 'wizard',
-      title: <FormattedMessage id="forms-wizard" />,
+      title: 'forms-wizard',
       type: 'item',
       url: '/forms/wizard',
       icon: icons.wizard
     },
     {
       id: 'forms-layout',
-      title: <FormattedMessage id="layout" />,
+      title: 'layout',
       type: 'collapse',
       icon: icons.layout,
       children: [
         {
           id: 'basic',
-          title: <FormattedMessage id="basic" />,
+          title: 'basic',
           type: 'item',
           url: '/forms/layout/basic'
         },
         {
           id: 'multi-column',
-          title: <FormattedMessage id="multi-column" />,
+          title: 'multi-column',
           type: 'item',
           url: '/forms/layout/multi-column'
         },
         {
           id: 'action-bar',
-          title: <FormattedMessage id="action-bar" />,
+          title: 'action-bar',
           type: 'item',
           url: '/forms/layout/action-bar'
         },
         {
           id: 'sticky-bar',
-          title: <FormattedMessage id="sticky-bar" />,
+          title: 'sticky-bar',
           type: 'item',
           url: '/forms/layout/sticky-bar'
         }
@@ -74,37 +71,37 @@ const formsTables: NavItemType = {
     },
     {
       id: 'forms-plugins',
-      title: <FormattedMessage id="plugins" />,
+      title: 'plugins',
       type: 'collapse',
       icon: icons.plugins,
       children: [
         {
           id: 'mask',
-          title: <FormattedMessage id="mask" />,
+          title: 'mask',
           type: 'item',
           url: '/forms/plugins/mask'
         },
         {
           id: 'clipboard',
-          title: <FormattedMessage id="clipboard" />,
+          title: 'clipboard',
           type: 'item',
           url: '/forms/plugins/clipboard'
         },
         {
           id: 're-captcha',
-          title: <FormattedMessage id="re-captcha" />,
+          title: 're-captcha',
           type: 'item',
           url: '/forms/plugins/re-captcha'
         },
         {
           id: 'editor',
-          title: <FormattedMessage id="editor" />,
+          title: 'editor',
           type: 'item',
           url: '/forms/plugins/editor'
         },
         {
           id: 'dropzone',
-          title: <FormattedMessage id="dropzone" />,
+          title: 'dropzone',
           type: 'item',
           url: '/forms/plugins/dropzone'
         }
@@ -112,91 +109,91 @@ const formsTables: NavItemType = {
     },
     {
       id: 'react-tables',
-      title: <FormattedMessage id="react-table" />,
+      title: 'react-table',
       type: 'collapse',
       icon: icons.reactTables,
       children: [
         {
           id: 'rt-table',
-          title: <FormattedMessage id="basic" />,
+          title: 'basic',
           type: 'item',
           url: '/tables/react-table/basic'
         },
         {
           id: 'rt-sorting',
-          title: <FormattedMessage id="sorting" />,
+          title: 'sorting',
           type: 'item',
           url: '/tables/react-table/sorting'
         },
         {
           id: 'rt-filtering',
-          title: <FormattedMessage id="filtering" />,
+          title: 'filtering',
           type: 'item',
           url: '/tables/react-table/filtering'
         },
         {
           id: 'rt-grouping',
-          title: <FormattedMessage id="grouping" />,
+          title: 'grouping',
           type: 'item',
           url: '/tables/react-table/grouping'
         },
         {
           id: 'rt-pagination',
-          title: <FormattedMessage id="pagination" />,
+          title: 'pagination',
           type: 'item',
           url: '/tables/react-table/pagination'
         },
         {
           id: 'rt-row-selection',
-          title: <FormattedMessage id="row-selection" />,
+          title: 'row-selection',
           type: 'item',
           url: '/tables/react-table/row-selection'
         },
         {
           id: 'rt-expanding',
-          title: <FormattedMessage id="expanding" />,
+          title: 'expanding',
           type: 'item',
           url: '/tables/react-table/expanding'
         },
         {
           id: 'rt-editable',
-          title: <FormattedMessage id="editable" />,
+          title: 'editable',
           type: 'item',
           url: '/tables/react-table/editable'
         },
         {
           id: 'rt-drag-drop',
-          title: <FormattedMessage id="drag-drop" />,
+          title: 'drag-drop',
           type: 'item',
           url: '/tables/react-table/drag-drop'
         },
         {
           id: 'rt-column-hiding',
-          title: <FormattedMessage id="column-hiding" />,
+          title: 'column-hiding',
           type: 'item',
           url: '/tables/react-table/column-hiding'
         },
         {
           id: 'rt-column-resizing',
-          title: <FormattedMessage id="column-resizing" />,
+          title: 'column-resizing',
           type: 'item',
           url: '/tables/react-table/column-resizing'
         },
         {
           id: 'rt-sticky-table',
-          title: <FormattedMessage id="sticky" />,
+          title: 'sticky',
           type: 'item',
           url: '/tables/react-table/sticky-table'
         },
         {
           id: 'rt-umbrella',
-          title: <FormattedMessage id="umbrella" />,
+          title: 'umbrella',
           type: 'item',
           url: '/tables/react-table/umbrella'
         },
         {
           id: 'rt-empty',
-          title: <FormattedMessage id="empty" />,
+          title: 'empty',
           type: 'item',
           url: '/tables/react-table/empty'
         }
@@ -204,49 +201,49 @@ const formsTables: NavItemType = {
     },
     {
       id: 'mui-tables',
-      title: <FormattedMessage id="mui-table" />,
+      title: 'mui-table',
       type: 'collapse',
       icon: icons.muiTables,
       children: [
         {
           id: 'mui-table',
-          title: <FormattedMessage id="basic" />,
+          title: 'basic',
           type: 'item',
           url: '/tables/mui-table/basic'
         },
         {
           id: 'mui-dense',
-          title: <FormattedMessage id="dense" />,
+          title: 'dense',
           type: 'item',
           url: '/tables/mui-table/dense'
         },
         {
           id: 'mui-enhanced',
-          title: <FormattedMessage id="enhanced" />,
+          title: 'enhanced',
           type: 'item',
           url: '/tables/mui-table/enhanced'
         },
         {
           id: 'mui-data-table',
-          title: <FormattedMessage id="datatable" />,
+          title: 'datatable',
           type: 'item',
           url: '/tables/mui-table/datatable'
         },
         {
           id: 'mui-custom',
-          title: <FormattedMessage id="custom" />,
+          title: 'custom',
           type: 'item',
           url: '/tables/mui-table/custom'
         },
         {
           id: 'mui-fixed-header',
-          title: <FormattedMessage id="fixed-header" />,
+          title: 'fixed-header',
           type: 'item',
           url: '/tables/mui-table/fixed-header'
         },
         {
           id: 'mui-collapse',
-          title: <FormattedMessage id="collapse" />,
+          title: 'collapse',
           type: 'item',
           url: '/tables/mui-table/collapse'
         }
