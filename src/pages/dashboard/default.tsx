@@ -16,6 +16,7 @@ import Transactions from 'sections/widget/data/Transactions';
 
 // assets
 import { ArrowDown, ArrowUp, Book, Calendar, CloudChange, Wallet3 } from 'iconsax-react';
+import { t } from 'i18next';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -31,7 +32,7 @@ const DashboardDefault = () => {
       {/* row 1 */}
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="All Earnings"
+          title={t("All Earnings")}
           count="$3000"
           iconPrimary={<Wallet3 />}
           percentage={

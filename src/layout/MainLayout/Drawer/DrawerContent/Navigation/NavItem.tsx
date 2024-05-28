@@ -167,7 +167,7 @@ const NavItem = ({ item, level }: Props) => {
             <ListItemText
               primary={
                 <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor, fontWeight: isSelected ? 500 : 400 }}>
-                  {item.title}
+                  {item.title && t(item.title)}
                 </Typography>
               }
             />
