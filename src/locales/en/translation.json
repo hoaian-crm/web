@@ -1,5 +1,22 @@
 {
   "Fix - Navigation Group": "",
+  "DASHBOARD": "THỐNG KÊ",
   "Default": "Default",
-  "Analytics": "Analytics"
+  "Analytics": "Analytics",
+  "Add customer": "Thêm khách hàng",
+  "Customer name": "Tên khách hàng",
+  "Avatar": "Ảnh đại diện",
+  "Email": "Email",
+  "Phone number": "Số điện thoại",
+  "Age": "Tuổi",
+  "Address": "Địa chỉ",
+  "Actions": "Tương tác",
+  "View": "Xem",
+  "Edit": "Chỉnh sửa",
+  "Delete": "Xoá",
+  "All Earnings": "",
+  "Are you sure you want to delete?": "",
+  "By deleting": "",
+  "user, all task assigned to that user will also be deleted.": "",
+  "Cancel": ""
 }

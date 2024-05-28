@@ -1,5 +1,22 @@
 {
   "Fix - Navigation Group": "",
+  "DASHBOARD": "",
   "Default": "Tổng quan",
-  "Analytics": "Chuyên sâu"
+  "Analytics": "Chuyên sâu",
+  "Add customer": "",
+  "Customer name": "",
+  "Avatar": "",
+  "Email": "",
+  "Phone number": "",
+  "Age": "",
+  "Address": "",
+  "Actions": "",
+  "View": "",
+  "Edit": "",
+  "Delete": "",
+  "All Earnings": "",
+  "Are you sure you want to delete?": "",
+  "By deleting": "",
+  "user, all task assigned to that user will also be deleted.": "",
+  "Cancel": ""
 }

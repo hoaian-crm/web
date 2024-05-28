@@ -1,7 +1,7 @@
-import { useEffect, useState, ChangeEvent } from 'react';
+import { t } from 'i18next';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Button,
@@ -9,43 +9,36 @@ import {
   DialogContent,
   DialogTitle,
   Divider,
-  FormControl,
-  FormControlLabel,
   FormLabel,
   Grid,
-  FormHelperText,
   InputLabel,
-  ListItemText,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  SelectChangeEvent,
   Stack,
-  Switch,
   TextField,
   Tooltip,
   Typography
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 // third-party
+import { Form, FormikProvider, FormikValues, useFormik } from 'formik';
 import _ from 'lodash';
 import * as Yup from 'yup';
-import { useFormik, Form, FormikProvider, FormikValues } from 'formik';
 
 // project-imports
-import AlertCustomerDelete from './AlertCustomerDelete';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 import { dispatch } from 'store';
 import { openSnackbar } from 'store/reducers/snackbar';
+import AlertCustomerDelete from './AlertCustomerDelete';
 
 // assets
 import { Camera, Trash } from 'iconsax-react';
 
 // types
+import { MapField } from 'components/MapField';
 import { ThemeMode } from 'types/config';
 
 const avatarImage = require.context('assets/images/users', true);
@@ -67,8 +60,6 @@ const getInitialValues = (customer: FormikValues | null) => {
 
   return newCustomer;
 };
-
-const allStatus = ['Complicated', 'Single', 'Relationship'];
 
 // ==============================|| CUSTOMER - ADD / EDIT ||============================== //
 
@@ -93,9 +84,9 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
   }, [selectedImage]);
 
   const CustomerSchema = Yup.object().shape({
-    name: Yup.string().max(255).required('Name is required'),
-    orderStatus: Yup.string().required('Status is required'),
-    email: Yup.string().max(255).required('Email is required').email('Must be a valid email'),
+    name: Yup.string().max(255).required(t('Name is required')),
+    orderStatus: Yup.string().required(t('Status is required')),
+    email: Yup.string().max(255).required(t('Email is required')).email(t('Must be a valid email')),
     location: Yup.string().max(500)
   });
 
@@ -123,7 +114,7 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
           dispatch(
             openSnackbar({
               open: true,
-              message: 'Customer update successfully.',
+              message: t('Customer update successfully.'),
               variant: 'alert',
               alert: {
                 color: 'success'
@@ -136,7 +127,7 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
           dispatch(
             openSnackbar({
               open: true,
-              message: 'Customer added successfully.',
+              message: t('Customer added successfully.'),
               variant: 'alert',
               alert: {
                 color: 'success'
@@ -154,21 +145,21 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
     }
   });
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps, setFieldValue } = formik;
+  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
 
   return (
     <>
       <FormikProvider value={formik}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-            <DialogTitle>{customer ? 'Edit Customer' : 'New Customer'}</DialogTitle>
+            <DialogTitle>{customer ? t('Edit Customer') : t('New Customer')}</DialogTitle>
             <Divider />
             <DialogContent sx={{ p: 2.5 }}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={3}>
                   <Stack direction="row" justifyContent="center" sx={{ mt: 3 }}>
                     <FormLabel
-                      htmlFor="change-avtar"
+                      htmlFor="change-avatar"
                       sx={{
                         position: 'relative',
                         borderRadius: '50%',
@@ -194,7 +185,7 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
                       >
                         <Stack spacing={0.5} alignItems="center">
                           <Camera style={{ color: theme.palette.secondary.lighter, fontSize: '2rem' }} />
-                          <Typography sx={{ color: 'secondary.lighter' }}>Upload</Typography>
+                          <Typography sx={{ color: 'secondary.lighter' }}>{t('Upload')}</Typography>
                         </Stack>
                       </Box>
                     </FormLabel>
@@ -212,7 +203,7 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
                       <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-name">Name</InputLabel>
+                        <InputLabel htmlFor="customer-name">{t('Name')}</InputLabel>
                         <TextField
                           fullWidth
                           id="customer-name"
@@ -225,7 +216,7 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
                     </Grid>
                     <Grid item xs={12}>
                       <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-email">Email</InputLabel>
+                        <InputLabel htmlFor="customer-email">{t('Email')}</InputLabel>
                         <TextField
                           fullWidth
                           id="customer-email"
@@ -238,70 +229,7 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
                     </Grid>
                     <Grid item xs={12}>
                       <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-orderStatus">Status</InputLabel>
-                        <FormControl fullWidth>
-                          <Select
-                            id="column-hiding"
-                            displayEmpty
-                            {...getFieldProps('orderStatus')}
-                            onChange={(event: SelectChangeEvent<string>) => setFieldValue('orderStatus', event.target.value as string)}
-                            input={<OutlinedInput id="select-column-hiding" placeholder="Sort by" />}
-                            renderValue={(selected) => {
-                              if (!selected) {
-                                return <Typography variant="subtitle1">Select Status</Typography>;
-                              }
-
-                              return <Typography variant="subtitle2">{selected}</Typography>;
-                            }}
-                          >
-                            {allStatus.map((column: any) => (
-                              <MenuItem key={column} value={column}>
-                                <ListItemText primary={column} />
-                              </MenuItem>
-                            ))}
-                          </Select>
-                        </FormControl>
-                        {touched.orderStatus && errors.orderStatus && (
-                          <FormHelperText error id="standard-weight-helper-text-email-login" sx={{ pl: 1.75 }}>
-                            {errors.orderStatus}
-                          </FormHelperText>
-                        )}
-                      </Stack>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Stack spacing={1.25}>
-                        <InputLabel htmlFor="customer-location">Location</InputLabel>
-                        <TextField
-                          fullWidth
-                          id="customer-location"
-                          multiline
-                          rows={2}
-                          placeholder="Enter Location"
-                          {...getFieldProps('location')}
-                          error={Boolean(touched.location && errors.location)}
-                          helperText={touched.location && errors.location}
-                        />
-                      </Stack>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Stack direction="row" justifyContent="space-between" alignItems="flex-start">
-                        <Stack spacing={0.5}>
-                          <Typography variant="subtitle1">Make Contact Info Public</Typography>
-                          <Typography variant="caption" color="textSecondary">
-                            Means that anyone viewing your profile will be able to see your contacts details
-                          </Typography>
-                        </Stack>
-                        <FormControlLabel control={<Switch defaultChecked sx={{ mt: 0 }} />} label="" labelPlacement="start" />
-                      </Stack>
-                      <Divider sx={{ my: 2 }} />
-                      <Stack direction="row" justifyContent="space-between" alignItems="flex-start">
-                        <Stack spacing={0.5}>
-                          <Typography variant="subtitle1">Available to hire</Typography>
-                          <Typography variant="caption" color="textSecondary">
-                            Toggling this will let your teammates know that you are available for acquiring new projects
-                          </Typography>
-                        </Stack>
-                        <FormControlLabel control={<Switch sx={{ mt: 0 }} />} label="" labelPlacement="start" />
+                        <MapField />
                       </Stack>
                     </Grid>
                   </Grid>
@@ -323,10 +251,10 @@ const AddCustomer = ({ customer, onCancel }: Props) => {
                 <Grid item>
                   <Stack direction="row" spacing={2} alignItems="center">
                     <Button color="error" onClick={onCancel}>
-                      Cancel
+                      {t('Cancel')}
                     </Button>
                     <Button type="submit" variant="contained" disabled={isSubmitting}>
-                      {customer ? 'Edit' : 'Add'}
+                      {customer ? t('Edit') : t('Add')}
                     </Button>
                   </Stack>
                 </Grid>

@@ -1,45 +1,32 @@
-import { useCallback, useEffect, useMemo, useState, FC, Fragment, MouseEvent } from 'react';
+import { FC, Fragment, MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 // material-ui
+import { Button, Dialog, Stack, Table, TableBody, TableCell, TableHead, TableRow, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import {
-  Button,
-  Chip,
-  Dialog,
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Tooltip,
-  Typography,
-  useMediaQuery
-} from '@mui/material';
+import { t } from 'i18next';
 
 // third-party
-import { PatternFormat } from 'react-number-format';
 import {
-  useFilters,
-  useExpanded,
-  useGlobalFilter,
-  useRowSelect,
-  useSortBy,
-  useTable,
-  usePagination,
+  Cell,
   Column,
   HeaderGroup,
+  HeaderProps,
   Row,
-  Cell,
-  HeaderProps
+  useExpanded,
+  useFilters,
+  useGlobalFilter,
+  usePagination,
+  useRowSelect,
+  useSortBy,
+  useTable
 } from 'react-table';
 
 // project-imports
-import MainCard from 'components/MainCard';
-import ScrollX from 'components/ScrollX';
 import Avatar from 'components/@extended/Avatar';
 import IconButton from 'components/@extended/IconButton';
 import { PopupTransition } from 'components/@extended/Transitions';
+import MainCard from 'components/MainCard';
+import ScrollX from 'components/ScrollX';
 import {
   CSVExport,
   HeaderSort,
@@ -50,25 +37,26 @@ import {
 } from 'components/third-party/ReactTable';
 
 import AddCustomer from 'sections/apps/customer/AddCustomer';
-import CustomerView from 'sections/apps/customer/CustomerView';
 import AlertCustomerDelete from 'sections/apps/customer/AlertCustomerDelete';
+import CustomerView from 'sections/apps/customer/CustomerView';
 
-import makeData from 'data/react-table';
-import { renderFilterTypes, GlobalFilter } from 'utils/react-table';
+import { GlobalFilter, renderFilterTypes } from 'utils/react-table';
 
 // assets
 import { Add, Edit, Eye, Trash } from 'iconsax-react';
 
 // types
+import { CustomerFaker } from 'faker/customer';
+import { IAddress } from 'types/address';
 import { ThemeMode } from 'types/config';
-
-const avatarImage = require.context('assets/images/users', true);
+import { ICustomer } from 'types/customer';
+import { getAge } from 'utils/getAge';
 
 // ==============================|| REACT TABLE ||============================== //
 
 interface Props {
   columns: Column[];
-  data: [];
+  data: ICustomer[];
   handleAdd: () => void;
   renderRowSubComponent: FC<any>;
 }
@@ -78,7 +66,7 @@ function ReactTable({ columns, data, renderRowSubComponent, handleAdd }: Props) 
   const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const filterTypes = useMemo(() => renderFilterTypes, []);
-  const sortBy = { id: 'fatherName', desc: false };
+  const sortBy = { id: 'name', desc: false };
 
   const {
     getTableProps,
@@ -114,7 +102,7 @@ function ReactTable({ columns, data, renderRowSubComponent, handleAdd }: Props) 
 
   useEffect(() => {
     if (matchDownSM) {
-      setHiddenColumns(['age', 'contact', 'visits', 'email', 'status', 'avatar']);
+      setHiddenColumns(['age', 'email', 'status', 'avatar']);
     } else {
       setHiddenColumns(['avatar', 'email']);
     }
@@ -136,7 +124,7 @@ function ReactTable({ columns, data, renderRowSubComponent, handleAdd }: Props) 
           <Stack direction={matchDownSM ? 'column' : 'row'} alignItems="center" spacing={2}>
             <SortingSelect sortBy={sortBy.id} setSortBy={setSortBy} allColumns={allColumns} />
             <Button variant="contained" startIcon={<Add />} onClick={handleAdd} size="small">
-              Add Customer
+              {t('Add customer')}
             </Button>
             <CSVExport
               data={selectedFlatRows.length > 0 ? selectedFlatRows.map((d: Row) => d.original) : data}
@@ -195,7 +183,7 @@ function ReactTable({ columns, data, renderRowSubComponent, handleAdd }: Props) 
 const CustomerListPage = () => {
   const theme = useTheme();
   const mode = theme.palette.mode;
-  const data = useMemo(() => makeData(200), []);
+  const data = useMemo(() => CustomerFaker.many(200), []);
   const [open, setOpen] = useState<boolean>(false);
   const [customer, setCustomer] = useState<any>(null);
   const [customerDeleteId, setCustomerDeleteId] = useState<any>('');
@@ -227,15 +215,15 @@ const CustomerListPage = () => {
         className: 'cell-center'
       },
       {
-        Header: 'Customer Name',
-        accessor: 'fatherName',
+        Header: t('Customer name'),
+        accessor: 'name',
         Cell: ({ row }: { row: Row }) => {
           const { values } = row;
           return (
             <Stack direction="row" spacing={1.5} alignItems="center">
-              <Avatar alt="Avatar 1" size="sm" src={avatarImage(`./avatar-${!values.avatar ? 1 : values.avatar}.png`)} />
+              <Avatar alt="Avatar 1" size="sm" src={values.avatar} />
               <Stack spacing={0}>
-                <Typography variant="subtitle1">{values.fatherName}</Typography>
+                <Typography variant="subtitle1">{values.name}</Typography>
                 <Typography color="text.secondary">{values.email}</Typography>
               </Stack>
             </Stack>
@@ -243,47 +231,31 @@ const CustomerListPage = () => {
         }
       },
       {
-        Header: 'Avatar',
+        Header: t('Avatar'),
         accessor: 'avatar',
         disableSortBy: true
       },
       {
-        Header: 'Email',
+        Header: t('Email'),
         accessor: 'email'
       },
       {
-        Header: 'Contact',
-        accessor: 'contact',
-        Cell: ({ value }: { value: number }) => (
-          <PatternFormat displayType="text" format="+1 (###) ###-####" mask="_" defaultValue={value} />
-        )
+        Header: t('Phone number'),
+        accessor: 'phone',
+        Cell: ({ value }: { value: number }) => <Typography>{value}</Typography>
       },
       {
-        Header: 'Age',
-        accessor: 'age',
-        className: 'cell-right'
+        Header: t('Age'),
+        accessor: 'dob',
+        Cell: ({ value }: { value: string }) => <Typography>{getAge(value)}</Typography>
       },
       {
-        Header: 'Country',
-        accessor: 'country'
+        Header: t('Address'),
+        accessor: 'address',
+        Cell: ({ value }: { value: IAddress }) => <Typography>{value.metadata.name}</Typography>
       },
       {
-        Header: 'Status',
-        accessor: 'status',
-        Cell: ({ value }: { value: string }) => {
-          switch (value) {
-            case 'Complicated':
-              return <Chip color="error" label="Complicated" size="small" variant="light" />;
-            case 'Relationship':
-              return <Chip color="success" label="Relationship" size="small" variant="light" />;
-            case 'Single':
-            default:
-              return <Chip color="info" label="Single" size="small" variant="light" />;
-          }
-        }
-      },
-      {
-        Header: 'Actions',
+        Header: t('Actions'),
         className: 'cell-center',
         disableSortBy: true,
         Cell: ({ row }: { row: Row<{}> }) => {
@@ -299,7 +271,7 @@ const CustomerListPage = () => {
                     }
                   }
                 }}
-                title="View"
+                title={t('View')}
               >
                 <IconButton
                   color="secondary"
@@ -320,7 +292,7 @@ const CustomerListPage = () => {
                     }
                   }
                 }}
-                title="Edit"
+                title={t('Edit')}
               >
                 <IconButton
                   color="primary"
@@ -342,7 +314,7 @@ const CustomerListPage = () => {
                     }
                   }
                 }}
-                title="Delete"
+                title={t('Delete')}
               >
                 <IconButton
                   color="error"
