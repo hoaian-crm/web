@@ -16,6 +16,8 @@ import { ArrowUp } from 'iconsax-react';
 // types
 import { ThemeMode } from 'types/config';
 
+import { t } from 'i18next';
+
 // ==============================|| CHART ||============================== //
 
 const DataChart = () => {
@@ -98,13 +100,13 @@ const NewUsers = () => {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-            <Typography variant="h5">New Users</Typography>
+            <Typography variant="h5">{t("New Users")}</Typography>
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth size="small">
                 <Select id="demo-simple-select" value={age} onChange={handleChange}>
-                  <MenuItem value={10}>Today</MenuItem>
-                  <MenuItem value={20}>Weekly</MenuItem>
-                  <MenuItem value={30}>Monthly</MenuItem>
+                  <MenuItem value={10}>{t("Today")}</MenuItem>
+                  <MenuItem value={20}>{t("Weekly")}</MenuItem>
+                  <MenuItem value={30}>{t("Monthly")}</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -124,7 +126,7 @@ const NewUsers = () => {
         </Grid>
         <Grid item xs={12}>
           <Button fullWidth variant="outlined" color="secondary">
-            View more
+            {t("View more")}
           </Button>
         </Grid>
       </Grid>

@@ -7,9 +7,7 @@ import EcommerceDataCard from 'components/cards/statistics/EcommerceDataCard';
 import EcommerceDataChart from 'sections/widget/chart/EcommerceDataChart';
 
 import ProjectRelease from 'sections/dashboard/default/ProjectRelease';
-import ProjectOverview from 'sections/widget/chart/ProjectOverview';
 import RepeatCustomerRate from 'sections/widget/chart/RepeatCustomerRate';
-import AssignUsers from 'sections/widget/statistics/AssignUsers';
 
 import TotalIncome from 'sections/widget/chart/TotalIncome';
 import Transactions from 'sections/widget/data/Transactions';
@@ -22,17 +20,11 @@ import { t } from 'i18next';
 
 const DashboardDefault = () => {
   const theme = useTheme();
-
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-      {/* <Grid item xs={12}>
-        <WelcomeBanner />
-      </Grid> */}
-
-      {/* row 1 */}
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title={t("All Earnings")}
+          title={t('All Earnings')}
           count="$3000"
           iconPrimary={<Wallet3 />}
           percentage={
@@ -46,7 +38,7 @@ const DashboardDefault = () => {
       </Grid>
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="Page Views"
+          title={t('Page Views')}
           count="290+"
           color="warning"
           iconPrimary={<Book color={theme.palette.warning.dark} />}
@@ -61,7 +53,7 @@ const DashboardDefault = () => {
       </Grid>
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="Total task"
+          title={t('Total task')}
           count="1,568"
           color="success"
           iconPrimary={<Calendar color={theme.palette.success.darker} />}
@@ -76,7 +68,7 @@ const DashboardDefault = () => {
       </Grid>
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="Download"
+          title={t('Download')}
           count="$200"
           color="error"
           iconPrimary={<CloudChange color={theme.palette.error.dark} />}
@@ -96,15 +88,15 @@ const DashboardDefault = () => {
           <Grid item xs={12}>
             <RepeatCustomerRate />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <ProjectOverview />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
         <Stack spacing={3}>
           <ProjectRelease />
-          <AssignUsers />
+          {/* <AssignUsers /> */}
         </Stack>
       </Grid>
 

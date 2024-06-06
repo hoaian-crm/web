@@ -23,6 +23,7 @@ import IconButton from 'components/@extended/IconButton';
 
 // assets
 import { ArrowDown, ArrowSwapHorizontal, ArrowUp, More } from 'iconsax-react';
+import { t } from 'i18next';
 
 // ==============================|| TAB PANEL ||============================== //
 
@@ -74,7 +75,7 @@ export default function Transactions() {
     <MainCard content={false}>
       <Box sx={{ p: 3, pb: 1 }}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-          <Typography variant="h5">Transactions</Typography>
+          <Typography variant="h5">{t("Transaction")}</Typography>
           <IconButton
             color="secondary"
             id="wallet-button"
@@ -103,18 +104,18 @@ export default function Transactions() {
               horizontal: 'right'
             }}
           >
-            <ListItemButton onClick={handleClose}>Today</ListItemButton>
-            <ListItemButton onClick={handleClose}>Weekly</ListItemButton>
-            <ListItemButton onClick={handleClose}>Monthly</ListItemButton>
+            <ListItemButton onClick={handleClose}>{t("Today")}</ListItemButton>
+            <ListItemButton onClick={handleClose}>{t("Week")}</ListItemButton>
+            <ListItemButton onClick={handleClose}>{t("Monthly")}</ListItemButton>
           </Menu>
         </Stack>
       </Box>
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{ px: 3 }}>
-            <Tab label="All Transaction" {...a11yProps(0)} />
-            <Tab label="Success" {...a11yProps(1)} />
-            <Tab label="Pending" {...a11yProps(2)} />
+            <Tab label={t("All Transaction")} {...a11yProps(0)} />
+            <Tab label={t("Success")} {...a11yProps(1)} />
+            <Tab label={t("Pending")} {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -551,10 +552,10 @@ export default function Transactions() {
         </TabPanel>
         <Stack direction="row" alignItems="center" spacing={1.25} sx={{ p: 3 }}>
           <Button variant="outlined" fullWidth color="secondary">
-            Transaction History
+            {t("Transaction History")}
           </Button>
           <Button variant="contained" fullWidth>
-            Create new Transaction
+            {t("Create new Transaction")}
           </Button>
         </Stack>
       </Box>

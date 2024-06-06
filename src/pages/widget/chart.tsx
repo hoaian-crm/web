@@ -35,6 +35,7 @@ import IncomeChart from 'sections/dashboard/analytics/IncomeChart';
 
 // assets
 import { ArrowDown, ArrowDown2, ArrowUp, Book, Calendar, CloudChange, DocumentDownload, Wallet3 } from 'iconsax-react';
+import { t } from 'i18next';
 
 // ==============================|| WIDGET - CHARTS ||============================== //
 
@@ -56,7 +57,7 @@ const WidgetChart = () => {
       {/* row 1 */}
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="All Earnings"
+          title={t("All Earnings")}
           count="$3200"
           iconPrimary={<Wallet3 />}
           percentage={
@@ -70,7 +71,7 @@ const WidgetChart = () => {
       </Grid>
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="Page Views"
+          title={t("Page Views")}
           count="290+"
           color="warning"
           iconPrimary={<Book color={theme.palette.warning.main} />}
@@ -85,7 +86,7 @@ const WidgetChart = () => {
       </Grid>
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="Total task"
+          title={t("Total Task")}
           count="1468"
           color="success"
           iconPrimary={<Calendar color={theme.palette.success.main} />}
@@ -100,7 +101,7 @@ const WidgetChart = () => {
       </Grid>
       <Grid item xs={12} sm={6} lg={3}>
         <EcommerceDataCard
-          title="Download"
+          title={t("Download")}
           count="$300"
           color="error"
           iconPrimary={<CloudChange color={theme.palette.error.dark} />}
@@ -177,7 +178,7 @@ const WidgetChart = () => {
           <Grid container>
             <Grid item xs={12} sm={6}>
               <Stack alignItems={{ xs: 'center', sm: 'flex-start' }}>
-                <Typography variant="h5">Income Overview</Typography>
+                <Typography variant="h5">{t("Income Overview")}</Typography>
                 <Stack direction="row" alignItems="center" sx={{ mt: 2 }}>
                   <ArrowDown2 variant="Bold" style={{ color: theme.palette.error.main, paddingRight: '4px' }} />
                   <Typography color={theme.palette.error.main}>$1,12,900 (45.67%)</Typography>
@@ -191,16 +192,16 @@ const WidgetChart = () => {
               <Stack direction="row" spacing={1} alignItems="center" justifyContent={{ xs: 'center', sm: 'flex-end' }} sx={{ mr: 2 }}>
                 <ToggleButtonGroup exclusive onChange={handleChange} value={slot}>
                   <ToggleButton disabled={slot === 'week'} value="week" sx={{ px: 2, py: 0.5 }}>
-                    Week
+                    {t("Week")}
                   </ToggleButton>
                   <ToggleButton disabled={slot === 'month'} value="month" sx={{ px: 2, py: 0.5 }}>
-                    Month
+                    {t("Month")}
                   </ToggleButton>
                 </ToggleButtonGroup>
                 <Select value={quantity} onChange={handleQuantity} size="small">
-                  <MenuItem value="By volume">By Volume</MenuItem>
-                  <MenuItem value="By margin">By Margin</MenuItem>
-                  <MenuItem value="By sales">By Sales</MenuItem>
+                  <MenuItem value="By volume">{t("By Volume")}</MenuItem>
+                  <MenuItem value="By margin">{t("By Margin")}</MenuItem>
+                  <MenuItem value="By sales">{t("By Sales")}</MenuItem>
                 </Select>
                 <IconButton
                   sx={{

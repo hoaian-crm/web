@@ -10,6 +10,7 @@ import IconButton from 'components/@extended/IconButton';
 
 // assets
 import { More } from 'iconsax-react';
+import { t } from 'i18next';
 
 // ==============================|| CHART - REPEAT CUSTOMER RATE ||============================== //
 
@@ -29,7 +30,7 @@ const RepeatCustomerRate = () => {
   return (
     <MainCard>
       <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-        <Typography variant="h5">Repeat customer rate</Typography>
+        <Typography variant="h5">{t("Repeat customer rate")}</Typography>
         <IconButton
           color="secondary"
           id="wallet-button"
@@ -58,9 +59,9 @@ const RepeatCustomerRate = () => {
             horizontal: 'right'
           }}
         >
-          <ListItemButton onClick={handleClose}>Today</ListItemButton>
-          <ListItemButton onClick={handleClose}>Weekly</ListItemButton>
-          <ListItemButton onClick={handleClose}>Monthly</ListItemButton>
+          <ListItemButton onClick={handleClose}>{t("Today")}</ListItemButton>
+          <ListItemButton onClick={handleClose}>{t("Weekly")}</ListItemButton>
+          <ListItemButton onClick={handleClose}>{t("Monthly")}</ListItemButton>
         </Menu>
       </Stack>
       <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={0.5} sx={{ mt: 1 }}>

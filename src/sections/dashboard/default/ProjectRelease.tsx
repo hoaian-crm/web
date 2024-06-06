@@ -1,23 +1,24 @@
 // material-ui
-import { Button, Chip, Grid, LinearProgress, List, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material';
+import { Chip, Grid, LinearProgress, List, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from '@mui/material';
 
 // project-imports
 import MainCard from 'components/MainCard';
 import Dot from 'components/@extended/Dot';
 
 // assets
-import { Add, Link1 } from 'iconsax-react';
+import { Link1 } from 'iconsax-react';
+import { t } from 'i18next';
 
 // =========================|| DATA WIDGET - ADD NEW TASK ||========================= //
 
 const ProjectRelease = () => {
   return (
-    <MainCard title="Project - Able Pro    ">
+    <MainCard title={t("Personal Task")}>
       <Grid container spacing={1.5}>
         <Grid item xs={12}>
           <Stack spacing={1}>
             <Stack direction="row" alignItems="center" justifyContent="space-between">
-              <Typography>Release v1.2.0</Typography>
+              <Typography>{t("Customer service")}</Typography>
               <Typography>72%</Typography>
             </Stack>
             <LinearProgress variant="determinate" value={72} />
@@ -29,7 +30,7 @@ const ProjectRelease = () => {
               <ListItemIcon>
                 <Dot color="warning" />
               </ListItemIcon>
-              <ListItemText primary="Horizontal Layout" />
+              <ListItemText primary={t("Call to Mr. ") + "Hoai An"} />
               <Chip
                 label={
                   <Typography sx={{ display: 'flex', alignItems: 'center', gap: 0.5, '& svg': { width: 12, height: 12 } }}>
@@ -44,27 +45,27 @@ const ProjectRelease = () => {
               <ListItemIcon>
                 <Dot color="warning" />
               </ListItemIcon>
-              <ListItemText primary="Invoice Generator" />
+              <ListItemText primary={t("Create bill for ") + "Relation C company"} />
             </ListItemButton>
             <ListItemButton>
               <ListItemIcon>
                 <Dot />
               </ListItemIcon>
-              <ListItemText primary="Package Upgrades" />
+              <ListItemText primary={t("Find new customer")} />
             </ListItemButton>
             <ListItemButton>
               <ListItemIcon>
                 <Dot color="success" />
               </ListItemIcon>
-              <ListItemText primary="Figma Auto Layout" />
+              <ListItemText primary={t("Report bug of system")} />
             </ListItemButton>
           </List>
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Button fullWidth variant="contained" startIcon={<Add />}>
-            Add task
+            {t("Add task")}
           </Button>
-        </Grid>
+        </Grid> */}
       </Grid>
     </MainCard>
   );

@@ -13,7 +13,7 @@ const dashboard: NavItemType = {
   children: [
     {
       id: 'default',
-      title: i18n.t("Default"),
+      title: i18n.t("Overview"),
       type: 'item',
       url: '/dashboard/default',
     },

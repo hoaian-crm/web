@@ -18,6 +18,8 @@ import { ArrowUp, More } from 'iconsax-react';
 // types
 import { ThemeMode } from 'types/config';
 
+import { t } from 'i18next';
+
 // chart options
 const pieChartOptions = {
   chart: {
@@ -111,7 +113,7 @@ const TotalIncome = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-            <Typography variant="h5">Total Income</Typography>
+            <Typography variant="h5">{t("Total Income")}</Typography>
             <IconButton
               color="secondary"
               id="wallet-button"
@@ -140,9 +142,9 @@ const TotalIncome = () => {
                 horizontal: 'right'
               }}
             >
-              <ListItemButton onClick={handleClose}>Today</ListItemButton>
-              <ListItemButton onClick={handleClose}>Weekly</ListItemButton>
-              <ListItemButton onClick={handleClose}>Monthly</ListItemButton>
+              <ListItemButton onClick={handleClose}>{t("Today")}</ListItemButton>
+              <ListItemButton onClick={handleClose}>{t("Weekly")}</ListItemButton>
+              <ListItemButton onClick={handleClose}>{t("Monthly")}</ListItemButton>
             </Menu>
           </Stack>
         </Grid>
@@ -154,7 +156,7 @@ const TotalIncome = () => {
             <Stack alignItems="flex-start" sx={{ p: 2 }} spacing={0.5}>
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Dot componentDiv />
-                <Typography>Item01</Typography>
+                <Typography>Apple Inc.</Typography>
               </Stack>
 
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
@@ -175,7 +177,7 @@ const TotalIncome = () => {
             <Stack alignItems="flex-start" sx={{ p: 2 }} spacing={0.5}>
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Dot componentDiv sx={{ bgcolor: 'primary.200' }} />
-                <Typography>Item02</Typography>
+                <Typography>Spotify Music</Typography>
               </Stack>
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 $23,876
@@ -195,7 +197,7 @@ const TotalIncome = () => {
             <Stack alignItems="flex-start" sx={{ p: 2 }} spacing={0.5}>
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Dot componentDiv color="warning" />
-                <Typography>Item03</Typography>
+                <Typography>Uber</Typography>
               </Stack>
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 $23,876
@@ -215,7 +217,7 @@ const TotalIncome = () => {
             <Stack alignItems="flex-start" sx={{ p: 2 }} spacing={0.5}>
               <Stack direction="row" alignItems="center" spacing={1}>
                 <Dot componentDiv color="success" />
-                <Typography>Item04</Typography>
+                <Typography>Ola Cabs</Typography>
               </Stack>
               <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                 $23,876

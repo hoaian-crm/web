@@ -15,6 +15,7 @@ import { ArrowRight2, Buildings2, Home3 } from 'iconsax-react';
 // types
 import { OverrideIcon } from 'types/root';
 import { NavItemType } from 'types/menu';
+import { t } from 'i18next';
 
 // ==============================|| BREADCRUMBS ||============================== //
 
@@ -134,7 +135,7 @@ const Breadcrumbs = ({
         color="secondary"
       >
         {icons && <CollapseIcon style={iconSX} />}
-        {main.title}
+        {t(main.title || "")}
       </Typography>
     );
     breadcrumbContent = (
@@ -171,7 +172,7 @@ const Breadcrumbs = ({
           {title && titleBottom && (
             <Grid item sx={{ mt: card === false ? 0 : 1 }}>
               <Typography variant="h2" sx={{ fontWeight: 700 }}>
-                {main.title}
+                {t(main.title || "")}
               </Typography>
             </Grid>
           )}
@@ -189,7 +190,7 @@ const Breadcrumbs = ({
     itemContent = (
       <Typography variant="h6" color="secondary" sx={{ display: 'flex', alignItems: 'center' }}>
         {icons && <ItemIcon style={iconSX} />}
-        {itemTitle}
+        {t(itemTitle || "")}
       </Typography>
     );
 
@@ -213,7 +214,7 @@ const Breadcrumbs = ({
             {title && !titleBottom && (
               <Grid item>
                 <Typography variant="h2" sx={{ fontWeight: 700 }}>
-                  {item.title}
+                  {t(item.title || "")}
                 </Typography>
               </Grid>
             )}
@@ -228,7 +229,7 @@ const Breadcrumbs = ({
                 >
                   {icons && <Home3 style={iconSX} />}
                   {icon && !icons && <Home3 variant="Bold" style={{ ...iconSX, marginRight: 0 }} />}
-                  {(!icon || icons) && 'Home'}
+                  {(!icon || icons) && t('Home')}
                 </Typography>
                 {mainContent}
                 {itemContent}
@@ -237,7 +238,7 @@ const Breadcrumbs = ({
             {title && titleBottom && (
               <Grid item sx={{ mt: card === false ? 0 : 1 }}>
                 <Typography variant="h2" sx={{ fontWeight: 700 }}>
-                  {item.title}
+                  {t(item.title || "")}
                 </Typography>
               </Grid>
             )}
